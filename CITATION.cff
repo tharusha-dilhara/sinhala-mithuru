@@ -1,0 +1,38 @@
+cff-version: 1.2.0
+message: "If you use this software or dataset, please cite it as below."
+title: "Sinhala Mithuru: An AI-Powered Adaptive Gamified Ecosystem for Sinhala Language Skill Development"
+authors:
+  - family-names: "Adhikari"
+    given-names: "A.M.G.S."
+    affiliation: "Sri Lanka Institute of Information Technology (SLIIT)"
+  - family-names: "Jayadeera"
+    given-names: "T.D."
+    affiliation: "Sri Lanka Institute of Information Technology (SLIIT)"
+  - family-names: "Warnasooriya"
+    given-names: "W.M.I.T."
+    affiliation: "Sri Lanka Institute of Information Technology (SLIIT)"
+  - family-names: "Zumra"
+    given-names: "M.A.F."
+    affiliation: "Sri Lanka Institute of Information Technology (SLIIT)"
+  - family-names: "Anjana"
+    given-names: "Junius"
+    name-particle: "Dr."
+    affiliation: "Sri Lanka Institute of Information Technology (SLIIT)"
+    email: "junius.a@sliit.lk" 
+  - family-names: "Samaraweera"
+    given-names: "Mihiri"
+    name-particle: "Ms."
+    affiliation: "Sri Lanka Institute of Information Technology (SLIIT)"
+version: 1.0.0
+date-released: 2025-11-23
+url: "https://github.com/tharusha-dilhara/sinhala-mithuru" 
+keywords:
+  - "sinhala-language"
+  - "education-technology"
+  - "artificial-intelligence"
+  - "handwriting-recognition"
+  - "speech-processing"
+  - "natural-language-processing"
+  - "grammatical-error-correction"
+  - "adaptive-learning"
+license: MIT
