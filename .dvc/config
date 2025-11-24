@@ -1,0 +1,8 @@
+[core]
+    remote = storage
+['remote "storage"']
+    url = s3://sinhala-mithuru-repo
+    endpointurl = http://147.93.19.33:9000
+    access_key_id = admin
+    secret_access_key = e9juwpw-k96u858
+    use_ssl = false
