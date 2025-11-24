@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  # --- Handwriting AI service  ---
+  handwriting_api:
+    container_name: handwriting
+    build:
+      context: ./services/handwriting
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8000" 
+
+  # --- Pronunciation AI service ---
+  pronunciation_api:
+    container_name: pronunciation
+    build:
+      context: ./services/pronunciation
+      dockerfile: Dockerfile
+    ports:
+      - "8002:8000" 
+
+  # --- Storytelling AI Service ---
+  narrative_api:
+    container_name: narrative
+    build:
+      context: ./services/narrative
+      dockerfile: Dockerfile
+    ports:
+      - "8003:8000" 
+
+  # --- Grammar AI Service ---
+  grammar_api:
+    container_name: grammar
+    build:
+      context: ./services/grammar
+      dockerfile: Dockerfile
+    ports:
+      - "8004:8000" 
+
+  # --- Game (Frontend) ---
+  game_frontend:
+    container_name: game-frontend
+    build:
+      context: ./game_frontend 
+    ports:
+      - "3000:80"
+    depends_on:
+      - handwriting_api
+      - pronunciation_api
+      - narrative_api
+      - grammar_api
+
+networks:
+  default:
+    name: sinhala_mithuru_network
