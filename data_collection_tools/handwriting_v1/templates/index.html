@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Sinhala Mithuru Collector</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --primary-gradient: linear-gradient(135deg, #00c6ff, #0072ff);
+            --danger-solid: linear-gradient(135deg, #ff512f, #dd2476);
+            --bg-color: #f4f7f6;
+            --panel-bg: #ffffff;
+            --text-dark: #2c3e50;
+        }
+
+        body { 
+            background-color: var(--bg-color); 
+            color: var(--text-dark); 
+            font-family: 'Poppins', sans-serif;
+            margin: 0; padding: 0; 
+            display: flex; flex-direction: column; height: 100vh;
+            user-select: none; overflow: hidden;
+        }
+        
+        .header {
+            text-align: center; padding: 15px 20px;
+            background: var(--panel-bg); 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05); z-index: 20;
+        }
+        
+        h1 { 
+            margin: 0; font-size: 22px; font-weight: 700; 
+            background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        .content { flex: 1; display: flex; overflow: hidden; }
+        
+        .canvas-area {
+            flex: 1;
+            background-color: #eef2f5; 
+            background-image: radial-gradient(#d1d8e0 1px, transparent 1px);
+            background-size: 20px 20px; 
+            display: flex; align-items: center; justify-content: center;
+            overflow: auto; position: relative; padding: 40px;
+        }
+
+        /* --- Canvas Wrapper (Layering Logic) --- */
+        .canvas-wrapper {
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            border: 8px solid #fff;
+            border-radius: 4px;
+            display: inline-block;
+            background: white; /* Base white paper */
+            position: relative; /* Important for layering */
+        }
+
+        /* Guide Image (Behind Canvas) */
+        #guideOverlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: contain;
+            pointer-events: none; /* Mouse clicks pass through to canvas */
+            opacity: 0.2; /* Default faint */
+            z-index: 1;
+        }
+
+        /* Drawing Canvas (Top Layer) */
+        canvas { 
+            background: transparent; /* Make canvas transparent */
+            cursor: crosshair; 
+            display: block;
+            touch-action: none; 
+            width: 600px; height: 600px;
+            position: relative;
+            z-index: 2; /* Above the image */
+        }
+        
+        /* --- Controls --- */
+        .controls {
+            width: 320px; background: var(--panel-bg); padding: 30px;
+            display: flex; flex-direction: column; gap: 15px; 
+            box-shadow: -5px 0 30px rgba(0,0,0,0.03); z-index: 10; border-left: 1px solid #eee;
+            overflow-y: auto;
+        }
+        
+        label { color: #7f8c8d; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 5px; display: block; }
+
+        input[type="text"] { 
+            padding: 12px; border-radius: 12px; border: 2px solid #eef2f5; width: 100%; box-sizing: border-box;
+            background: #f8f9fa; color: #333; font-size: 20px; font-weight: 700; text-align: center; outline: none;
+        }
+        input[type="text"]:focus { border-color: #00c6ff; background: #fff; }
+
+        .stat-card {
+            background: #f0f9ff; border: 1px solid #cceeff; border-radius: 12px; padding: 10px 15px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .stat-label { font-size: 12px; color: #007bff; font-weight: 600; }
+        .stat-number { font-size: 20px; color: #007bff; font-weight: 700; }
+
+        .card-box {
+            background: #f8f9fa; padding: 15px; border-radius: 12px; border: 1px solid #eef2f5;
+        }
+        
+        input[type="range"] { width: 100%; cursor: pointer; accent-color: #00c6ff; }
+
+        /* Custom File Upload */
+        .file-upload {
+            position: relative; overflow: hidden; display: inline-block; width: 100%;
+        }
+        .file-upload input[type=file] {
+            font-size: 100px; position: absolute; left: 0; top: 0; opacity: 0; cursor: pointer;
+        }
+        .file-upload-btn {
+            background: white; border: 2px dashed #bdc3c7; color: #7f8c8d; 
+            padding: 8px; border-radius: 8px; text-align: center; font-size: 13px; font-weight: 600;
+            transition: 0.3s; width: 100%; box-sizing: border-box; display: block;
+        }
+        .file-upload-btn:hover { border-color: #007bff; color: #007bff; }
+
+        button, .btn-link {
+            padding: 12px; border-radius: 12px; border: none; font-size: 14px; 
+            font-weight: 600; cursor: pointer; transition: 0.3s; 
+            text-decoration: none; text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; box-sizing: border-box;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        
+        .btn-save { background: var(--primary-gradient); color: #fff; }
+        .btn-save:hover { transform: translateY(-2px); box-shadow: 0 8px 15px rgba(0, 114, 255, 0.3); }
+        
+        .btn-clear { background: var(--danger-solid); color: #fff; }
+        .btn-clear:hover { transform: translateY(-2px); box-shadow: 0 8px 15px rgba(221, 36, 118, 0.3); }
+
+        .btn-link { background: #fff; color: var(--text-dark); border: 2px solid #eef2f5; }
+        .btn-link:hover { background: #eef2f5; border-color: #dce4e8; }
+
+        #status { text-align: center; color: #95a5a6; margin-top: auto; font-size: 12px; padding: 10px; background: #f8f9fa; border-radius: 8px; }
+        
+        .footer-credits { margin-top: 15px; text-align: center; font-size: 10px; color: #bdc3c7; }
+        .footer-credits span { color: var(--primary-color); font-weight: 600; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>🖊️ Sinhala Mithuru Collector</h1>
+    </div>
+
+    <div class="content">
+        <div class="canvas-area" id="scrollArea">
+            <div class="canvas-wrapper">
+                <img id="guideOverlay" src="" alt="">
+                <canvas id="canvas" width="600" height="600"></canvas>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <div>
+                <label>Label</label>
+                <input type="text" id="label" value="ka">
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-label">Total Images</div>
+                <div class="stat-number" id="imgCount">0</div>
+            </div>
+            
+            <div class="card-box">
+                <div style="display:flex; justify-content:space-between; margin-bottom: 5px;">
+                    <label style="margin:0;">Guide Overlay</label>
+                    <span id="opacityValue" style="font-size:11px; color:#007bff;">20%</span>
+                </div>
+                <div class="file-upload">
+                    <label class="file-upload-btn">
+                        📥 Upload Guide Image
+                        <input type="file" id="guideInput" accept="image/*" onchange="loadGuide(this)">
+                    </label>
+                </div>
+                <div style="margin-top: 10px;">
+                    <input type="range" min="0" max="100" value="20" oninput="updateOpacity(this.value)">
+                </div>
+            </div>
+
+            <div class="card-box">
+                <div style="display:flex; justify-content:space-between; margin-bottom: 5px;">
+                    <label style="margin:0;">Zoom</label>
+                    <span id="zoomValue" style="font-size:11px; color:#007bff;">100%</span>
+                </div>
+                <input type="range" id="zoomSlider" min="50" max="200" value="100" step="10" oninput="updateZoom(this.value)">
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+                <button class="btn-save" onclick="save()"><span>💾</span> Save Data</button>
+                <button class="btn-clear" onclick="reset()"><span>🗑️</span> Clear Canvas</button>
+                <a href="/dashboard" class="btn-link"><span>📊</span> View Dashboard</a>
+            </div>
+            
+            <div id="status">Ready...</div>
+
+            <div class="footer-credits">
+                Developed by <span>Gimani Sahasthrika</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const statusEl = document.getElementById('status');
+        const zoomValueEl = document.getElementById('zoomValue');
+        const countEl = document.getElementById('imgCount');
+        const guideOverlay = document.getElementById('guideOverlay');
+        const opacityValueEl = document.getElementById('opacityValue');
+        
+        const INTERNAL_SIZE = 600; 
+        const BRUSH_SIZE = 30; 
+
+        ctx.lineWidth = BRUSH_SIZE; 
+        ctx.lineCap = 'round'; 
+        ctx.lineJoin = 'round'; 
+        ctx.strokeStyle = 'black';
+        
+        let isDrawing = false;
+        let strokes = [], currentStroke = [];
+
+        window.onload = function() { fetchCount(); };
+
+        function fetchCount() {
+            fetch('/api/get_count').then(r => r.json()).then(data => { countEl.innerText = data.count; });
+        }
+
+        // --- GUIDE IMAGE LOGIC ---
+        function loadGuide(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    guideOverlay.src = e.target.result;
+                    statusEl.innerText = "Guide Loaded";
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function updateOpacity(val) {
+            guideOverlay.style.opacity = val / 100;
+            opacityValueEl.innerText = val + "%";
+        }
+
+        function updateZoom(val) {
+            zoomValueEl.innerText = val + "%";
+            const newSize = (INTERNAL_SIZE * (val / 100)) + "px";
+            canvas.style.width = newSize;
+            canvas.style.height = newSize;
+        }
+
+        function getPos(e) {
+            const rect = canvas.getBoundingClientRect();
+            let clientX, clientY;
+            if (e.touches && e.touches.length > 0) {
+                clientX = e.touches[0].clientX;
+                clientY = e.touches[0].clientY;
+            } else {
+                clientX = e.clientX;
+                clientY = e.clientY;
+            }
+            const scaleX = canvas.width / rect.width;
+            const scaleY = canvas.height / rect.height;
+            return {
+                x: (clientX - rect.left) * scaleX,
+                y: (clientY - rect.top) * scaleY,
+                t: Date.now()
+            };
+        }
+
+        // Mouse සහ Touch Events
+        canvas.addEventListener('mousedown', (e) => start(getPos(e)));
+        canvas.addEventListener('mousemove', (e) => draw(getPos(e)));
+        canvas.addEventListener('mouseup', end);
+        canvas.addEventListener('mouseout', end);
+        canvas.addEventListener('touchstart', (e) => { e.preventDefault(); start(getPos(e)); }, {passive: false});
+        canvas.addEventListener('touchmove', (e) => { e.preventDefault(); draw(getPos(e)); }, {passive: false});
+        canvas.addEventListener('touchend', end);
+
+        function start(pos) { 
+            isDrawing = true; 
+            
+            // 1. පටන් ගන්නා විට p: 0 (Pen Down) ලෙස සටහන් කරමු
+            currentStroke = [{x: pos.x, y: pos.y, t: pos.t, p: 0}]; 
+            
+            ctx.beginPath(); 
+            ctx.moveTo(pos.x, pos.y); 
+            statusEl.innerText = "Writing...";
+            statusEl.style.color = "#007bff";
+        }
+
+        function draw(pos) { 
+            if(!isDrawing) return; 
+            ctx.lineTo(pos.x, pos.y); 
+            ctx.stroke(); 
+            
+            // 2. අඳින අතරතුර එකතු වන හැම ලක්ෂ්‍යයකටම p: 0 දාන්න
+            currentStroke.push({x: pos.x, y: pos.y, t: pos.t, p: 0}); 
+        }
+
+        function end() { 
+            if(isDrawing) { 
+                isDrawing = false; 
+                
+                // 3. වැදගත්ම කොටස: Stroke එක ඉවර වෙනකොට අන්තිම Point එකේ p එක 1 කරන්න.
+                if (currentStroke.length > 0) {
+                    currentStroke[currentStroke.length - 1].p = 1; // Pen Lift (End of stroke)
+                    strokes.push(currentStroke); 
+                }
+
+                statusEl.innerText = `Strokes: ${strokes.length}`; 
+                statusEl.style.color = "#28a745";
+            } 
+        }
+
+        function save() {
+            const label = document.getElementById('label').value;
+            if(strokes.length === 0) return alert("Canvas is empty!");
+            
+            statusEl.innerText = "Saving...";
+            statusEl.style.color = "#e67e22";
+
+            // Image Generation (CNN සඳහා)
+            const hCanvas = document.createElement('canvas'); 
+            hCanvas.width = INTERNAL_SIZE; 
+            hCanvas.height = INTERNAL_SIZE;
+            const hCtx = hCanvas.getContext('2d');
+            
+            hCtx.fillStyle="black"; hCtx.fillRect(0,0,INTERNAL_SIZE,INTERNAL_SIZE);
+            hCtx.strokeStyle="white"; hCtx.lineWidth=BRUSH_SIZE; hCtx.lineCap='round'; hCtx.lineJoin='round';
+            
+            strokes.forEach(s => {
+                hCtx.beginPath();
+                s.forEach((p, i) => { i===0 ? hCtx.moveTo(p.x, p.y) : hCtx.lineTo(p.x, p.y); });
+                hCtx.stroke();
+            });
+
+            // Backend වෙත යැවීම (දැන් strokes වල p අගයද අඩංගුයි)
+            fetch('/save_data', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({label: label, strokes: strokes, image: hCanvas.toDataURL("image/png")})
+            })
+            .then(r => r.json())
+            .then(d => { 
+                statusEl.innerText = "Saved!"; 
+                statusEl.style.color = "#28a745";
+                fetchCount();
+                setTimeout(reset, 800); 
+            })
+            .catch(err => {
+                statusEl.innerText = "Error";
+                statusEl.style.color = "#dc3545";
+                console.error(err);
+            });
+        }
+
+        function reset() {
+            ctx.clearRect(0,0,INTERNAL_SIZE,INTERNAL_SIZE); 
+            strokes=[]; currentStroke=[];
+            statusEl.innerText = "Ready..."; 
+            statusEl.style.color = "#95a5a6";
+        }
+    </script>
+</body>
+</html>
