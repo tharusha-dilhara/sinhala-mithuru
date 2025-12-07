@@ -64,6 +64,17 @@ This project introduces significant novelties in applying AI to a morphologicall
 
 ---
 
+## 📥 Data Collection Tools (Utilities)
+
+We have released standalone tools to facilitate the data collection process for the research. These tools are available as pre-compiled executables (Windows).
+
+| Tool | Version | Description | Download |
+| :--- | :--- | :--- | :--- |
+| **🎙️ Pronunciation Tool** | `v0.1.0` | Records audio samples for phoneme verification. | [Download Latest](https://github.com/tharusha-dilhara/sinhala-mithuru/releases/tag/v0.1.0) |
+| **✍️ Handwriting Tool** | `v0.2.0` | Captures digital handwriting strokes & images. | [Download Latest](https://github.com/tharusha-dilhara/sinhala-mithuru/releases/tag/v0.2.0) |
+
+---
+
 ## 🚀 Getting Started
 
 ### Prerequisites
