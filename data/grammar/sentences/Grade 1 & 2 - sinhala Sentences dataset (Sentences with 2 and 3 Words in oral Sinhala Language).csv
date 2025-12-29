@@ -1,0 +1,833 @@
+Sentences,class
+මෙහෙ එන්න,correct
+එහෙ යන්න,correct
+මෙහෙ බලන්න,correct
+බත් කන්න,correct
+වතුර බොන්න,correct
+මට දෙන්න,correct
+මේක ගන්න,correct
+ඒක නවත්තන්න,correct
+දොර අරින්න,correct
+ජනෙල් වහන්න,correct
+දැන් නිදාගන්න,correct
+දත් මදින්න,correct
+පොත කියවන්න,correct
+අකුරු ලියන්න,correct
+අත් හෝදන්න,correct
+මෙතන තියන්න,correct
+දුවන්න ඉක්මනින්,correct
+යන්න හෙමින්,correct
+සමාවෙන්න කියන්න,correct
+කතාවක් කියන්න,correct
+රූපයක් අඳින්න,correct
+මට බඩගිනියි,correct
+මට පිපාසයි,correct
+මට මහන්සියි,correct
+මට සතුටුයි,correct
+මට දුකයි,correct
+ඒක මට ඕන,correct
+මට උදව් ඕන,correct
+මට රිදෙනවා,correct
+හරි සීතලයි,correct
+හරි රස්නෙයි,correct
+මම යනවා,correct
+මම මෙහෙ,correct
+ටිකක් ඉන්න,correct
+මට පුළුවන්,correct
+මට බෑ,correct
+මේ මොකක්ද?,correct
+එයා කොහෙද?,correct
+ඒ කවුද?,correct
+ඒක ඇයි?,correct
+යන්නේ කොහොමද?,correct
+ආවේ කවදාද?,correct
+ඒක මොකක්ද?,correct
+හරි හොඳයි,correct
+හරි දක්ෂයි,correct
+හරි ලස්සනයි,correct
+හරි ලොකුයි,correct
+හරි පොඩියි,correct
+මොකක්ද මේ?,correct
+ඒක වැරදියි,correct
+ඒක හරි,correct
+අඬන්න එපා,correct
+ගහන්න එපා,correct
+ආයෙත් කරන්න,correct
+ඒක අලුත්,correct
+ඒක පරණ,correct
+මෙහෙට එන්න,correct
+එහෙට යන්න,correct
+එළියට යන්න,correct
+ඇතුළට එන්න,correct
+පස්සට යන්න,correct
+ලඟට එන්න,correct
+හෙමින් යන්න,correct
+ඉක්මන්ට දුවන්න,correct
+උඩට නගින්න,correct
+යටට යන්න,correct
+වටේ කැරකෙන්න,correct
+උඩ බලන්න,correct
+යට බලන්න,correct
+මෙතන නවතින්න,correct
+දැන් එන්න,correct
+ඒක දෙන්න,correct
+මගේ එක ගන්න,correct
+ඒක උස්සන්න,correct
+බිම දාන්න,correct
+මේක අරන් යන්න,correct
+ඒක යවන්න,correct
+කිරි බොන්න,correct
+හෙමින් කන්න,correct
+ඉක්මන්ට කන්න,correct
+හපා ගන්න,correct
+හොඳින් හපන්න,correct
+කේක් කපන්න,correct
+මූණ හෝදන්න,correct
+හිස පීරන්න,correct
+කමිසය අඳින්න,correct
+වතුර නාන්න,correct
+මේසෙ පිහින්න,correct
+ඇඳුම් නමන්න,correct
+කසල දාන්න,correct
+මේක ලියන්න,correct
+කරුණාකර කියන්න,correct
+හොඳට අහන්න,correct
+ඒක අල්ලන්න,correct
+සිංදුවක් කියන්න,correct
+අත්පුඩි ගසන්න,correct
+දැන් නටන්න,correct
+ඉක්මන්ට හැංගෙන්න,correct
+දොර වහන්න,correct
+ජනෙල් අරින්න,correct
+අල්ලන්න එපා,correct
+කඩන්න එපා,correct
+මේක හදන්න,correct
+තදින් අල්ලන්න,correct
+මෙතන ඉන්න,correct
+සපත්තු ගලවන්න,correct
+මේස් අඳින්න,correct
+වමට බලන්න,correct
+දකුණට බලන්න,correct
+මට පෙන්වන්න,correct
+රෑට එන්න,correct
+හෙට යන්න,correct
+ඇඳුම් දාන්න,correct
+සල්ලි දෙන්න,correct
+පොතක් ලියනවා,correct
+ලෙඩ නොවෙන්න.,correct
+පැළය සිටුවන්න.,correct
+කට පිහින්න,correct
+කොට්ටේ තියන්න,correct
+පුටුව හදන්න,correct
+හෙමින් අදින්න,correct
+පරිස්සම් වෙන්න,correct
+ගෙදර යන්න,correct
+ආයෙත් එන්න,correct
+අත අල්ලන්න,correct
+හඳ බලන්න,correct
+ඇස් අරින්න,correct
+ඇස් වහන්න,correct
+නිශ්ශබ්ද වෙන්න,correct
+ගහගන්න එපා,correct
+හෙමින් කරන්න,correct
+ඉක්මන්ට කරන්න,correct
+ඇඳ හදන්න,correct
+බෙහෙත් ගන්න,correct
+කෙලින් ඉඳගන්න,correct
+දැන් හිටගන්න,correct
+ස්තුති කරන්න,correct
+කරුණාවන්ත වෙන්න,correct
+බල්ලා දුවනවා,correct
+ඒක හොඳයිද?,correct
+දැන් ඉවරද?,correct
+මේක මගේද?,correct
+ඔයාට හොඳද?,correct
+ඇඳට එන්න,correct
+පොත ගේන්න,correct
+පරිස්සමෙන් ඉන්න,correct
+කාගේ පොත?,correct
+බොහොම ස්තූතියි,correct
+සුභ උදෑසනක්,correct
+සුභ රාත්‍රියක්,correct
+පස්සෙ හම්බවෙමු,correct
+මට සමාවෙන්න,correct
+කමක් නෑ,correct
+හරි පිරිසිදුයි,correct
+හරි පැණිරසයි,correct
+හරි ඇඹුල්,correct
+හරි බරයි,correct
+හරි සැහැල්ලුයි,correct
+ඒක පිරිලා,correct
+දවස දිගයි,correct
+රෑ කළුයි,correct
+හරි පොඩි,correct
+හරි වැඩියි,correct
+ඇඟිල්ලෙන් පෙන්වන්න,correct
+කනට කොඳුරන්න,correct
+ගැටය ගහන්න,correct
+ගැටය ලිහන්න,correct
+හෙමින් අල්ලන්න,correct
+පහන් දල්වන්න,correct
+හොඳින් බලන්න,correct
+බෝලය පෙරළෙනවා,correct
+වලාකුළ සුදුයි,correct
+හරි විහිලුයි,correct
+ඉර පායනවා,correct
+සුළඟ හමනවා,correct
+ඒක වැඩියි,correct
+ඒක අඩුයි,correct
+හෙට උදේ,correct
+ඊයේ හවස,correct
+ඊයේ රෑ,correct
+ඊයේ පෙරේදා,correct
+හැංගෙන්න එපා,correct
+අදින්න එපා,correct
+කෑම කන්න ,correct
+ඇවිත් ඉඳගන්න,correct
+සුභ රාත්‍රියක් ,correct
+සුභ දහවලක් ,correct
+සුභ සන්ධ්‍යාවක්,correct
+වී වැපුරුවා.,correct
+ගොයම් පැහුණා. ,correct
+වෙලාව බලන්න,correct
+සතුටින් ඉන්න,correct
+මම එනවා.,correct
+කතා කරන්න.,correct
+වතුර ඕනෙ.,correct
+කෑම කන්න.,correct
+පොත් දෙන්න.,correct
+බීම බොන්න.,correct
+තදින් තල්ලු කරන්න,correct
+ගෙදර වැඩ කරන්න,correct
+දැන් පටන් ගන්න,correct
+ඉක්මන්ට ඉවර කරන්න,correct
+උදේ ම  ඇහැරෙන්න,correct
+තරු ගණන් කරන්න,correct
+මට උදව් කරන්න,correct
+බය වෙන්න එපා,correct
+දැන් හිනා වෙන්න,correct
+ඒක කන්න එපා,correct
+එහෙට යන්න එපා,correct
+මම දන්නේ නෑ,correct
+මට වතුර ඕන,correct
+ඒක මගේ පොත,correct
+මේක මගේ දේ,correct
+මම ඉක්මනින් එන්නම්,correct
+මම නිදාගෙන හිටියේ,correct
+කෑම හරි රසයි,correct
+සූර්යයා රස්නෙයි,correct
+ඒක දැන් අලුත්,correct
+අහස නිල් පාටයි,correct
+ඔයාගේ නම මොකක්ද?,correct
+කාර් එක කොහෙද?,correct
+ඔයාට මොනවද ඕන?,correct
+ගිහින් සෙල්ලම් කරන්න,correct
+ගැඹුරින් හුස්ම ගන්න,correct
+පහන් නිවා දමන්න,correct
+කියන්න පටන් ගන්න,correct
+ගේම් එක නවත්වන්න,correct
+බඩු ගණන් කරන්න,correct
+කොළය කොළ පාටයි,correct
+බිම තෙමී ඇත,correct
+කුරුල්ලා ගීත ගයනවා,correct
+සීනුව නාද වෙනවා,correct
+මට මේස් ඕන,correct
+මට වැළඳගන්න ඕන,correct
+මට පොඩි නින්දක් ඕන,correct
+බාධා කරන්න එපා,correct
+මේක අමතක කරන්න එපා,correct
+නොදන්නා වියදම් කරන්න එපා,correct
+කලබල වෙන්න එපා,correct
+නැති කරන්න  එපා,correct
+පමා වෙන්න එපා,correct
+පැමිණිලි කරන්න එපා,correct
+බොරුවක් කියන්න එපා,correct
+තල්ලු කරන්න එපා,correct
+ළමයි පාසල් යනවා ,correct
+මම පාසල් යනවා  ,correct
+අපි පාසල් යනවා,correct
+මම මල් කඩනවා,correct
+අමර මල් කඩනවා,correct
+අපි මල් කඩනවා,correct
+අපි අකුරු ලියනවා,correct
+මම අකුරු ලියනවා,correct
+ළමයි අකුරු ලියනවා,correct
+ගුරුතුමිය උගන්නවා,correct
+ගුරුතුමිය පාඩම් උගන්නවා,correct
+අම්මා කෑම උයනවා,correct
+තාත්තා වැඩට යනවා,correct
+පින්තූරයේ වැවක් තියෙනවා. ,correct
+ළමයි ඔංචිලි  පදිනවා.,correct
+වැවේ ඔරුවක් යනවා.,correct
+ළමයි පස්දෙනෙක් ඉන්නවා. ,correct
+ලොකු ගහක් තියෙනවා. ,correct
+යාළුවෝ  වැව් ඉවුරට ආවා,correct
+මුහුදේ ලොකු නැව් යනවා,correct
+අපි හැමෝම සින්දු කියනවා,correct
+යාළුවෝ ගෙදර ගියා. ,correct
+වී පැළ වුණා.,correct
+මිදුලේ වතුර පිරුණා. ,correct
+අහස කළු වුණා. ,correct
+වැහි බිංදු වැටුණා. ,correct
+පියා ලෙඩ වුණා,correct
+කුඹුරේ නිධානයක් තියෙනවා,correct
+ඒත් නිධානය ලැබුණේ නැහැ,correct
+පුත්තු හතර දෙනා ධනවත් වුණා.,correct
+සෙල්ලම් බඩුවක් තෑගි දෙනවා ,correct
+මාළුවා වතුරේ පීනනවා,correct
+කුරුල්ලෝ අහසේ පියබනවා,correct
+සමනලයා පැණි බොනවා,correct
+සුළගට ගස් වැනෙනවා,correct
+අලියා වතුර බොනවා,correct
+සිංහයා කෑගහනවා,correct
+ගුරුතුමිය අකුරු කියාදෙනවා,correct
+දොස්තර මහත්තයා බෙහෙත් දෙනවා,correct
+සිංහයා ඈත එනවා,correct
+ගෝණා දැක්කා.,correct
+සෙල්ලම් බඩුවක් තෑගි කරනවා,correct
+පුවරුවක් එල්ලුවා.,correct
+කොළය මැදින් කැපුවා.,correct
+සමනලයා තටු ගහනවා,correct
+රන් කුඹලා ගෙයක් හදනවා,correct
+සුදුසු බඳුනක් ගන්න.,correct
+ළමයි නිශ්ශබ්ද වුණා,correct
+අහසේ ඉර පායනවා,correct
+අහසේ තරු පායනවා,correct
+අහසේ හද පායනවා,correct
+බස් රථය නතර කළා.,correct
+එළියේ සෙල්ලම් කරන්න,correct
+කාමරේ අස් කරන්න,correct
+කෑ ගහන්න එපා,correct
+මේක රස බලන්න,correct
+පලතුරු ලෙලි ගහන්න,correct
+හයියෙන් කතා කරන්න,correct
+හොඳින් කතා කරන්න,correct
+මේක ආයෙත් කියන්න,correct
+බෝල සෙල්ලම් කරන්න,correct
+හොඳට සෙල්ලම් කරන්න,correct
+බෝලය විසි කරන්න,correct
+විසි කරන්න එපා,correct
+බෑග් එක ගේන්න,correct
+දැන් විසි කරන්න,correct
+සපත්තු ගැට ගහන්න,correct
+අම්මට උදව් කරන්න,correct
+තාත්තාට උදව් කරන්න,correct
+දත් බුරුසුව  ගන්න,correct
+මම වැඩ කරනවා.,correct
+අපි ගෙදර යනවා.,correct
+ළමයි සෙල්ලම් කරනවා.,correct
+අපි බස් එකේ ආවා.,correct
+ඔයා මෙතන ඉන්න.,correct
+මම ඇතුළට එනවා.,correct
+එයා එළියට ගියා.,correct
+මට යන්න ඕනෙ.,correct
+ගිහින් බලලා එන්න.,correct
+අපි ආයෙත් එමු.,correct
+වතුර ටිකක් දෙන්න.,correct
+තේ එකක් ගේන්න.,correct
+මේක මට ඕනෙ.,correct
+පොත අරන් දෙන්න.,correct
+ඔය බෑග් එක දෙන්න.,correct
+ටිකක් ඉස්සරහට යන්න.,correct
+කරුණාකරලා උදව් කරන්න.,correct
+රිසීට්‍ එක දෙන්න.,correct
+"එපා, කිසි දෙයක් එපා.",correct
+මට තේරෙන්නේ නෑ.,correct
+කාලගුණය හරි හොඳයි.,correct
+කෑම හරිම රසයි.,correct
+මට බඩගිනියි දැන්.,correct
+එයාට ලොකු බයක්.,correct
+අපි දැන් නිදහස්.,correct
+ඒක හරිම ලේසියි.,correct
+පොත මේසෙ උඩ.,correct
+දැන් වෙලාව කීයද?,correct
+එයා ගොඩක් දුකින්.,correct
+මේ ගම ලස්සනයි.,correct
+කොහෙද යන්නෙ ඔයා?,correct
+කවුද ඔතන ඉන්නෙ?,correct
+මොනවද දැන් කරන්නෙ?,correct
+කීයටද එන්නෙ ඔයා?,correct
+කවුද ඇත්තටම කිව්වෙ?,correct
+ඔයාට තේරෙනවද මේක?,correct
+ඒක කොහෙද තියෙන්නෙ?,correct
+ඇයි ඔයා නොකිව්වෙ?,correct
+ඇත්තටම එහෙමද වුණේ?,correct
+කවදද එයා ආවෙ?,correct
+හෙට උදේට එන්න.,correct
+ඊයේ රෑට ගියා.,correct
+දැන් ඉක්මනට යමු.,correct
+හෙට හවසට හම්බවෙමු.,correct
+තව ටිකකින් එන්න.,correct
+අද පොඩි වැඩක් තියෙනවා.,correct
+සතියකට කලින් ආවා.,correct
+හැමදාම එතන ඉන්නවා.,correct
+අපි දැන්ම පටන් ගමු.,correct
+පරක්කු වෙන්න එපා.,correct
+මට හරිම සතුටුයි.,correct
+මම කැමති නෑ.,correct
+එයාට තරහ ගිහින්.,correct
+මේක හරි වැදගත්.,correct
+මේක හොඳ අදහසක්.,correct
+මට ඇත්ත කියන්න.,correct
+ඒක මට ප්‍රශ්නයක් නෙවෙයි.,correct
+අපි ආයෙත් හිතමු.,correct
+ඔයා හරිම දක්ෂයි.,correct
+මම ගොඩක් මහන්සි.,correct
+වමට හැරිලා යන්න.,correct
+දකුණට හැරිලා බලන්න.,correct
+මේක ඇතුළට දාන්න.,correct
+එතනට ඉක්මනට යන්න.,correct
+ඔයා ගිහින් බලන්න.,correct
+අපි එතන නතර වෙමු.,correct
+උඩ තියෙනවා බලන්න.,correct
+බිමින් අරන් දෙන්න.,correct
+දැන් කොහෙද යන්නෙ?,correct
+ගේ ළඟ තියෙනවා.,correct
+ඔයා මොනවද කියන්නෙ?,correct
+ආයෙත් සැරයක් කියන්න.,correct
+"හරි, මම බාරගන්නවා.",correct
+ඔයා හොඳින් ඉන්න.,correct
+"සමාවෙන්න, මට අමතක වුණා.",correct
+බය වෙන්න එපා.,correct
+පස්සෙ වෙලාවක එන්න.,correct
+මම ඉක්මනට එන්නම්.,correct
+ඔයා නිහඬව ඉන්න.,correct
+අපි කතා කරමු.,correct
+මිල කීයද මේකෙ?,correct
+ගාණ අඩු කරන්න.,correct
+මේක මට ඇති.,correct
+තව ටිකක් දෙන්න.,correct
+මම මේක ගන්නවා.,correct
+සල්ලි දුන්නා දැනටමත්.,correct
+වෙන එකක් පෙන්වන්න.,correct
+බිල බලලා දෙන්න.,correct
+සල්ලි කීයක් ඕනෙද?,correct
+මේක නිකම් බලන්න.,correct
+ඔයා හරිම වාසනාවන්තයි.,correct
+අපි දැන් පටන් ගමු.,correct
+ඒක ගොඩක් දුරයි.,correct
+මට ඒක අමතකයි.,correct
+මේක ගැන හිතන්න.,correct
+කවුරුත් දන්නෙ නෑ.,correct
+එයා බොරු කියනවා.,correct
+අපි ට්‍රිප් එකක් යමු.,correct
+පොතේ ලියලා තියෙනවා.,correct
+සද්ද කරන්න එපා.,correct
+,
+,
+,
+,
+එන්න මෙහෙ,incorrect
+යන්න එහෙ,incorrect
+බලන්න මෙහෙ,incorrect
+කන්න බත්,incorrect
+බොන්න වතුර,incorrect
+දෙන්න මට,incorrect
+ගන්න මේක,incorrect
+නවත්තන්න ඒක,incorrect
+අරින්න දොර,incorrect
+වහන්න ජනෙල්,incorrect
+නිදාගන්න දැන්,incorrect
+මදින්න දත්,incorrect
+කියවන්න පොත,incorrect
+ලියන්න අකුරු,incorrect
+හෝදන්න අත්,incorrect
+තියන්න මෙතන,incorrect
+ඉක්මනින් දුවන්න,incorrect
+හෙමින් යන්න,incorrect
+කියන්න සමාවෙන්න,incorrect
+කියන්න කතාවක්,incorrect
+අඳින්න රූපයක්,incorrect
+බඩගිනියි මට,incorrect
+පිපාසයි මට,incorrect
+මහන්සියි මට,incorrect
+සතුටුයි මට,incorrect
+දුකයි මට,incorrect
+ඕන මට ඒක,incorrect
+උදව් ඕන මට,incorrect
+රිදෙනවා මට,incorrect
+සීතලයි හරි,incorrect
+රස්නෙයි හරි,incorrect
+යනවා මම,incorrect
+මෙහෙ මම,incorrect
+ඉන්න ටිකක්,incorrect
+පුළුවන් මට,incorrect
+බෑ මට,incorrect
+මොකක්ද මේ?,incorrect
+කොහෙද එයා?,incorrect
+කවුද ඒ?,incorrect
+ඇයි ඒක?,incorrect
+කොහොමද යන්නේ?,incorrect
+කවදාද ආවේ?,incorrect
+මොකක්ද ඒක?,incorrect
+හොඳයි හරි,incorrect
+දක්ෂයි හරි,incorrect
+ලස්සනයි හරි,incorrect
+ලොකුයි හරි,incorrect
+පොඩියි හරි,incorrect
+මේ මොකක්ද?,incorrect
+වැරදියි ඒක,incorrect
+හරි ඒක,incorrect
+එපා අඬන්න,incorrect
+එපා ගහන්න,incorrect
+කරන්න ආයෙත්,incorrect
+අලුත් ඒක,incorrect
+පරණ ඒක,incorrect
+එන්න මෙහෙට,incorrect
+යන්න එහෙට,incorrect
+යන්න එළියට,incorrect
+එන්න ඇතුළට,incorrect
+යන්න පස්සට,incorrect
+එන්න ලඟට,incorrect
+යන්න හෙමින්,incorrect
+දුවන්න ඉක්මන්ට,incorrect
+නගින්න උඩට,incorrect
+යන්න යටට,incorrect
+කැරකෙන්න වටේ,incorrect
+බලන්න උඩ,incorrect
+බලන්න යට,incorrect
+නවතින්න මෙතන,incorrect
+එන්න දැන්,incorrect
+දෙන්න ඒක,incorrect
+ගන්න මගේ එක,incorrect
+උස්සන්න ඒක,incorrect
+දාන්න බිම,incorrect
+අරන් යන්න මේක,incorrect
+යවන්න ඒක,incorrect
+බොන්න කිරි,incorrect
+කන්න හෙමින්,incorrect
+කන්න ඉක්මන්ට,incorrect
+ගන්න හපා,incorrect
+හපන්න හොඳින්,incorrect
+කපන්න කේක්,incorrect
+හෝදන්න මූණ,incorrect
+පීරන්න හිස,incorrect
+අඳින්න කමිසය,incorrect
+නාන්න වතුර,incorrect
+පිහින්න මේසෙ,incorrect
+නමන්න ඇඳුම්,incorrect
+දාන්න කසල,incorrect
+ලියන්න මේක,incorrect
+කියන්න කරුණාකර,incorrect
+අහන්න හොඳට,incorrect
+අල්ලන්න ඒක,incorrect
+කියන්න සිංදුවක්,incorrect
+ගසන්න අත්පුඩි,incorrect
+නටන්න දැන්,incorrect
+හැංගෙන්න ඉක්මන්ට,incorrect
+වහන්න දොර,incorrect
+අරින්න ජනෙල්,incorrect
+එපා අල්ලන්න,incorrect
+එපා කඩන්න,incorrect
+හදන්න මේක,incorrect
+අල්ලන්න තදින්,incorrect
+ඉන්න මෙතන,incorrect
+ගලවන්න සපත්තු,incorrect
+අඳින්න මේස්,incorrect
+බලන්න වමට,incorrect
+බලන්න දකුණට,incorrect
+පෙන්වන්න මට,incorrect
+එන්න රෑට,incorrect
+යන්න හෙට,incorrect
+දාන්න ඇඳුම්,incorrect
+දෙන්න සල්ලි,incorrect
+ලියනවා පොතක්,incorrect
+නොවෙන්න ලෙඩ.,incorrect
+සිටුවන්න පැළය.,incorrect
+පිහින්න කට,incorrect
+තියන්න කොට්ටේ,incorrect
+හදන්න පුටුව,incorrect
+අදින්න හෙමින්,incorrect
+වෙන්න පරිස්සම්,incorrect
+යන්න ගෙදර,incorrect
+එන්න ආයෙත්,incorrect
+අල්ලන්න අත,incorrect
+බලන්න හඳ,incorrect
+අරින්න ඇස්,incorrect
+වහන්න ඇස්,incorrect
+වෙන්න නිශ්ශබ්ද,incorrect
+එපා ගහගන්න,incorrect
+කරන්න හෙමින්,incorrect
+කරන්න ඉක්මන්ට,incorrect
+හදන්න ඇඳ,incorrect
+ගන්න බෙහෙත්,incorrect
+ඉඳගන්න කෙලින්,incorrect
+හිටගන්න දැන්,incorrect
+කරන්න ස්තුති,incorrect
+වෙන්න කරුණාවන්ත,incorrect
+දුවනවා බල්ලා,incorrect
+හොඳයිද ඒක?,incorrect
+ඉවරද දැන්?,incorrect
+මගේද මේක?,incorrect
+හොඳද ඔයාට,incorrect
+එන්න ඇඳට,incorrect
+ගේන්න පොත,incorrect
+ඉන්න පරිස්සමෙන්,incorrect
+පොත කාගේ?,incorrect
+ස්තූතියි බොහොම,incorrect
+උදෑසනක් සුභ,incorrect
+රාත්‍රීයක් සුභ,incorrect
+හම්බවෙමු පස්සෙ,incorrect
+සමාවෙන්න මට,incorrect
+නෑ කමක්,incorrect
+පිරිසිදුයි හරි,incorrect
+පැණිරසයි හරි,incorrect
+ඇඹුල් හරි,incorrect
+බරයි හරි,incorrect
+සැහැල්ලුයි හරි,incorrect
+පිරිලා ඒක,incorrect
+දිගයි දවස,incorrect
+කළුයි රෑ,incorrect
+පොඩි හරි,incorrect
+වැඩියි හරි,incorrect
+පෙන්වන්න ඇඟිල්ලෙන්,incorrect
+කොඳුරන්න කනට,incorrect
+ගහන්න ගැටය,incorrect
+ලිහන්න ගැටය,incorrect
+අල්ලන්න හෙමින්,incorrect
+දල්වන්න පහන්,incorrect
+බලන්න හොඳින්,incorrect
+පෙරළෙනවා බෝලය,incorrect
+සුදුයි වලාකුළ,incorrect
+විහිලුයි හරි,incorrect
+පායනවා ඉර,incorrect
+හමනවා සුළඟ,incorrect
+වැඩියි ඒක,incorrect
+අඩුයි ඒක,incorrect
+උදේ හෙට,incorrect
+හවස ඊයේ,incorrect
+රෑ ඊයේ,incorrect
+පෙරේදා ඊයේ,incorrect
+එපා හැංගෙන්න,incorrect
+එපා අදින්න,incorrect
+කන්න කෑම,incorrect
+ඉඳගන්න ඇවිත්,incorrect
+රාත්‍රියක් සුභ,incorrect
+දහවලක් සුභ,incorrect
+සන්ධ්‍යාවක් සුභ,incorrect
+වැපුරුවා වී.,incorrect
+පැහුණා ගොයම්.,incorrect
+බලන්න වෙලාව,incorrect
+ඉන්න සතුටින්,incorrect
+එනවා මම,incorrect
+කරන්න කතා ,incorrect
+ඕනෙ වතුර,incorrect
+කන්න කෑම ,incorrect
+දෙන්න පොත් ,incorrect
+බොන්න බීම ,incorrect
+තල්ලු කරන්න තදින්,incorrect
+කරන්න ගෙදර වැඩ,incorrect
+පටන් ගන්න දැන්,incorrect
+ඉවර කරන්න ඉක්මන්ට,incorrect
+ඇහැරෙන්න උදේ ම,incorrect
+ගණන් කරන්න තරු,incorrect
+කරන්න මට උදව්,incorrect
+එපා බය වෙන්න,incorrect
+හිනා වෙන්න දැන්,incorrect
+එපා ඒක කන්න,incorrect
+එපා එහෙට යන්න,incorrect
+නෑ මම දන්නේ,incorrect
+ඕන මට වතුර,incorrect
+පොත ඒක මගේ,incorrect
+දේ මේක මගේ,incorrect
+එන්නම් ඉක්මනින් මම,incorrect
+හිටියේ නිදාගෙන මම,incorrect
+රසයි කෑම හරි,incorrect
+රස්නෙයි සූර්යයා,incorrect
+අලුත් දැන් ඒක,incorrect
+පාටයි අහස නල්,incorrect
+මොකක්ද ඔයාගේ නම?,incorrect
+කොහෙද කාර් එක?,incorrect
+ඕන මොනවද ඔයාට?,incorrect
+සෙල්ලම් කරන්න ගිහින්,incorrect
+හුස්ම ගන්න ගැඹුරින්,incorrect
+නිවා දමන්න පහන්,incorrect
+පටන් ගන්න කියන්න,incorrect
+නවත්වන්න ගේම් එක,incorrect
+ගණන් කරන්න බඩු,incorrect
+කොළ පාටයි කොළය,incorrect
+තෙමී ඇත බිම,incorrect
+ගයනවා කුරුල්ලා ගීත,incorrect
+නාද වෙනවා සීනුව,incorrect
+ඕන මට මේස්,incorrect
+ඕන මට වැළඳගන්න,incorrect
+ඕන මට පොඩි නින්දක්,incorrect
+එපා බාධා කරන්න,incorrect
+එපා මේක අමතක කරන්න,incorrect
+එපා වියදම් නොදන්නා,incorrect
+එපා කලබල වෙන්න,incorrect
+එපා නැතිවෙන්න,incorrect
+එපා පමා වෙන්න,incorrect
+එපා පැමිණිලි කරන්න,incorrect
+එපා බොරුවක් කියන්න,incorrect
+එපා තල්ලු කරන්න,incorrect
+පාසල් යනවා ළමයි,incorrect
+පාසල් යනවා මම,incorrect
+පාසල් යනවා අපි,incorrect
+කඩනවා මම මල්,incorrect
+කඩනවා අමර මල්,incorrect
+කඩනවා අපි මල්,incorrect
+ලියනවා අපි අකුරු,incorrect
+ලියනවා මම අකුරු,incorrect
+ලියනවා ළමයි අකුරු,incorrect
+උගන්නවා ගුරුතුමිය,incorrect
+උගන්නවා ගුරුතුමිය පාඩම්,incorrect
+උයනවා අම්මා කෑම,incorrect
+යනවා තාත්තා වැඩට,incorrect
+තියෙනවා පින්තූරයේ වැවක්.,incorrect
+පදිනවා ළමයි ඔංචිල,incorrect
+යනවා වැවේ ඔරුවක්.,incorrect
+ඉන්නවා ළමයි පස්දෙනෙක්.,incorrect
+තියෙනවා ලොකු ගහක්.,incorrect
+ආවා යාළුවෝ වැව් ඉවුරට,incorrect
+යනවා මුහුදේ ලොකු නැව්,incorrect
+කියනවා අපි හැමෝම සින්දු,incorrect
+ගියා යාළුවෝ ගෙදර.,incorrect
+පැළ වුණා වී.,incorrect
+පිරුණා මිදුලේ වතුර.,incorrect
+කළු වුණා අහස.,incorrect
+වැටුණා වැහි බිංදු.,incorrect
+ලෙඩ වුණා පියා,incorrect
+තියෙනවා කුඹුරේ නිධානයක්,incorrect
+නැහැ ලැබුණේ නිධානය ඒත්,incorrect
+ධනවත් වුණා පුත්තු හතර දෙනා.,incorrect
+තෑගි දෙනවා සෙල්ලම් බඩුවක්,incorrect
+පීනනවා මාළුවා වතුරේ,incorrect
+පියබනවා කුරුල්ලෝ අහසේ,incorrect
+බොනවා සමනලයා පැණි,incorrect
+වැනෙනවා සුළගට ගස්,incorrect
+බොනවා අලියා වතුර,incorrect
+කෑගහනවා සිංහයා,incorrect
+කියාදෙනවා ගුරුතුමිය අකුරු,incorrect
+දෙනවා දොස්තර මහත්තයා බෙහෙත්,incorrect
+එනවා සිංහයා ඈත,incorrect
+දැක්කා ගෝණා.,incorrect
+කරනවා සෙල්ලම් බඩුවක් තෑගි,incorrect
+එල්ලුවා පුවරුවක්.,incorrect
+කැපුවා කොළය මැදින්.,incorrect
+ගහනවා සමනලයා තටු,incorrect
+හදනවා රන් කුඹලා ගෙයක්,incorrect
+ගන්න සුදුසු බඳුනක්.,incorrect
+නිශ්ශබ්ද වුණා ළමයි,incorrect
+පායනවා අහසේ ඉර,incorrect
+පායනවා අහසේ තරු,incorrect
+පායනවා අහසේ හද,incorrect
+නතර කළා බස් රථය.,incorrect
+සෙල්ලම් කරන්න එළියේ,incorrect
+අස් කරන්න කාමරේ,incorrect
+එපා කෑ ගහන්න,incorrect
+රස බලන්න මේක,incorrect
+ලෙලි ගහන්න පලතුරු,incorrect
+කතා කරන්න හයියෙන්,incorrect
+කතා කරන්න හොඳින්,incorrect
+කියන්න මේක ආයෙත,incorrect
+සෙල්ලම් කරන්න බෝල,incorrect
+සෙල්ලම් කරන්න හොඳට,incorrect
+විසි කරන්න බෝලය,incorrect
+එපා විසි කරන්න,incorrect
+ගේන්න බෑග් එක,incorrect
+විසි කරන්න දැන්,incorrect
+ගැට ගහන්න සපත්තු,incorrect
+උදව් කරන්න අම්මට,incorrect
+උදව් කරන්න තාත්තාට,incorrect
+ගන්න දත් බුරුසුව,incorrect
+වැඩ කරනවා මම.,incorrect
+ගෙදර යනවා අපි.,incorrect
+සෙල්ලම් කරනවා ළමයි.,incorrect
+බස් එකේ ආවා අපි.,incorrect
+මෙතන ඉන්න ඔයා.,incorrect
+ඇතුළට එනවා මම.,incorrect
+එළියට ගියා එයා.,incorrect
+යන්න ඕනෙ මට.,incorrect
+බලලා එන්න ගිහින්.,incorrect
+ආයෙත් එමු අපි.,incorrect
+ටිකක් දෙන්න වතුර.,incorrect
+එකක් ගේන්න තේ.,incorrect
+මට ඕනෙ මේක.,incorrect
+අරන් දෙන්න පොත.,incorrect
+එක දෙන්න ඔය බෑග්.,incorrect
+ඉස්සරහට යන්න ටිකක්.,incorrect
+උදව් කරන්න කරුණාකරලා.,incorrect
+එක දෙන්න රිසීට්‍.,incorrect
+"කිසි දෙයක් එපා, එපා.",incorrect
+තේරෙන්නේ නෑ මට.,incorrect
+හරි හොඳයි කාලගුණය.,incorrect
+හරිම රසයි කෑම.,incorrect
+බඩගිනියි දැන් මට.,incorrect
+ලොකු බයක් එයාට.,incorrect
+නිදහස් අපි දැන්.,incorrect
+හරිම ලේසියි ඒක.,incorrect
+මේසෙ උඩ පොත.,incorrect
+කීයද දැන් වෙලාව?,incorrect
+ගොඩක් දුකින් එයා.,incorrect
+ලස්සනයි මේ ගම.,incorrect
+ඔයා යන්නෙ කොහෙද?,incorrect
+ඉන්නෙ කවුද ඔතන?,incorrect
+දැන් කරන්නෙ මොනවද?,incorrect
+ඔයා එන්නෙ කීයටද?,incorrect
+ඇත්තටම කිව්වෙ කවුද?,incorrect
+මේක තේරෙනවද ඔයාට?,incorrect
+තියෙන්නෙ කොහෙද ඒක?,incorrect
+නොකිව්වෙ ඔයා ඇයි?,incorrect
+එහෙමද වුණේ ඇත්තටම?,incorrect
+ආවෙ එයා කවදද?,incorrect
+උදේට එන්න හෙට.,incorrect
+රෑට ගියා ඊයේ.,incorrect
+ඉක්මනට යමු දැන්.,incorrect
+හම්බවෙමු හවසට හෙට.,incorrect
+ටිකකින් එන්න තව.,incorrect
+පොඩි වැඩක් තියෙනවා අද.,incorrect
+කලින් ආවා සතියකට.,incorrect
+එතන ඉන්නවා හැමදාම.,incorrect
+පටන් ගමු අපි දැන්ම.,incorrect
+වෙන්න එපා පරක්කු.,incorrect
+හරිම සතුටුයි මට.,incorrect
+කැමති නෑ මම.,incorrect
+තරහ ගිහින් එයාට.,incorrect
+හරි වැදගත් මේක.,incorrect
+හොඳ අදහසක් මේක.,incorrect
+ඇත්ත කියන්න මට.,incorrect
+ප්‍රශ්නයක් නෙවෙයි ඒක මට.,incorrect
+හිතමු ආයෙත් අපි.,incorrect
+හරිම දක්ෂයි ඔයා.,incorrect
+ගොඩක් මහන්සි මම.,incorrect
+හැරිලා යන්න වමට.,incorrect
+හැරිලා බලන්න දකුණට.,incorrect
+ඇතුළට දාන්න මේක.,incorrect
+ඉක්මනට යන්න එතනට.,incorrect
+බලන්න ඔයා ගිහින්.,incorrect
+නතර වෙමු අපි එතන.,incorrect
+බලන්න උඩ තියෙනවා.,incorrect
+අරන් දෙන්න බිමින්.,incorrect
+යන්නෙ කොහෙද දැන්?,incorrect
+තියෙනවා ගේ ළඟ.,incorrect
+කියන්නෙ මොනවද ඔයා?,incorrect
+සැරයක් කියන්න ආයෙත්.,incorrect
+"බාරගන්නවා මම, හරි.",incorrect
+ඉන්න ඔයා හොඳින්.,incorrect
+"අමතක වුණා මට, සමාවෙන්න.",incorrect
+එපා බය වෙන්න.,incorrect
+වෙලාවක එන්න පස්සෙ.,incorrect
+එන්නම් මම ඉක්මනට.,incorrect
+ඉන්න ඔයා නිහඬව.,incorrect
+කරමු අපි කතා.,incorrect
+මේකෙ කීයද මිල?,incorrect
+අඩු කරන්න ගාණ.,incorrect
+මට ඇති මේක.,incorrect
+ටිකක් දෙන්න තව.,incorrect
+ගන්නවා මම මේක.,incorrect
+දැනටමත් දුන්නා සල්ලි.,incorrect
+පෙන්වන්න වෙන එකක්.,incorrect
+දෙන්න බිල බලලා.,incorrect
+ඕනෙද සල්ලි කීයක්?,incorrect
+බලන්න මේක නිකම්.,incorrect
+වාසනාවන්තයි ඔයා හරිම.,incorrect
+පටන් ගමු අපි දැන්.,incorrect
+දුරයි ඒක ගොඩක්.,incorrect
+අමතකයි මට ඒක.,incorrect
+හිතන්න මේක ගැන.,incorrect
+දන්නෙ නෑ කවුරුත්.,incorrect
+කියනවා බොරු එයා.,incorrect
+එකක් යමු අපි ට්‍රිප්.,incorrect
+තියෙනවා ලියලා පොතේ.,incorrect
+කරන්න එපා සද්ද.,incorrect
