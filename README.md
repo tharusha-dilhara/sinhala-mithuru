@@ -56,9 +56,22 @@ This project introduces significant novelties in applying AI to a morphologicall
     * **Contrastive Phonetic Disambiguation:** Shifts the paradigm from "Classification" (predicting a label) to "Metric Learning" (measuring acoustic similarity), which is far more robust for error detection.
     * **Few-Shot/Zero-Shot Capability:** The system can verify new words/phonemes without retraining the core model, simply by updating the reference embeddings in the database.
 
-### 3. 📖 Interactive Narrative Module (Component 3)
+### 3. 📖 Generative AI-Powered Interactive Narrative Engine (Component 3)
 
+* **Research Problem:**
+    Existing digital reading tools for children rely on static, pre-written content that fails to adapt to a child's specific reading proficiency or interests. Furthermore, there is a lack of Context-Aware Content Generation in Sinhala that distinguishes between the diglossic nature of the language (the distinct difference between "Katasara" (Spoken) and "Likhitha" (Written) styles).
 
+* **Methodology: Deep Metric Learning Framework**
+   Visual Storytelling Pipeline: Utilizes Google Gemini 1.5 Flash (via LangChain) to analyze user-uploaded images in real-time. The system employs a Two-Stage Chain-of-Thought (CoT) approach:
+   Scene Understanding: Extracts objects, educational themes, and grade-appropriate vocabulary from the raw image.
+   Adaptive Synthesis: Generates a narrative using a Dynamic Prompt Injection System that strictly regulates sentence complexity, grammar style (Spoken vs. Written), and length based on the student's Grade (1–5).
+   Few-Shot "Golden Dataset" Injection: To ensure cultural and syntactic accuracy, the system dynamically retrieves human-verified "Golden Examples" of high-quality Sinhala stories and injects them into the model's context window during inference.
+   Predictive Analytics Engine: Integrates a Random Forest Regressor (Scikit-Learn) to analyze telemetry data (Time Spent, Accuracy, Attempt Count). This model predicts a student's Improvement Score to automatically adjust the complexity of future stories.
+  
+* **Key Innovation:**
+    * **Multi-Modal Curriculum Adaptation:** The first Sinhala educational engine capable of generating grade-appropriate stories on-the-fly from any image provided by the child, turning their real-world environment into learning material.
+    * **Closed-Loop Feedback System:** Combines Generative AI (for content creation) with Predictive ML (for student assessment) to create a self-correcting educational loop.
+      
 ### 4. ✅ Contextual Grammar Module (Component 4)
 
 
@@ -125,7 +138,7 @@ To maintain a lightweight repository, we use **DVC (Data Version Control)** and 
 | :--- | :--- | :--- |
 | **C1: Handwriting** | Computer Vision / Sequence Modeling | TensorFlow, CNN, LSTM |
 | **C2: Pronunciation** | Speech Processing / Adaptive AI | Python, Librosa, PyTorch, Transformers, Audiomentations |
-| **C3: Narrative** |  |  |
+| **C3: Narrative** | Generative AI / Multi-Modal NLP | Python (FastAPI), LangChain, Google Gemini 1.5, Scikit-Learn |
 | **C4: Grammar** |  |  |
 
 ---
