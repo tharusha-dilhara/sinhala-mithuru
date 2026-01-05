@@ -40,21 +40,52 @@ This project introduces significant novelties in applying AI to a morphologicall
     * **Model B (Temporal):** An **LSTM/Transformer** network to analyze the writing process (stroke order and direction) as a time series.
 * **Key Innovation:** Fusion of spatial and temporal analysis for holistic handwriting evaluation.
 
-### 2. 🗣️ Siamese-Based Metric Learning for Pronunciation Verification (Component 2)
+## 2. 🗣️ SiPhon-MetricNet: Multi-task Metric Learning for Phoneme Recognition
 
-* **Research Problem:**
-    Standard Automatic Speech Recognition (ASR) systems are optimized for word transcription, not phonetic verification. They often fail to distinguish between **Sinhala Minimal Pairs**—phonemes with subtle acoustic differences like **'බ' (Retroflex)** vs **'ඹ' (Dental)** . In low-resource settings like child speech, standard classifiers struggle to learn these nuances without massive datasets.
+### **Research Problem**
+Standard Automatic Speech Recognition (ASR) systems are optimized for word transcription, not phonetic verification. They often fail to distinguish between **Sinhala Minimal Pairs**—phonemes with subtle acoustic differences such as **/ක/** (Unvoiced) vs **/ග/** (Voiced).  
+In low-resource settings like **child speech**, standard classifiers struggle to capture these nuances without massive datasets.
 
-* **Methodology: Deep Metric Learning Framework**
-    * **Architecture:** A **Siamese Neural Network** (Twin Network) architecture. It uses **Wav2Vec 2.0 Base** as the shared backbone feature extractor to generate context-aware acoustic embeddings.
-    * **Objective Function:** The model is trained using **Triplet Margin Loss**.
-        * *Formula:* $L(A, P, N) = \max(\|f(A)-f(P)\|^2 - \|f(A)-f(N)\|^2 + \alpha, 0)$
-        * *Mechanism:* The network learns a distance metric where the embedding of a student's correct pronunciation (Positive) is pulled closer to a reference template (Anchor), while an incorrect pronunciation (Negative) is pushed apart by a defined margin ($\alpha$).
-    * **Data Strategy:** Utilizes **Hard Negative Mining** during training. Instead of random negatives, the model is explicitly trained on confusing pairs (e.g., using 'බ' as the negative example for 'ඹ') to force it to learn distinct acoustic features.
 
-* **Key Innovation:**
-    * **Contrastive Phonetic Disambiguation:** Shifts the paradigm from "Classification" (predicting a label) to "Metric Learning" (measuring acoustic similarity), which is far more robust for error detection.
-    * **Few-Shot/Zero-Shot Capability:** The system can verify new words/phonemes without retraining the core model, simply by updating the reference embeddings in the database.
+
+### **Methodology: Multi-task Deep Metric Learning Framework**
+
+#### **Architecture**
+The **SiPhon-MetricNet architecture** uses a self-supervised **Wav2Vec2-XLS-R** (Large-scale Cross-lingual Speech Representation) backbone as the shared feature extractor to generate context-aware acoustic embeddings.
+
+
+
+### **Objective Function**
+Unlike standard models, this is trained using a **Multi-task Learning (MTL)** objective by jointly optimizing three loss functions:
+
+- **Triplet Margin Loss**:  
+  To minimize the distance between similar pronunciations and maximize it between different ones.
+
+- **Cross-Entropy Loss**:  
+  To ensure robust phoneme-level classification.
+
+- **Center Loss**:  
+  To minimize intra-class variation, making the embedding space highly discriminative.
+
+
+
+### **Mechanism**
+The network learns an embedding space where a student's correct pronunciation (**Positive**) is pulled closer to a canonical reference (**Anchor**), while incorrect or confusing pronunciations (**Negative**) are pushed apart by a defined margin.
+
+
+
+### **Key Innovations**
+
+- **Discriminative Embedding Space**  
+  By combining **Triplet Loss** and **Center Loss**, the model effectively separates phonetically similar Sinhala characters (e.g., **/ක/** vs **/ග/**), which is critical for accurate pronunciation assessment.
+
+- **Acoustic Modeling for Education**  
+  Specifically designed to evaluate the pronunciation quality of **primary school children**, making it highly robust to the high variability in child speech.
+
+- **Efficiency**  
+  The integration of the **XLS-R backbone** allows for high performance even with the limited data availability typical of the **Sinhala language**.
+
+---
 
 ### 3. 📖 Generative AI-Powered Interactive Narrative Engine (Component 3)
 
