@@ -1,0 +1,17 @@
+services:
+  api:
+    build: .
+    container_name: sinhala_mithuru_api
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    # 🚀 GPU බලය ලබා දෙන කොටස
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    restart: always

@@ -1,0 +1,146 @@
+{
+    "A": {
+        "symbol": "අ",
+        "strokes": 1
+    },
+    "Aa": {
+        "symbol": "ආ",
+        "strokes": 2
+    },
+    "Ae": {
+        "symbol": "ඇ",
+        "strokes": 2
+    },
+    "AEe": {
+        "symbol": "ඈ",
+        "strokes": 2
+    },
+    "E": {
+        "symbol": "එ",
+        "strokes": 1
+    },
+    "Ee": {
+        "symbol": "ඒ",
+        "strokes": 2
+    },
+    "g": {
+        "symbol": "ග්",
+        "strokes": 2
+    },
+    "Gi": {
+        "symbol": "ගි",
+        "strokes": 2
+    },
+    "Gii": {
+        "symbol": "ගී",
+        "strokes": 2
+    },
+    "Guu": {
+        "symbol": "ගූ",
+        "strokes": 2
+    },
+    "H": {
+        "symbol": "හ",
+        "strokes": 1
+    },
+    "I": {
+        "symbol": "ඉ",
+        "strokes": 1
+    },
+    "Ii": {
+        "symbol": "ඊ",
+        "strokes": 3
+    },
+    "K": {
+        "symbol": "ක",
+        "strokes": 1
+    },
+    "k": {
+        "symbol": "ක්",
+        "strokes": 2
+    },
+    "Ka": {
+        "symbol": "කා",
+        "strokes": 2
+    },
+    "Ke": {
+        "symbol": "කැ",
+        "strokes": 2
+    },
+    "Kee": {
+        "symbol": "කෑ",
+        "strokes": 2
+    },
+    "Ki": {
+        "symbol": "කි",
+        "strokes": 2
+    },
+    "Kii": {
+        "symbol": "කී",
+        "strokes": 2
+    },
+    "Ku": {
+        "symbol": "කු",
+        "strokes": 2
+    },
+    "O": {
+        "symbol": "ඔ",
+        "strokes": 1
+    },
+    "Oo": {
+        "symbol": "ඕ",
+        "strokes": 2
+    },
+    "Ou": {
+        "symbol": "ඖ",
+        "strokes": 2
+    },
+    "Pu": {
+        "symbol": "පු",
+        "strokes": 2
+    },
+    "Puu": {
+        "symbol": "පූ",
+        "strokes": 2
+    },
+    "R": {
+        "symbol": "ර",
+        "strokes": 1
+    },
+    "S": {
+        "symbol": "ස",
+        "strokes": 1
+    },
+    "Th": {
+        "symbol": "ත",
+        "strokes": 1
+    },
+    "U": {
+        "symbol": "උ",
+        "strokes": 1
+    },
+    "Uu": {
+        "symbol": "ඌ",
+        "strokes": 2
+    },
+    "N": {
+        "symbol": "න",
+        "strokes": 1
+    },
+    "P": {
+        "symbol": "ප",
+        "strokes": 1
+    },
+    "G": {
+        "symbol": "ග",
+        "strokes": 1
+    },
+    "T": {
+        "symbol": "ට",
+        "strokes": 1
+    },
+    "Y": {
+        "symbol": "ය",
+        "strokes": 1
+    }
+}
