@@ -33,13 +33,39 @@ The project follows a scalable **Microservices Architecture**, containerized via
 
 This project introduces significant novelties in applying AI to a morphologically rich, low-resource language.
 
-### 1. ✍️ End-to-End Deep Learning System for Sinhala Handwriting (Component 1)
-* **Research Problem:** Addressing the complexity of Sinhala script (60+ characters, 15+ modifiers) and the need for process-oriented feedback.
-* **Methodology: Hybrid Deep Neural Framework**
-    * **Model A (Visual):** A **Multi-Headed CNN** for static character and modifier prediction.
-    * **Model B (Temporal):** An **LSTM/Transformer** network to analyze the writing process (stroke order and direction) as a time series.
-* **Key Innovation:** Fusion of spatial and temporal analysis for holistic handwriting evaluation.
+### ✍️ End-to-End Deep Learning System for Sinhala Handwriting (Component 1)
 
+## Research Problem
+Addressing the structural complexity of the Sinhala script (38 character classes) and providing real-time, process-oriented feedback for learners to improve their writing accuracy.
+
+---
+
+## Methodology: Dual-Stream Neural Framework
+
+### 1. Preprocessing Pipeline
+* **Normalization:** Raw stroke data is transformed using **Path-Distance based Linear Interpolation** to normalize varying writing speeds into a fixed temporal resolution (150 points).
+* **Extracted Features:**
+    * Spatial coordinates: $(x, y)$
+    * Velocity: $(dx, dy)$
+    * Pen state: $(p)$
+
+### 2. Model A: Character Recognition Engine
+A **Deep Recurrent Neural Network (LSTM)** optimized for sequence classification.
+* **Architecture:** Includes a **Masking layer** to handle variable padding, followed by **stacked LSTM layers** and **Batch Normalization** to predict character classes with high precision.
+
+### 3. Model B: Quality Assessment Engine
+A **Hybrid CNN-LSTM Architecture** designed for binary classification ("Correct" vs. "Wrong").
+* **Spatial Analysis:** A **1D-Convolutional layer** acts as a feature extractor to detect subtle jitters or deviations in the stroke.
+* **Temporal Analysis:** **LSTM layers** analyze the stroke order and direction for holistic evaluation.
+
+
+
+## Key Innovations
+
+* ✨ **Synthetic Balancing:** Implementation of **SMOTE** (Synthetic Minority Over-sampling Technique) to effectively handle class imbalance within Sinhala character datasets.
+* ⚙️ **Integrated Inference:** A unified pipeline that concurrently validates both the **shape (Classification)** and the **process (Quality)** of the stroke, providing a comprehensive feedback loop for the user.
+---
+  
 ## 2. 🗣️ SiPhon-MetricNet: Multi-task Metric Learning for Phoneme Recognition
 
 ### **Research Problem**
