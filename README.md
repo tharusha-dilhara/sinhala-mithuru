@@ -130,6 +130,51 @@ The network learns an embedding space where a student's correct pronunciation (*
     * **Closed-Loop Feedback System:** Combines Generative AI (for content creation) with Predictive ML (for student assessment) to create a self-correcting educational loop.
       
 ### 4. ✅ Contextual Grammar Module (Component 4)
+Research Problem:
+Existing multilingual transformer models (e.g., bert-base-multilingual-cased, xlm-roberta-large) fail to generate grammatically accurate Spoken Sinhala suitable for primary education (Grades 1–5). Standard LSTM and hybrid architectures (LSTM, LSTM+CNN, LSTM with basic position encoding) also underperform due to insufficient modeling of positional and syntactic dependencies in low-resource, agglutinative languages like Sinhala. This makes the generation of simple, child-friendly sentences unreliable.
+
+Methodology: Custom LSTM with Position Encoding
+
+Model Architecture:
+
+Base Layer: LSTM network for sequential modeling of Sinhala word embeddings.
+
+Position Encoding: Custom-designed positional encoding layers to capture the order and syntactic dependencies in sentences. Unlike standard fixed positional encoding, this custom design dynamically adjusts to sentence length and word types, improving model sensitivity to sentence structure.
+
+Output Layer:
+
+Softmax: For predicting the next word in sequence (token-level prediction).
+
+Sigmoid: For binary sequence-level classification tasks (optional, e.g., grammatical correctness verification).
+
+Training Strategy:
+
+Trained on a curated corpus of Spoken Sinhala sentences for Grades 1–5.
+
+Includes augmentation for handling rare words and informal grammar structures typical in spoken Sinhala.
+
+Key Innovation:
+
+Custom Positional Encoding: Improves sequence modeling in agglutinative languages by emphasizing word order and grammatical dependencies, leading to higher generation accuracy than standard LSTM or transformer fine-tuned models.
+
+Low-Resource Optimization: Achieves good accuracy without requiring huge pretrained multilingual models or expensive fine-tuning, making it ideal for resource-constrained educational settings.
+
+Grade-Level Adaptation: Dynamically adjusts predictions based on the target reading level (Grades 1–5), ensuring age-appropriate sentence simplicity.
+
+Performance:
+
+Outperforms:
+
+Standard LSTM models
+
+LSTM + CNN architectures
+
+LSTM with basic or standard positional encoding layers
+
+Provides good grammatical accuracy for spoken Sinhala suitable for primary education.
+
+Research Area: Natural Language Processing (NLP), Low-Resource Language Modeling
+Technology Stack: Python, TensorFlow/PyTorch, Custom Embedding & Positional Encoding Layers, LSTM Networks
 
 
 ---
