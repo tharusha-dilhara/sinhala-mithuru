@@ -142,7 +142,7 @@ We have released standalone tools to facilitate the data collection process for 
 | :--- | :--- | :--- | :--- |
 | **🎙️ Pronunciation Tool** | `v0.1.0` | Records audio samples for phoneme verification. | [Download Latest](https://github.com/tharusha-dilhara/sinhala-mithuru/releases/tag/v0.1.0) |
 | **✍️ Handwriting Tool** | `v0.2.0` | Captures digital handwriting strokes & images. | [Download Latest](https://github.com/tharusha-dilhara/sinhala-mithuru/releases/tag/v0.2.0) |
-| **Dataset Analytics** | 🧪 **Sinhala Word Lab** | v1.0.0 | Advanced analytics dashboard to audit dataset health, monitor phoneme distribution, and set linguistic targets for pronunciation models. | [Download Latest](#) |
+|🧪 **Sinhala Word Lab** | `v0.3.0` | Advanced analytics dashboard to audit dataset health, monitor phoneme distribution, and set linguistic targets for pronunciation models. | [Download Latest](https://github.com/tharusha-dilhara/sinhala-mithuru/releases/tag/v0.3.0) |
 
 ---
 
