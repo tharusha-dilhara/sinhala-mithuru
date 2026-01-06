@@ -145,7 +145,7 @@ We have released standalone tools to facilitate the data collection process for 
 |🧪 **Sinhala Word Lab** | `v0.3.0` | Advanced analytics dashboard to audit dataset health, monitor phoneme distribution, and set linguistic targets for pronunciation models. | [Download Latest](https://github.com/tharusha-dilhara/sinhala-mithuru/releases/tag/v0.3.0) |
 | 🎧 **SinhalaPhonoNet** | `v0.4.0` | Advanced Audio Lab for manual spectral auditing and quality control of phoneme datasets. | [Download](https://github.com/tharusha-dilhara/sinhala-mithuru/releases/tag/v0.4.0) |
 | 📱 **SinhalaMithuru recodelab Mobile** | `v0.4.0` | Supervised mobile utility for high-fidelity audio acquisition with external hardware support. | [Download](https://github.com/tharusha-dilhara/sinhala-mithuru/releases/tag/v0.5.0) |
-💻 **Mithuru Collector (Web)** | `v5.0.0` | Centralized web ecosystem for digital stroke acquisition and dataset curation. | [Access Tool](#) |
+💻 **Handwriting Collector (Web)** | `v6.0.0` | Centralized web ecosystem for digital stroke acquisition and dataset curation. | [Access Tool](https://github.com/tharusha-dilhara/sinhala-mithuru/releases/tag/v0.6.0) |
 ---
 
 ## 🚀 Getting Started
