@@ -134,9 +134,9 @@ The network learns an embedding space where a student's correct pronunciation (*
 
 ---
 
-## 📥 Data Collection Tools (Utilities)
+## 🛠️ Development & Data Utilities
 
-We have released standalone tools to facilitate the data collection process for the research. These tools are available as pre-compiled executables (Windows).
+We have released standalone tools to facilitate the data collection process for the research. These tools are available as pre-compiled executables (Windows,android app,web).
 
 | Tool | Version | Description | Download |
 | :--- | :--- | :--- | :--- |
