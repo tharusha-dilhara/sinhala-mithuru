@@ -118,15 +118,19 @@ The network learns an embedding space where a student's correct pronunciation (*
 ### **Research Problem**
 Standard Large Language Models (LLMs) trained on English-dominant data often fail to capture the morphological richness of "Low-Resource Languages" like Sinhala. They suffer from "hallucinations," token stuttering, and an inability to adhere to strict output formats (e.g., JSON) required for mobile application integration. Furthermore, existing tools lack the ability to generate Context-Aware Distractors for reading comprehension assessment.
 
-### **Methodology:
+### **Methodology**
 
--**Model Architecture: The core engine utilizes Llama 3 (8B Parameter Model), adapted specifically for the Sinhala language using Parameter-Efficient Fine-Tuning (PEFT) and Low-Rank Adaptation (LoRA). The model was trained on a curated dataset of primary-level Sinhala literature to ensure age-appropriate syntax.
+-**Model Architecture**
+The core engine utilizes Llama 3 (8B Parameter Model), adapted specifically for the Sinhala language using Parameter-Efficient Fine-Tuning (PEFT) and Low-Rank Adaptation (LoRA). The model was trained on a curated dataset of primary-level Sinhala literature to ensure age-appropriate syntax.
 
--**Serverless GPU Infrastructure: The system is deployed on Modal, a high-performance serverless cloud platform. It employs 4-bit Quantization (bitsandbytes) and a "Warm-Pool" strategy to deliver heavy AI inference with low latency suitable for real-time gaming.
+-**Serverless GPU Infrastructure**
+The system is deployed on Modal, a high-performance serverless cloud platform. It employs 4-bit Quantization (bitsandbytes) and a "Warm-Pool" strategy to deliver heavy AI inference with low latency suitable for real-time gaming.
 
--**Robust Post-Processing Layer: A novel Deterministic Error-Correction Algorithm acts as a middleware between the AI model and the frontend. It utilizes recursive JSON parsing and Regex-based sanitization to automatically detect and repair "token stuttering" and malformed data structures in real-time, ensuring zero-crash reliability.
+-**Robust Post-Processing Layer**
+A novel Deterministic Error-Correction Algorithm acts as a middleware between the AI model and the frontend. It utilizes recursive JSON parsing and Regex-based sanitization to automatically detect and repair "token stuttering" and malformed data structures in real-time, ensuring zero-crash reliability.
 
--**Assessment Logic: The model is fine-tuned not just to write stories, but to simultaneously generate Multiple Choice Questions (MCQs) with context-aware distractor answers, testing deep semantic understanding.
+-**Assessment Logic** 
+The model is fine-tuned not just to write stories, but to simultaneously generate Multiple Choice Questions (MCQs) with context-aware distractor answers, testing deep semantic understanding.
   
 ### **Key Innovations**
 
@@ -271,7 +275,7 @@ To maintain a lightweight repository, we use **DVC (Data Version Control)** and 
 | :--- | :--- | :--- |
 | **C1: Handwriting** | Computer Vision / Sequence Modeling | TensorFlow, CNN, LSTM |
 | **C2: Pronunciation** | Speech Processing / Adaptive AI | Python, Librosa, PyTorch, Transformers, Audiomentations |
-| **C3: Narrative** | Generative AI / Multi-Modal NLP | Python, PyTorch, Llama 3 (LoRA), Modal (Serverless GPU), bitsandbytes |
+| **C3: Narrative** | Generative AI / Fine-Tuning (PEFT) / Natural Language Processing(NLP) | Python, PyTorch, Llama 3 (LoRA), Modal (Serverless GPU), bitsandbytes |
 | **C4: Grammar** |  |  |
 
 ---
