@@ -115,19 +115,29 @@ The network learns an embedding space where a student's correct pronunciation (*
 
 ### 3. 📖 Generative AI-Powered Interactive Narrative Engine (Component 3)
 
-* **Research Problem:**
-    Existing digital reading tools for children rely on static, pre-written content that fails to adapt to a child's specific reading proficiency or interests. Furthermore, there is a lack of Context-Aware Content Generation in Sinhala that distinguishes between the diglossic nature of the language (the distinct difference between "Katasara" (Spoken) and "Likhitha" (Written) styles).
+### **Research Problem**
+Standard Large Language Models (LLMs) trained on English-dominant data often fail to capture the morphological richness of "Low-Resource Languages" like Sinhala. They suffer from "hallucinations," token stuttering, and an inability to adhere to strict output formats (e.g., JSON) required for mobile application integration. Furthermore, existing tools lack the ability to generate Context-Aware Distractors for reading comprehension assessment.
 
-* **Methodology: Deep Metric Learning Framework**
-   Visual Storytelling Pipeline: Utilizes Google Gemini 1.5 Flash (via LangChain) to analyze user-uploaded images in real-time. The system employs a Two-Stage Chain-of-Thought (CoT) approach:
-   Scene Understanding: Extracts objects, educational themes, and grade-appropriate vocabulary from the raw image.
-   Adaptive Synthesis: Generates a narrative using a Dynamic Prompt Injection System that strictly regulates sentence complexity, grammar style (Spoken vs. Written), and length based on the student's Grade (1–5).
-   Few-Shot "Golden Dataset" Injection: To ensure cultural and syntactic accuracy, the system dynamically retrieves human-verified "Golden Examples" of high-quality Sinhala stories and injects them into the model's context window during inference.
-   Predictive Analytics Engine: Integrates a Random Forest Regressor (Scikit-Learn) to analyze telemetry data (Time Spent, Accuracy, Attempt Count). This model predicts a student's Improvement Score to automatically adjust the complexity of future stories.
+### **Methodology:
+
+-**Model Architecture: The core engine utilizes Llama 3 (8B Parameter Model), adapted specifically for the Sinhala language using Parameter-Efficient Fine-Tuning (PEFT) and Low-Rank Adaptation (LoRA). The model was trained on a curated dataset of primary-level Sinhala literature to ensure age-appropriate syntax.
+
+-**Serverless GPU Infrastructure: The system is deployed on Modal, a high-performance serverless cloud platform. It employs 4-bit Quantization (bitsandbytes) and a "Warm-Pool" strategy to deliver heavy AI inference with low latency suitable for real-time gaming.
+
+-**Robust Post-Processing Layer: A novel Deterministic Error-Correction Algorithm acts as a middleware between the AI model and the frontend. It utilizes recursive JSON parsing and Regex-based sanitization to automatically detect and repair "token stuttering" and malformed data structures in real-time, ensuring zero-crash reliability.
+
+-**Assessment Logic: The model is fine-tuned not just to write stories, but to simultaneously generate Multiple Choice Questions (MCQs) with context-aware distractor answers, testing deep semantic understanding.
   
-* **Key Innovation:**
-    * **Multi-Modal Curriculum Adaptation:** The first Sinhala educational engine capable of generating grade-appropriate stories on-the-fly from any image provided by the child, turning their real-world environment into learning material.
-    * **Closed-Loop Feedback System:** Combines Generative AI (for content creation) with Predictive ML (for student assessment) to create a self-correcting educational loop.
+### **Key Innovations**
+
+- **Specialized Low-Resource Model**  
+  Moving beyond generic commercial APIs, this system uses a custom-trained model that captures the specific "Spoken Sinhala" register required for early childhood education.
+  
+- **Self-Healing AI Architecture**  
+  The implementation of an automated syntax-repair layer solves the stochastic instability common in Generative AI, making the system robust enough for production use in schools.
+  
+- **Efficient Deployment**  
+  Achieves high-quality generation on consumer-grade hardware constraints via quantization and serverless orchestration.
       
 ### 4. ✅ Contextual Grammar Module (Component 4)
 Methodology
@@ -261,7 +271,7 @@ To maintain a lightweight repository, we use **DVC (Data Version Control)** and 
 | :--- | :--- | :--- |
 | **C1: Handwriting** | Computer Vision / Sequence Modeling | TensorFlow, CNN, LSTM |
 | **C2: Pronunciation** | Speech Processing / Adaptive AI | Python, Librosa, PyTorch, Transformers, Audiomentations |
-| **C3: Narrative** | Generative AI / Multi-Modal NLP | Python (FastAPI), LangChain, Google Gemini 1.5, Scikit-Learn |
+| **C3: Narrative** | Generative AI / Multi-Modal NLP | Python, PyTorch, Llama 3 (LoRA), Modal (Serverless GPU), bitsandbytes |
 | **C4: Grammar** |  |  |
 
 ---
