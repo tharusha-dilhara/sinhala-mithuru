@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  api:
+    build: .
+    container_name: sinhala_mithuru_backend_v2
+    restart: always
+    ports:
+      - "8080:8000" # පිටතින් එන Port 80, ඇතුලේ 8000ට යොමු කරයි
+    env_file:
+      - .env
+
+  # dozzle:
+  #   image: amir20/dozzle:latest
+  #   container_name: sinhala_mithuru_logs
+  #   restart: always
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock:ro # Docker socket එක read-only ලෙස ලබා දීම
+  #   ports:
+  #     - "9999:8080" # Dozzle interface එක සඳහා (පිටතින් 9999 භාවිතා වේ)
+  #   environment:
+  #     - DOZZLE_USERNAME=admin
+  #     - DOZZLE_PASSWORD=mithuru_logs_2026 # ඔබට කැමති ශක්තිමත් Password එකක් මෙතැනට යොදන්න
+  #   healthcheck:
+  #     test: ["CMD", "/dozzle", "healthcheck"]
+  #     interval: 3s
+  #     timeout: 30s
+  #     retries: 5
