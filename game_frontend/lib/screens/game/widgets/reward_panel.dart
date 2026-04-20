@@ -6,75 +6,92 @@ import '../../../models/game_item.dart';
 class RewardPanel extends StatelessWidget {
   final List<GameItem> items;
   final bool isCompact; // True for mobile portrait mode (top/bottom bar style)
-  final VoidCallback? onTap; // Callback for tap interaction
-  final bool isLocked; // Add locked state
+  final void Function(GameItem)? onTapItem; // Callback with tapped item
+  final int currentLevel; // Support level-based unlocking
+  final bool isAllTasksCompleted;
+  final bool isHighlighted;
 
   const RewardPanel({
     super.key,
     required this.items,
     this.isCompact = false,
-    this.onTap,
-    this.isLocked = false,
+    this.onTapItem,
+    required this.currentLevel,
+    required this.isAllTasksCompleted,
+    this.isHighlighted = false,
   });
 
   @override
   Widget build(BuildContext context) {
     // Glassmorphism container
-    return GestureDetector(
-      onTap: onTap,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(20),
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.9),
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(
-                color: Colors.white.withOpacity(0.6),
-                width: 1.5,
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.05),
-                  blurRadius: 15,
-                  spreadRadius: 2,
-                ),
-              ],
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.9),
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+              color: Colors.white.withOpacity(0.6),
+              width: 1.5,
             ),
-            child: isCompact
-                ? Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: items
-                        .map(
-                          (item) => Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
-                            child: _RewardItemWidget(
-                              item: item,
-                              isCompact: true,
-                              isLocked: isLocked,
-                            ),
-                          ),
-                        )
-                        .toList(),
-                  )
-                : Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: items
-                        .map(
-                          (item) => Padding(
-                            padding: const EdgeInsets.only(bottom: 12.0),
-                            child: _RewardItemWidget(
-                              item: item,
-                              isCompact: false,
-                              isLocked: isLocked,
-                            ),
-                          ),
-                        )
-                        .toList(),
-                  ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.05),
+                blurRadius: 15,
+                spreadRadius: 2,
+              ),
+            ],
           ),
+          child: isCompact
+              ? Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: items.map((item) {
+                    final bool isItemLocked =
+                        currentLevel < item.requiredLevel ||
+                        (currentLevel == item.requiredLevel &&
+                            !isAllTasksCompleted);
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: GestureDetector(
+                        onTap: onTapItem != null
+                            ? () => onTapItem!(item)
+                            : null,
+                        child: _RewardItemWidget(
+                          item: item,
+                          isCompact: true,
+                          isLocked: isItemLocked,
+                          isHighlighted: isHighlighted,
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                )
+              : Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: items.map((item) {
+                    final bool isItemLocked =
+                        currentLevel < item.requiredLevel ||
+                        (currentLevel == item.requiredLevel &&
+                            !isAllTasksCompleted);
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 12.0),
+                      child: GestureDetector(
+                        onTap: onTapItem != null
+                            ? () => onTapItem!(item)
+                            : null,
+                        child: _RewardItemWidget(
+                          item: item,
+                          isCompact: false,
+                          isLocked: isItemLocked,
+                          isHighlighted: isHighlighted,
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                ),
         ),
       ),
     );
@@ -85,11 +102,13 @@ class _RewardItemWidget extends StatefulWidget {
   final GameItem item;
   final bool isCompact;
   final bool isLocked;
+  final bool isHighlighted;
 
   const _RewardItemWidget({
     required this.item,
     required this.isCompact,
     required this.isLocked,
+    this.isHighlighted = false,
   });
 
   @override
@@ -113,10 +132,9 @@ class _RewardItemWidgetState extends State<_RewardItemWidget>
       _controller.repeat(reverse: true);
     }
 
-    _scaleAnimation = Tween<double>(
-      begin: 1.0,
-      end: 1.05,
-    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
+    _scaleAnimation = Tween<double>(begin: 1.0, end: 1.1).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeInOutBack),
+    );
   }
 
   @override
@@ -127,7 +145,10 @@ class _RewardItemWidgetState extends State<_RewardItemWidget>
         _controller.stop();
         _controller.animateTo(0, duration: const Duration(milliseconds: 300));
       } else {
-        _controller.repeat(reverse: true);
+        // Play a quick celebration bounce when unlocked
+        _controller.forward(from: 0.0).then((_) {
+          _controller.repeat(reverse: true);
+        });
       }
     }
   }
@@ -156,14 +177,22 @@ class _RewardItemWidgetState extends State<_RewardItemWidget>
                   ? const EdgeInsets.symmetric(horizontal: 12, vertical: 8)
                   : const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.7),
+                color: widget.isHighlighted
+                    ? Colors.yellow.withOpacity(0.9)
+                    : Colors.white.withOpacity(0.7),
                 borderRadius: BorderRadius.circular(16),
+                border: widget.isHighlighted
+                    ? Border.all(color: Colors.orange, width: 2)
+                    : null,
                 boxShadow: [
                   BoxShadow(
                     color: widget.isLocked
                         ? Colors.grey.withOpacity(0.2)
+                        : widget.isHighlighted
+                        ? Colors.orange.withOpacity(0.4)
                         : _getColorForType(widget.item.type).withOpacity(0.2),
-                    blurRadius: 8,
+                    blurRadius: widget.isHighlighted ? 15 : 8,
+                    spreadRadius: widget.isHighlighted ? 2 : 0,
                     offset: const Offset(0, 4),
                   ),
                 ],

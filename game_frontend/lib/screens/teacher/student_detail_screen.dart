@@ -249,19 +249,82 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
   }
 
   Widget _buildErrorSummaryList() {
+    final Map<String, String> componentNames = {
+      'pron': 'උච්චාරණය (Pronunciation)',
+      'hw': 'අක්ෂර වින්‍යාසය (Handwriting)',
+      'gram': 'ව්‍යාකරණ (Grammar)',
+      'narr': 'අවබෝධය (Comprehension)',
+    };
+
+    final Map<String, IconData> componentIcons = {
+      'pron': Icons.record_voice_over,
+      'hw': Icons.draw,
+      'gram': Icons.spellcheck,
+      'narr': Icons.menu_book,
+    };
+
     return Column(
-      children: _report!.errorSummary
-          .map(
-            (e) => ListTile(
-              title: Text(e.component),
-              trailing: Chip(
-                label: Text("${e.failureCount} Failures"),
-                backgroundColor: Colors.red.shade50,
-                labelStyle: TextStyle(color: Colors.red.shade700),
+      children: _report!.errorSummary.map((summary) {
+        final friendlyName =
+            componentNames[summary.component] ?? summary.component;
+        final icon = componentIcons[summary.component] ?? Icons.error_outline;
+
+        return Card(
+          elevation: 1,
+          margin: const EdgeInsets.only(bottom: 12),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: ExpansionTile(
+            leading: CircleAvatar(
+              backgroundColor: Colors.red.shade50,
+              child: Icon(icon, color: Colors.red.shade700),
+            ),
+            title: Text(
+              friendlyName,
+              style: GoogleFonts.notoSansSinhala(
+                fontWeight: FontWeight.bold,
+                fontSize: 15,
               ),
             ),
-          )
-          .toList(),
+            subtitle: Text(
+              "${summary.failureCount} වාරයක් වැරදී ඇත",
+              style: GoogleFonts.notoSansSinhala(
+                color: Colors.red.shade600,
+                fontSize: 13,
+              ),
+            ),
+            children: [
+              if (summary.breakdown.isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: summary.breakdown.map((detail) {
+                        return Chip(
+                          label: Text(
+                            "${detail.target} (${detail.count})",
+                            style: GoogleFonts.notoSansSinhala(fontSize: 13),
+                          ),
+                          backgroundColor: Colors.orange.shade50,
+                          side: BorderSide(color: Colors.orange.shade200),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                )
+              else
+                const Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Text("විස්තරාත්මක දත්ත නොමැත"),
+                ),
+            ],
+          ),
+        );
+      }).toList(),
     );
   }
 }

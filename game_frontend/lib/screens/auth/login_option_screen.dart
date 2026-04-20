@@ -85,7 +85,7 @@ class _LoginOptionScreenState extends State<LoginOptionScreen> {
                         Text(
                           'සිංහල මිතුරු',
                           style: GoogleFonts.notoSansSinhala(
-                            fontSize: isTablet ? 52 : 36,
+                            fontSize: isTablet ? 42 : 26,
                             fontWeight: FontWeight.bold,
                             color: const Color(0xFF1A3B74),
                           ),
@@ -97,7 +97,7 @@ class _LoginOptionScreenState extends State<LoginOptionScreen> {
                           'ඉගෙනීම ආරම්භ කිරීමට පිවිසෙන ආකාරය තෝරන්න',
                           textAlign: TextAlign.center,
                           style: GoogleFonts.notoSansSinhala(
-                            fontSize: isTablet ? 22 : 17,
+                            fontSize: isTablet ? 15 : 10,
                             fontWeight: FontWeight.w600,
                             color: Colors.black54,
                           ),
@@ -146,7 +146,7 @@ class _LoginOptionScreenState extends State<LoginOptionScreen> {
     return [
       _RoleSelector(
         label: 'ශිෂ්‍යයෙක්',
-        iconData: Icons.face_retouching_natural_rounded,
+        imagePath: 'assets/images/student_avatar.png',
         isSelected: _selectedRole == 'student',
         isTablet: isTablet,
         onTap: () => setState(() => _selectedRole = 'student'),
@@ -157,7 +157,7 @@ class _LoginOptionScreenState extends State<LoginOptionScreen> {
         const SizedBox(width: 5),
       _RoleSelector(
         label: 'ගුරුවරයෙක්',
-        iconData: Icons.auto_stories_rounded,
+        imagePath: 'assets/images/teacher_avatar.png',
         isSelected: _selectedRole == 'teacher',
         isTablet: isTablet,
         onTap: () => setState(() => _selectedRole = 'teacher'),
@@ -241,7 +241,7 @@ class _LoginOptionScreenState extends State<LoginOptionScreen> {
         Text(
           'තවමත් ලියාපදිංචි වී නොමැතිද?',
           style: GoogleFonts.notoSansSinhala(
-            fontSize: isTablet ? 19 : 16,
+            fontSize: isTablet ? 15 : 10,
             color: Colors.black54,
             fontWeight: FontWeight.w500,
           ),
@@ -287,14 +287,14 @@ class _LoginOptionScreenState extends State<LoginOptionScreen> {
 
 class _RoleSelector extends StatelessWidget {
   final String label;
-  final IconData iconData;
+  final String imagePath;
   final bool isSelected;
   final bool isTablet;
   final VoidCallback onTap;
 
   const _RoleSelector({
     required this.label,
-    required this.iconData,
+    required this.imagePath,
     required this.isSelected,
     required this.isTablet,
     required this.onTap,
@@ -336,12 +336,42 @@ class _RoleSelector extends StatelessWidget {
                   : [],
             ),
             child: Center(
-              child: Icon(
-                iconData,
-                size: isTablet ? 85 : 70,
-                color: isSelected
-                    ? const Color(0xFF1A3B74)
-                    : Colors.blueGrey.shade300,
+              child: ClipOval(
+                child: ColorFiltered(
+                  colorFilter: isSelected
+                      ? const ColorFilter.mode(
+                          Colors.transparent,
+                          BlendMode.saturation,
+                        )
+                      : const ColorFilter.matrix([
+                          0.2126,
+                          0.7152,
+                          0.0722,
+                          0,
+                          0,
+                          0.2126,
+                          0.7152,
+                          0.0722,
+                          0,
+                          0,
+                          0.2126,
+                          0.7152,
+                          0.0722,
+                          0,
+                          0,
+                          0,
+                          0,
+                          0,
+                          1,
+                          0,
+                        ]),
+                  child: Image.asset(
+                    imagePath,
+                    width: isTablet ? 150 : 120,
+                    height: isTablet ? 150 : 120,
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
             ),
           ),

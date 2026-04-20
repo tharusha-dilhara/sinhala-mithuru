@@ -18,40 +18,67 @@ class GameTaskSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20),
-      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.9),
-        borderRadius: BorderRadius.circular(25),
-        border: Border.all(color: Colors.white, width: 2),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 15,
-            offset: const Offset(0, 10),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        // Decide width: maximum 700px or 75% of screen width on large screens.
+        // On smaller screens, it will practically take the full available width minus margins.
+        double sectionWidth = constraints.maxWidth;
+        if (constraints.maxWidth > 600) {
+          sectionWidth = constraints.maxWidth * 0.75;
+          if (sectionWidth > 700) sectionWidth = 700;
+        }
+
+        return Center(
+          child: SizedBox(
+            width: sectionWidth,
+            child: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.9),
+                borderRadius: BorderRadius.circular(25),
+                border: Border.all(color: Colors.white, width: 2),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.05),
+                    blurRadius: 15,
+                    offset: const Offset(0, 10),
+                  ),
+                ],
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  _buildTaskButton(
+                    "කියවීම",
+                    Icons.auto_stories,
+                    Colors.blue,
+                    "pron",
+                  ),
+                  _buildTaskButton(
+                    "අවබෝදය",
+                    Icons.psychology,
+                    Colors.orange,
+                    "narr",
+                  ),
+                  _buildTaskButton(
+                    "ව්‍යාකරණ",
+                    Icons.menu_book_rounded,
+                    Colors.green,
+                    "gram",
+                  ),
+                  _buildTaskButton(
+                    "ලිවීම",
+                    Icons.history_edu_rounded,
+                    Colors.pink,
+                    "hw",
+                  ),
+                ],
+              ),
+            ),
           ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          _buildTaskButton("කියවීම", Icons.auto_stories, Colors.blue, "pron"),
-          _buildTaskButton("විමසීම", Icons.psychology, Colors.orange, "narr"),
-          _buildTaskButton(
-            "අක්ෂර",
-            Icons.menu_book_rounded,
-            Colors.green,
-            "gram",
-          ),
-          _buildTaskButton(
-            "ලිවීම",
-            Icons.history_edu_rounded,
-            Colors.pink,
-            "hw",
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 

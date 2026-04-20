@@ -10,7 +10,7 @@ class DioClient {
   // ඔබේ Server IP එක මෙතනට දාන්න (AWS IP එක හෝ Local IP එක)
   // Emulator නම්: 10.0.2.2:8000
   // Phone එක WiFi නම්: 192.168.x.x:8000
-  static const String _baseUrl = 'http://65.1.113.174:8080/'; 
+  static const String _baseUrl = 'http://65.1.113.174:8080';
 
   factory DioClient() {
     return _singleton;
@@ -20,8 +20,10 @@ class DioClient {
     _dio = Dio(
       BaseOptions(
         baseUrl: _baseUrl,
-        connectTimeout: const Duration(seconds: 10), // තත්පර 10කින් ප්‍රතිචාර නැත්නම් නවතී
-        receiveTimeout: const Duration(seconds: 10),
+        connectTimeout: const Duration(
+          seconds: 60,
+        ), // තත්පර 10කින් ප්‍රතිචාර නැත්නම් නවතී
+        receiveTimeout: const Duration(seconds: 60),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
@@ -41,8 +43,11 @@ class DioClient {
           return handler.next(options);
         },
         onError: (DioException e, handler) {
-          // දෝෂයක් ආවොත් (උදා: 401 Unauthorized), මෙතනින් හසුරුවා ගන්න පුළුවන්
-          print("API Error: ${e.response?.statusCode} - ${e.message}");
+          // 🔴 වෙනස් කළ ස්ථානය: නියම Error එක පෙන්වයි
+          print("API Error Status: ${e.response?.statusCode}");
+          print(
+            "API Error Data: ${e.response?.data}",
+          ); // Backend එකෙන් එන නියම Error එක
           return handler.next(e);
         },
       ),

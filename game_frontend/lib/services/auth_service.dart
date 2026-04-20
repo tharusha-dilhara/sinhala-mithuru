@@ -81,6 +81,19 @@ class AuthService {
     }
   }
 
+  // Get Detailed Report
+  Future<Map<String, dynamic>> getStudentDetailedReport() async {
+    try {
+      final response = await _dio.get('/student/report');
+      if (response.statusCode == 200) {
+        return response.data;
+      }
+      throw Exception('Failed to load report');
+    } on DioException catch (e) {
+      throw Exception(e.response?.data['detail'] ?? 'Error loading report');
+    }
+  }
+
   // --- 1. ගුරුවරු සෙවීමේ පහසුකම ---
   // Response: [{id, full_name, schools: {name, district}, classes: [{id, grade, class_name}]}]
   Future<List<dynamic>> searchTeachers(String name) async {

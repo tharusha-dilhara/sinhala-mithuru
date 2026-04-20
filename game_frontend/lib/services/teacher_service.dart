@@ -5,6 +5,42 @@ import 'dio_client.dart';
 class TeacherService {
   final Dio _dio = DioClient().dio;
 
+  // --- Classes ---
+  Future<List<ClassInfo>> getMyClasses() async {
+    try {
+      final response = await _dio.get('/teacher/classes');
+      if (response.statusCode == 200) {
+        return (response.data as List)
+            .map((e) => ClassInfo.fromJson(e))
+            .toList();
+      }
+    } catch (e) {
+      print('Error fetching classes: $e');
+    }
+    return [];
+  }
+
+  Future<ClassInfo?> createClass({
+    required String className,
+    required int grade,
+    required int schoolId,
+  }) async {
+    try {
+      final response = await _dio.post(
+        '/teacher/classes',
+        data: {'class_name': className, 'grade': grade, 'school_id': schoolId},
+      );
+      if (response.statusCode == 200 &&
+          response.data is List &&
+          (response.data as List).isNotEmpty) {
+        return ClassInfo.fromJson((response.data as List).first);
+      }
+    } catch (e) {
+      print('Error creating class: $e');
+    }
+    return null;
+  }
+
   Future<TeacherDashboardSummary?> getDashboardSummary({int? classId}) async {
     try {
       final Map<String, dynamic> params = {};

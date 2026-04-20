@@ -19,20 +19,253 @@
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="description" content="A new Flutter project.">
+  <meta name="theme-color" content="#1A3B74">
 
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="game_frontend">
+  <meta name="apple-mobile-web-app-title" content="sinhala-mithuru">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
-  <title>game_frontend</title>
+  <title>sinhala-mithuru</title>
   <link rel="manifest" href="manifest.json">
+  <style>
+    :root {
+      color-scheme: light;
+      --brand-navy: #1a3b74;
+      --brand-pink: #fff0f5;
+      --brand-peach: #fbe4d8;
+      --brand-lavender: #e5e5f5;
+      --brand-gold: #ffd36b;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      overflow: hidden;
+      background: linear-gradient(
+        135deg,
+        var(--brand-lavender) 0%,
+        var(--brand-pink) 52%,
+        var(--brand-peach) 100%
+      );
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    #app-loader {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: linear-gradient(
+        135deg,
+        var(--brand-lavender) 0%,
+        var(--brand-pink) 52%,
+        var(--brand-peach) 100%
+      );
+      z-index: 9999;
+      transition: opacity 280ms ease, visibility 280ms ease;
+    }
+
+    #app-loader.app-loader--hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .loader-card {
+      width: min(420px, 100%);
+      padding: 32px 28px;
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.76);
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      box-shadow: 0 24px 70px rgba(26, 59, 116, 0.16);
+      text-align: center;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .loader-badge {
+      width: 84px;
+      height: 84px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--brand-navy);
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      background: radial-gradient(circle at 30% 30%, #ffffff, #ffe6a6 70%);
+      box-shadow:
+        0 10px 26px rgba(255, 211, 107, 0.4),
+        0 0 0 10px rgba(255, 255, 255, 0.35);
+      animation: loaderPulse 1.8s ease-in-out infinite;
+    }
+
+    .loader-title {
+      margin: 0;
+      color: var(--brand-navy);
+      font-size: clamp(28px, 5vw, 36px);
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .loader-subtitle {
+      margin: 12px 0 22px;
+      color: rgba(26, 59, 116, 0.78);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .loader-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      color: rgba(26, 59, 116, 0.92);
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .loader-spinner {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 3px solid rgba(26, 59, 116, 0.18);
+      border-top-color: var(--brand-navy);
+      animation: loaderSpin 0.9s linear infinite;
+      flex: 0 0 auto;
+    }
+
+    .loader-progress {
+      position: relative;
+      width: 100%;
+      height: 10px;
+      margin-top: 20px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(26, 59, 116, 0.08);
+    }
+
+    .loader-progress::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      width: 42%;
+      border-radius: inherit;
+      background: linear-gradient(
+        90deg,
+        rgba(255, 211, 107, 0.25),
+        rgba(26, 59, 116, 0.95),
+        rgba(255, 211, 107, 0.25)
+      );
+      animation: loaderShimmer 1.35s ease-in-out infinite;
+    }
+
+    .loader-hint {
+      margin-top: 14px;
+      color: rgba(26, 59, 116, 0.62);
+      font-size: 12px;
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      border: 0;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+    }
+
+    @keyframes loaderSpin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes loaderPulse {
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.06);
+      }
+    }
+
+    @keyframes loaderShimmer {
+      0% {
+        transform: translateX(-120%);
+      }
+
+      100% {
+        transform: translateX(260%);
+      }
+    }
+  </style>
 </head>
 <body>
+  <div id="app-loader" role="status" aria-live="polite">
+    <div class="loader-card">
+      <div class="loader-badge" aria-hidden="true">SM</div>
+      <h1 class="loader-title">Sinhala Mithuru</h1>
+      <p class="loader-subtitle">
+        Preparing lessons, activities, and game assets for the browser.
+      </p>
+      <div class="loader-row">
+        <div class="loader-spinner" aria-hidden="true"></div>
+        <span id="app-loader-status">Loading the app...</span>
+      </div>
+      <div class="loader-progress" aria-hidden="true"></div>
+      <div class="loader-hint">The first visit can take a little longer while files are cached.</div>
+    </div>
+    <span class="visually-hidden">Loading application</span>
+  </div>
+
+  <noscript>This app needs JavaScript enabled to run.</noscript>
+
+  <script>
+    (function () {
+      var loader = document.getElementById("app-loader");
+      var statusLabel = document.getElementById("app-loader-status");
+
+      function hideLoader() {
+        if (!loader) {
+          return;
+        }
+
+        loader.classList.add("app-loader--hidden");
+        window.setTimeout(function () {
+          if (loader && loader.parentNode) {
+            loader.parentNode.removeChild(loader);
+          }
+        }, 320);
+      }
+
+      window.addEventListener("flutter-first-frame", hideLoader);
+
+      window.setTimeout(function () {
+        if (statusLabel) {
+          statusLabel.textContent = "Still loading large files for the first visit...";
+        }
+      }, 6000);
+    })();
+  </script>
+
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>

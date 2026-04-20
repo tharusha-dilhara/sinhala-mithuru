@@ -274,14 +274,18 @@ class _StudentLookupScreenState extends State<StudentLookupScreen> {
                                                         color: Colors.black87,
                                                       ),
                                                 ),
-                                                Text(
-                                                  "${student['grade']} ශ්‍රේණිය",
-                                                  style:
-                                                      GoogleFonts.notoSansSinhala(
-                                                        fontSize: 14,
-                                                        color: Colors.black54,
-                                                      ),
-                                                ),
+                                                if (student['grade'] != null &&
+                                                    student['grade']
+                                                            .toString() !=
+                                                        'null')
+                                                  Text(
+                                                    "${student['grade']} ශ්‍රේණිය",
+                                                    style:
+                                                        GoogleFonts.notoSansSinhala(
+                                                          fontSize: 14,
+                                                          color: Colors.black54,
+                                                        ),
+                                                  ),
                                               ],
                                             ),
                                           ),
@@ -345,11 +349,11 @@ class _StudentPatternScreenState extends State<StudentPatternScreen> {
   void _onItemTapped(int index) {
     if (_isVerifying) return;
     setState(() {
-      if (_selectedPattern.contains(index + 1)) {
-        _selectedPattern.remove(index + 1);
+      if (_selectedPattern.contains(index)) {
+        _selectedPattern.remove(index);
       } else {
         if (_selectedPattern.length < 3) {
-          _selectedPattern.add(index + 1);
+          _selectedPattern.add(index);
         }
       }
     });
@@ -615,11 +619,11 @@ class _StudentPatternScreenState extends State<StudentPatternScreen> {
         ),
         itemCount: 9,
         itemBuilder: (context, index) {
-          final isSelected = _selectedPattern.contains(index + 1);
+          final isSelected = _selectedPattern.contains(index);
           return PatternItem(
             icon: _icons[index],
             isSelected: isSelected,
-            order: _selectedPattern.indexOf(index + 1) + 1,
+            order: _selectedPattern.indexOf(index) + 1,
             onTap: () => _onItemTapped(index),
             isLandscape: size > 300, // Hint to increase icon size
           );

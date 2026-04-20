@@ -1,3 +1,32 @@
+// Class Model
+class ClassInfo {
+  final int id;
+  final String className;
+  final int grade;
+  final int teacherId;
+  final int schoolId;
+
+  ClassInfo({
+    required this.id,
+    required this.className,
+    required this.grade,
+    required this.teacherId,
+    required this.schoolId,
+  });
+
+  factory ClassInfo.fromJson(Map<String, dynamic> json) {
+    return ClassInfo(
+      id: json['id'] ?? 0,
+      className: json['class_name'] ?? '',
+      grade: json['grade'] ?? 0,
+      teacherId: json['teacher_id'] ?? 0,
+      schoolId: json['school_id'] ?? 0,
+    );
+  }
+
+  String get displayName => '${grade}ශ්‍රේ. $className';
+}
+
 // Basic Models
 class StudentRank {
   final int studentId;
@@ -36,11 +65,31 @@ class SkillPerformance {
   }
 }
 
+class StrugglingStudent {
+  final int id;
+  final String name;
+  final double average;
+
+  StrugglingStudent({
+    required this.id,
+    required this.name,
+    required this.average,
+  });
+
+  factory StrugglingStudent.fromJson(Map<String, dynamic> json) {
+    return StrugglingStudent(
+      id: json['id'] ?? 0,
+      name: json['name'] ?? '',
+      average: (json['average'] ?? 0.0).toDouble(),
+    );
+  }
+}
+
 class TeacherDashboardSummary {
   final int totalStudents;
   final double classAverageLevel;
   final double assignmentCompletionRate;
-  final List<String> strugglingStudents;
+  final List<StrugglingStudent> strugglingStudents;
   final List<SkillPerformance> skillStats;
 
   TeacherDashboardSummary({
@@ -59,7 +108,7 @@ class TeacherDashboardSummary {
           .toDouble(),
       strugglingStudents:
           (json['struggling_students'] as List<dynamic>?)
-              ?.map((e) => e.toString())
+              ?.map((e) => StrugglingStudent.fromJson(e))
               .toList() ??
           [],
       skillStats:
@@ -128,16 +177,37 @@ class LearningCurvePoint {
   }
 }
 
+class ErrorDetail {
+  final String target;
+  final int count;
+
+  ErrorDetail({required this.target, required this.count});
+
+  factory ErrorDetail.fromJson(Map<String, dynamic> json) {
+    return ErrorDetail(target: json['target'] ?? '', count: json['count'] ?? 0);
+  }
+}
+
 class ErrorSummary {
   final String component;
   final int failureCount;
+  final List<ErrorDetail> breakdown;
 
-  ErrorSummary({required this.component, required this.failureCount});
+  ErrorSummary({
+    required this.component,
+    required this.failureCount,
+    required this.breakdown,
+  });
 
   factory ErrorSummary.fromJson(Map<String, dynamic> json) {
     return ErrorSummary(
       component: json['component'] ?? '',
       failureCount: json['failure_count'] ?? 0,
+      breakdown:
+          (json['breakdown'] as List<dynamic>?)
+              ?.map((e) => ErrorDetail.fromJson(e))
+              .toList() ??
+          [],
     );
   }
 }

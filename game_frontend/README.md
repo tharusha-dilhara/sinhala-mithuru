@@ -1,4 +1,4 @@
-# game_frontend
+# pp2_game
 
 A new Flutter project.
 

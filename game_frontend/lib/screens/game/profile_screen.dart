@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../services/auth_service.dart';
+import 'student_report_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -127,6 +128,40 @@ class _ProfileScreenState extends State<ProfileScreen> {
           _buildInfoCard("දැනට පවතින මට්ටම", "Level $currentLevel"),
           _buildInfoCard("මුළු ලකුණු", totalScore.toStringAsFixed(1)),
 
+          const SizedBox(height: 20),
+          // New "View Detailed Report" button
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton.icon(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const StudentReportScreen(),
+                  ),
+                );
+              },
+              icon: const Icon(Icons.leaderboard_outlined, color: Colors.white),
+              label: Text(
+                "සවිස්තර වාර්තාව බලන්න",
+                style: GoogleFonts.notoSansSinhala(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor:
+                    Colors.orange.shade500, // Matching the orange theme
+                padding: const EdgeInsets.symmetric(vertical: 15),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                elevation: 5,
+                shadowColor: Colors.orange.withOpacity(0.5),
+              ),
+            ),
+          ),
           const SizedBox(height: 20),
 
           // Pattern Display (Optional - if we want to show their pattern)
