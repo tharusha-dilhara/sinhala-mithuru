@@ -40,8 +40,10 @@ class TeacherService:
         if not class_ids:
              return {
                 "total_students": 0,
-                "average_progress": 0,
-                "weak_students": [],
+                "class_average_level": 0.0,
+                "assignment_completion_rate": 0.0,
+                "struggling_students": [],
+                "skill_stats": [],
                 "recent_activities": []
             }
 
@@ -57,8 +59,10 @@ class TeacherService:
         if total_students == 0:
             return {
                 "total_students": 0,
-                "average_progress": 0,
-                "weak_students": [],
+                "class_average_level": 0.0,
+                "assignment_completion_rate": 0.0,
+                "struggling_students": [],
+                "skill_stats": [],
                 "recent_activities": []
             }
 
@@ -100,8 +104,10 @@ class TeacherService:
 
         return {
             "total_students": total_students,
-            "average_progress": round(avg_progress, 1),
-            "weak_students": weak_students,
+            "class_average_level": round(avg_progress, 1),
+            "assignment_completion_rate": 0.0,
+            "struggling_students": weak_students,
+            "skill_stats": [],
             "recent_activities": all_logs[:10]
         }
 
@@ -198,40 +204,108 @@ class TeacherService:
 
         # Fetch all activity logs to calculate daily stats
         all_act_res = supabase.table("activity_logs") \
-            .select("created_at, is_correct") \
+            .select("created_at, is_correct, component_type, raw_input") \
             .eq("student_id", student_id) \
             .execute()
-        
-        daily_stats = {}
+
+        # Error Summary (component, {failure_count: int, details: dict(target -> count)})
+        error_summary_dict = {}
+        total_attempts = 0
+        correct_attempts = 0
+
         if all_act_res.data:
+            import json
             for act in all_act_res.data:
-                day = act['created_at'][:10]
-                if day not in daily_stats:
-                    daily_stats[day] = {"date": day, "total": 0, "correct": 0, "incorrect": 0}
-                daily_stats[day]["total"] += 1
-                if act.get('is_correct'):
-                    daily_stats[day]["correct"] += 1
-                else:
-                    daily_stats[day]["incorrect"] += 1
+                total_attempts += 1
+                comp = act.get('component_type', 'Unknown')
+                if comp not in error_summary_dict:
+                    error_summary_dict[comp] = {"count": 0, "details": {}}
                     
-        daily_stats_list = []
-        for day, stats in daily_stats.items():
-            perc = (stats["correct"] / stats["total"]) * 100 if stats["total"] > 0 else 0
-            stats["percentage"] = round(perc, 1)
-            daily_stats_list.append(stats)
-            
-        daily_stats_list.sort(key=lambda x: x["date"], reverse=True)
+                if act.get('is_correct'):
+                    correct_attempts += 1
+                else:
+                    error_summary_dict[comp]["count"] += 1
+                    
+                    raw_str = act.get('raw_input')
+                    target = "Unknown Detail"
+                    if raw_str:
+                        if isinstance(raw_str, str):
+                            try:
+                                raw_data = json.loads(raw_str)
+                            except:
+                                raw_data = {}
+                        elif isinstance(raw_str, dict):
+                            raw_data = raw_str
+                        else:
+                            raw_data = {}
+                            
+                        if comp == "pron":
+                            target = raw_data.get('target_text', target)
+                        elif comp == "hw":
+                            target = raw_data.get('expected_label', raw_data.get('target_char', target))
+                        elif comp == "gram":
+                            target = raw_data.get('sentence', target)
+                        elif comp == "narr":
+                            target = "Comprehension Quiz"
+                    
+                    error_summary_dict[comp]["details"][target] = error_summary_dict[comp]["details"].get(target, 0) + 1
+                    
+        error_summary_list = []
+        for comp, data in error_summary_dict.items():
+            if data["count"] > 0:
+                # convert details dict to sorted list of ErrorDetail dicts
+                breakdown = [{"target": t, "count": c} for t, c in sorted(data["details"].items(), key=lambda x: x[1], reverse=True)]
+                error_summary_list.append({"component": comp, "failure_count": data["count"], "breakdown": breakdown})
+        attempt_efficiency = (correct_attempts / total_attempts) if total_attempts > 0 else 0.0
 
         progress_res = supabase.rpc("get_student_learning_curve", {"p_student_id": student_id}).execute()
+        learning_curve_raw = progress_res.data if progress_res.data else []
+        
+        # Ensure learning curve has 'day' and 'avg_score' keys required by Dart model
+        learning_curve = []
+        for point in learning_curve_raw:
+            learning_curve.append({
+                "day": point.get('date', point.get('day', '')),
+                "avg_score": point.get('average_score', point.get('avg_score', 0.0))
+            })
+
+        # Group and calculate daily stats
+        # daily_stats: [{"date": "2024-03-01", "total": x, "correct": y, "incorrect": z, "percentage": p}]
+        daily_stats_dict = {}
+        for act in all_act_res.data:
+            created_at_str = act.get('created_at', '')
+            if len(created_at_str) >= 10:
+                date_key = created_at_str[:10]
+            else:
+                date_key = "Unknown Date"
+                
+            if date_key not in daily_stats_dict:
+                daily_stats_dict[date_key] = {"total": 0, "correct": 0, "incorrect": 0}
+                
+            daily_stats_dict[date_key]["total"] += 1
+            if act.get('is_correct'):
+                daily_stats_dict[date_key]["correct"] += 1
+            else:
+                daily_stats_dict[date_key]["incorrect"] += 1
+
+        daily_stats = []
+        for date_val, stats in sorted(daily_stats_dict.items(), reverse=True):
+            pct = (stats["correct"] / stats["total"] * 100) if stats["total"] > 0 else 0
+            daily_stats.append({
+                "date": date_val,
+                "total": stats["total"],
+                "correct": stats["correct"],
+                "incorrect": stats["incorrect"],
+                "percentage": pct
+            })
 
         return {
-            "profile": {
-                **student_info_res.data,
-                "game_state": game_state_res.data if game_state_res.data else None
-            },
+            "student_name": student_info_res.data.get('name', 'Unknown') if student_info_res.data else 'Unknown',
+            "learning_curve": learning_curve,
+            "error_summary": error_summary_list,
+            "attempt_efficiency": attempt_efficiency,
             "recent_activities": activity_res.data if activity_res.data else [],
-            "learning_curve": progress_res.data if progress_res.data else [],
-            "daily_stats": daily_stats_list
+            "daily_stats": daily_stats
         }
 
     @staticmethod

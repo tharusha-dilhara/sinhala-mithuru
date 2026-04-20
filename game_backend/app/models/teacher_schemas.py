@@ -14,11 +14,16 @@ class SkillPerformance(BaseModel):
     component_type: str
     average_score: float
 
+class StrugglingStudent(BaseModel):
+    id: int
+    name: str
+    average: float
+
 class TeacherDashboardSummary(BaseModel):
     total_students: int
     class_average_level: float
     assignment_completion_rate: float
-    struggling_students: List[str]
+    struggling_students: List[StrugglingStudent]
     skill_stats: List[SkillPerformance]
 
 # --- Analytics ---
@@ -26,9 +31,14 @@ class LearningCurvePoint(BaseModel):
     day: str
     avg_score: float
 
+class ErrorDetail(BaseModel):
+    target: str
+    count: int
+
 class ErrorSummary(BaseModel):
     component: str
     failure_count: int
+    breakdown: List[ErrorDetail]
 
 class ClassWeakness(BaseModel):
     weak_point: str

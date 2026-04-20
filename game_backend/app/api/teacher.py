@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
 from app.api.deps import get_current_user
-from app.models.teacher_schemas import AssignmentCreate, AssignmentDetailedReport, BulkPromotionRequest, ClassDifficultyAnalytics, DeadlineExtensionRequest, PatternResetRequest, SmartAssignmentRequest
+from app.models.teacher_schemas import AssignmentCreate, AssignmentDetailedReport, BulkPromotionRequest, ClassDifficultyAnalytics, DeadlineExtensionRequest, PatternResetRequest, SmartAssignmentRequest, StudentDetailedReport
 from app.models.schemas import ClassCreate, ClassResponse
 from app.services.teacher_service import TeacherService
 from typing import List, Optional
@@ -46,7 +46,7 @@ async def class_leaderboard(
         raise HTTPException(status_code=403, detail="ගුරුවරුන්ට පමණක් අවසර ඇත.")
     return await TeacherService.get_leaderboard(current_user["id"], class_id)
 
-@router.get("/student/{student_id}/report")
+@router.get("/student/{student_id}/report", response_model=StudentDetailedReport)
 async def student_detail_report(student_id: int, current_user: dict = Depends(get_current_user)):
     """ශිෂ්‍යයෙකු පිළිබඳ ගැඹුරු පර්යේෂණාත්මක වාර්තාවක් ලබා දීම"""
     if current_user["role"] != "teacher":
