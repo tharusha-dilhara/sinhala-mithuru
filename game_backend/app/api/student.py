@@ -1,3 +1,4 @@
+import asyncio
 from fastapi import APIRouter, Depends, HTTPException, status
 from app.db.supabase import supabase
 from app.models.schemas import StudentProfile
@@ -19,9 +20,11 @@ async def get_student_profile(current_student: dict = Depends(get_current_studen
         # We need to join with classes and schools
         # Supabase-py select with nested joins: "*, classes(*, schools(*))"
         
-        student_res = supabase.table("students").select(
-            "*, classes(class_name, grade, schools(name))"
-        ).eq("id", student_id).single().execute()
+        student_res = await asyncio.to_thread(
+            lambda: supabase.table("students").select(
+                "*, classes(class_name, grade, schools(name))"
+            ).eq("id", student_id).single().execute()
+        )
         
         if not student_res.data:
             raise HTTPException(status_code=404, detail="Student not found")
@@ -31,9 +34,11 @@ async def get_student_profile(current_student: dict = Depends(get_current_studen
         school_data = class_data.get("schools", {})
         
         # 2. Fetch Game State for score and level
-        game_state_res = supabase.table("student_game_state").select(
-            "total_score, current_level_id, game_levels(level_number)"
-        ).eq("student_id", student_id).single().execute()
+        game_state_res = await asyncio.to_thread(
+            lambda: supabase.table("student_game_state").select(
+                "total_score, current_level_id, game_levels(level_number)"
+            ).eq("student_id", student_id).single().execute()
+        )
         
         total_score = 0.0
         current_level_num = 1

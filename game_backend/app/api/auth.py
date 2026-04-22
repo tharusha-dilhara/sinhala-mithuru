@@ -1,3 +1,4 @@
+import asyncio
 from fastapi import APIRouter, HTTPException, status
 from app.db.supabase import supabase
 from app.core.security import hash_password, verify_password, create_access_token
@@ -70,11 +71,13 @@ def get_students_by_parent(phone_number: str):
 
 @router.post("/student/verify-pattern")
 async def verify_student(data: PatternVerify): 
-    res = supabase.table("students") \
-        .select("visual_pattern") \
-        .eq("id", data.student_id) \
-        .maybe_single() \
-        .execute()
+    res = await asyncio.to_thread(
+        lambda: supabase.table("students") \
+            .select("visual_pattern") \
+            .eq("id", data.student_id) \
+            .maybe_single() \
+            .execute()
+    )
     
     pattern_str = json.dumps(data.pattern)
     

@@ -13,17 +13,21 @@ class TeacherService:
     # --- PROMOTED: Class Management ---
     @staticmethod
     async def create_class(teacher_id: int, class_name: str, grade: int, school_id: int):
-        res = supabase.table("classes").insert({
-            "class_name": class_name,
-            "grade": grade,
-            "teacher_id": teacher_id,
-            "school_id": school_id
-        }).execute()
+        res = await asyncio.to_thread(
+            lambda: supabase.table("classes").insert({
+                "class_name": class_name,
+                "grade": grade,
+                "teacher_id": teacher_id,
+                "school_id": school_id
+            }).execute()
+        )
         return res.data
 
     @staticmethod
     async def get_teacher_classes(teacher_id: int):
-        res = supabase.table("classes").select("*").eq("teacher_id", teacher_id).execute()
+        res = await asyncio.to_thread(
+            lambda: supabase.table("classes").select("*").eq("teacher_id", teacher_id).execute()
+        )
         return res.data if res.data else []
 
     @staticmethod
@@ -33,7 +37,7 @@ class TeacherService:
         if class_id:
             query = query.eq("id", class_id)
             
-        classes_res = query.execute()
+        classes_res = await asyncio.to_thread(lambda: query.execute())
         classes = classes_res.data if classes_res.data else []
         class_ids = [c['id'] for c in classes]
         
@@ -127,16 +131,22 @@ class TeacherService:
         
         # Let's try the safer logic:
         # Get student's class_id
-        s_check = supabase.table("students").select("class_id").eq("id", student_id).maybe_single().execute()
+        s_check = await asyncio.to_thread(
+            lambda: supabase.table("students").select("class_id").eq("id", student_id).maybe_single().execute()
+        )
         if not s_check.data: return None
         class_id = s_check.data['class_id']
         
         # Check if class belongs to teacher
-        c_check = supabase.table("classes").select("id").eq("id", class_id).eq("teacher_id", teacher_id).maybe_single().execute()
+        c_check = await asyncio.to_thread(
+            lambda: supabase.table("classes").select("id").eq("id", class_id).eq("teacher_id", teacher_id).maybe_single().execute()
+        )
         if not c_check.data: return None
 
         # Now fetch details
-        student_info = supabase.table("students").select("*").eq("id", student_id).single().execute()
+        student_info = await asyncio.to_thread(
+            lambda: supabase.table("students").select("*").eq("id", student_id).single().execute()
+        )
         state_res = await asyncio.to_thread(
             lambda: supabase.table("student_game_state").select("*").eq("student_id", student_id).maybe_single().execute()
         )
@@ -169,7 +179,7 @@ class TeacherService:
         if class_id:
             query = query.eq("class_id", class_id)
             
-        res = query.execute()
+        res = await asyncio.to_thread(lambda: query.execute())
 
         leaderboard = []
         for student in res.data:
@@ -187,26 +197,34 @@ class TeacherService:
     async def get_student_detailed_report(student_id: int):
         """FIXED: Properly join students and student_game_state tables"""
         # Get student basic info
-        student_info_res = supabase.table("students") \
-            .select("id, name, class_id, parent_phone, created_at") \
-            .eq("id", student_id).single().execute()
+        student_info_res = await asyncio.to_thread(
+            lambda: supabase.table("students") \
+                .select("id, name, class_id, parent_phone, created_at") \
+                .eq("id", student_id).single().execute()
+        )
         
         # Get student game state separately (total_score is here, not in students table)
-        game_state_res = supabase.table("student_game_state") \
-            .select("*") \
-            .eq("student_id", student_id).maybe_single().execute()
+        game_state_res = await asyncio.to_thread(
+            lambda: supabase.table("student_game_state") \
+                .select("*") \
+                .eq("student_id", student_id).maybe_single().execute()
+        )
 
-        activity_res = supabase.table("activity_logs") \
-            .select("*") \
-            .eq("student_id", student_id) \
-            .order("created_at", desc=True) \
-            .limit(20).execute()
+        activity_res = await asyncio.to_thread(
+            lambda: supabase.table("activity_logs") \
+                .select("*") \
+                .eq("student_id", student_id) \
+                .order("created_at", desc=True) \
+                .limit(20).execute()
+        )
 
         # Fetch all activity logs to calculate daily stats
-        all_act_res = supabase.table("activity_logs") \
-            .select("created_at, is_correct, component_type, raw_input") \
-            .eq("student_id", student_id) \
-            .execute()
+        all_act_res = await asyncio.to_thread(
+            lambda: supabase.table("activity_logs") \
+                .select("created_at, is_correct, component_type, raw_input") \
+                .eq("student_id", student_id) \
+                .execute()
+        )
 
         # Error Summary (component, {failure_count: int, details: dict(target -> count)})
         error_summary_dict = {}
@@ -258,7 +276,9 @@ class TeacherService:
                 error_summary_list.append({"component": comp, "failure_count": data["count"], "breakdown": breakdown})
         attempt_efficiency = (correct_attempts / total_attempts) if total_attempts > 0 else 0.0
 
-        progress_res = supabase.rpc("get_student_learning_curve", {"p_student_id": student_id}).execute()
+        progress_res = await asyncio.to_thread(
+            lambda: supabase.rpc("get_student_learning_curve", {"p_student_id": student_id}).execute()
+        )
         learning_curve_raw = progress_res.data if progress_res.data else []
         
         # Ensure learning curve has 'day' and 'avg_score' keys required by Dart model
@@ -315,21 +335,25 @@ class TeacherService:
         if class_id:
             query = query.eq("id", class_id)
             
-        classes_res = query.execute()
+        classes_res = await asyncio.to_thread(lambda: query.execute())
         class_ids = [c['id'] for c in classes_res.data]
         
         if not class_ids: return []
         
-        students_res = supabase.table("students").select("id").in_("class_id", class_ids).execute()
+        students_res = await asyncio.to_thread(
+            lambda: supabase.table("students").select("id").in_("class_id", class_ids).execute()
+        )
         student_ids = [s['id'] for s in students_res.data]
         
         if not student_ids: return []
 
-        res = supabase.table("activity_logs") \
-            .select("component_type, raw_input") \
-            .in_("student_id", student_ids) \
-            .eq("is_correct", False) \
-            .execute()
+        res = await asyncio.to_thread(
+            lambda: supabase.table("activity_logs") \
+                .select("component_type, raw_input") \
+                .in_("student_id", student_ids) \
+                .eq("is_correct", False) \
+                .execute()
+        )
         return res.data
 
     @staticmethod
@@ -450,10 +474,12 @@ class TeacherService:
     async def reset_student_pattern(student_id: int, new_pattern: List[int]):
         pattern_str = json.dumps(new_pattern)
         hashed_pattern = hash_password(pattern_str)
-        res = supabase.table("students") \
-            .update({"visual_pattern": hashed_pattern}) \
-            .eq("id", student_id) \
-            .execute()
+        res = await asyncio.to_thread(
+            lambda: supabase.table("students") \
+                .update({"visual_pattern": hashed_pattern}) \
+                .eq("id", student_id) \
+                .execute()
+        )
         return {"status": "success", "message": "රූප රටාව සාර්ථකව වෙනස් කරන ලදී."}
 
     @staticmethod
@@ -478,21 +504,25 @@ class TeacherService:
             content_payload["target_text"] = data.target_data
             content_payload["audio_url"] = "https://example.com/audio/placeholder.mp3"  # Required field
 
-        content_res = supabase.table(target_table).insert(content_payload).execute()
+        content_res = await asyncio.to_thread(
+            lambda: supabase.table(target_table).insert(content_payload).execute()
+        )
         new_content_id = content_res.data[0]['id']
 
         # FIXED: Use class_assignments table with correct schema
         start_date = datetime.now(timezone.utc)
         end_date = start_date + timedelta(hours=data.expiry_hours)
         
-        assignment_res = supabase.table("class_assignments").insert({
-            "class_id": data.class_id,
-            "component_type": data.component_type,
-            "level_id": 1,
-            "start_date": start_date.isoformat(),
-            "end_date": end_date.isoformat(),
-            "created_by": teacher_id
-        }).execute()
+        assignment_res = await asyncio.to_thread(
+            lambda: supabase.table("class_assignments").insert({
+                "class_id": data.class_id,
+                "component_type": data.component_type,
+                "level_id": 1,
+                "start_date": start_date.isoformat(),
+                "end_date": end_date.isoformat(),
+                "created_by": teacher_id
+            }).execute()
+        )
         
         return {
             "assignment_id": assignment_res.data[0]['id'],
@@ -503,7 +533,9 @@ class TeacherService:
     @staticmethod
     async def get_assignment_performance_report(teacher_id: int, assignment_id: int):
         """FIXED: Use class_assignments and student_assignment_progress tables"""
-        assign_res = supabase.table("class_assignments").select("*").eq("id", assignment_id).maybe_single().execute()
+        assign_res = await asyncio.to_thread(
+            lambda: supabase.table("class_assignments").select("*").eq("id", assignment_id).maybe_single().execute()
+        )
         if not assign_res.data: return None
         assignment = assign_res.data
         
@@ -521,11 +553,15 @@ class TeacherService:
 
         # Get students in the assigned CLASS
         class_id = assignment.get('class_id')
-        students_res = supabase.table("students").select("id, name").eq("class_id", class_id).execute()
+        students_res = await asyncio.to_thread(
+            lambda: supabase.table("students").select("id, name").eq("class_id", class_id).execute()
+        )
         all_students = students_res.data
         
         # FIXED: Use student_assignment_progress table
-        status_res = supabase.table("student_assignment_progress").select("*").eq("assignment_id", assignment_id).execute()
+        status_res = await asyncio.to_thread(
+            lambda: supabase.table("student_assignment_progress").select("*").eq("assignment_id", assignment_id).execute()
+        )
         completion_map = {s['student_id']: s for s in status_res.data}
 
         report_details = []
@@ -577,11 +613,13 @@ class TeacherService:
     @staticmethod
     async def extend_assignment_deadline(teacher_id: int, data: DeadlineExtensionRequest):
         """FIXED: Use class_assignments table and end_date column"""
-        assign_res = supabase.table("class_assignments") \
-            .select("end_date, created_by") \
-            .eq("id", data.assignment_id) \
-            .eq("created_by", teacher_id) \
-            .single().execute()
+        assign_res = await asyncio.to_thread(
+            lambda: supabase.table("class_assignments") \
+                .select("end_date, created_by") \
+                .eq("id", data.assignment_id) \
+                .eq("created_by", teacher_id) \
+                .single().execute()
+        )
             
         if not assign_res.data:
             return {"status": "error", "message": "පැවරුම සොයාගත නොහැක."}
@@ -593,12 +631,14 @@ class TeacherService:
         base_time = max(current_deadline, now)
         new_deadline = base_time + timedelta(hours=data.extension_hours)
 
-        res = supabase.table("class_assignments") \
-            .update({
-                "end_date": new_deadline.isoformat()
-            }) \
-            .eq("id", data.assignment_id) \
-            .execute()
+        res = await asyncio.to_thread(
+            lambda: supabase.table("class_assignments") \
+                .update({
+                    "end_date": new_deadline.isoformat()
+                }) \
+                .eq("id", data.assignment_id) \
+                .execute()
+        )
             
         return {
             "status": "success", 
@@ -613,21 +653,25 @@ class TeacherService:
         if class_id:
             query = query.eq("id", class_id)
             
-        classes_res = query.execute()
+        classes_res = await asyncio.to_thread(lambda: query.execute())
         class_ids = [c['id'] for c in classes_res.data]
         if not class_ids: return {"component_type": component_type, "top_difficult_items": []}
         
-        students_res = supabase.table("students").select("id").in_("class_id", class_ids).execute()
+        students_res = await asyncio.to_thread(
+            lambda: supabase.table("students").select("id").in_("class_id", class_ids).execute()
+        )
         student_ids = [s['id'] for s in students_res.data]
         
         if not student_ids:
             return {"component_type": component_type, "top_difficult_items": []}
 
-        logs_res = supabase.table("activity_logs") \
-            .select("raw_input, score, is_correct") \
-            .in_("student_id", student_ids) \
-            .eq("component_type", component_type) \
-            .execute()
+        logs_res = await asyncio.to_thread(
+            lambda: supabase.table("activity_logs") \
+                .select("raw_input, score, is_correct") \
+                .in_("student_id", student_ids) \
+                .eq("component_type", component_type) \
+                .execute()
+        )
 
         analytics_map = {} 
 

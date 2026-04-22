@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException, Query, UploadFile, File, Form
+import asyncio
 import json
 import traceback
 from app.api.deps import get_current_user 
@@ -60,13 +61,17 @@ async def create_assignment(data: AssignmentCreate, current_user: dict = Depends
     start_date = datetime.now(timezone.utc)
     end_date = start_date + timedelta(days=7) 
     
-    res = supabase.table("class_assignments").insert({
-        "class_id": data.class_id,
-        "component_type": data.component_type,
-        "level_id": 1,  
-        "start_date": start_date.isoformat(),
-        "end_date": end_date.isoformat(),
-        "created_by": current_user["id"]
-    }).execute()
+    res = await asyncio.to_thread(
+        lambda: supabase.table("class_assignments").insert({
+            "class_id": data.class_id,
+            "component_type": data.component_type,
+            "level_id": 1,
+            "start_date": start_date.isoformat(),
+            "end_date": end_date.isoformat(),
+            "created_by": current_user["id"]
+        }).execute()
+    )
     
     return {"status": "assignment_created", "assignment_id": res.data[0]['id']}
+
+
