@@ -10,7 +10,7 @@ class DioClient {
   // ඔබේ Server IP එක මෙතනට දාන්න (AWS IP එක හෝ Local IP එක)
   // Emulator නම්: 10.0.2.2:8000
   // Phone එක WiFi නම්: 192.168.x.x:8000
-  static const String _baseUrl = 'http://65.1.113.174:8080';
+  static const String _baseUrl = 'https://d7v3awmprv32f.cloudfront.net';
 
   factory DioClient() {
     return _singleton;

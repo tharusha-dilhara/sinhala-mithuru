@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.api import auth, school, game, teacher,student
+from app.api import auth, school, game, teacher, student, admin
 from fastapi.middleware.cors import CORSMiddleware
 
 
@@ -18,6 +18,7 @@ app.include_router(school.router, prefix="/school", tags=["School"])
 app.include_router(game.router, prefix="/game", tags=["Game"])
 app.include_router(teacher.router, prefix="/teacher", tags=["Teacher Dashboard"])
 app.include_router(student.router, prefix="/student", tags=["Student"])
+app.include_router(admin.router, prefix="/admin", tags=["Admin Dashboard"])
 
 
 @app.get("/")
