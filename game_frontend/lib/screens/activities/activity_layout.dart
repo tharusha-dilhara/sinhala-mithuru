@@ -6,6 +6,7 @@ class ActivityLayout extends StatelessWidget {
   final String title;
   final Widget body;
   final Color baseColor;
+  final double maxWidth;
 
   const ActivityLayout({
     super.key,
@@ -13,6 +14,7 @@ class ActivityLayout extends StatelessWidget {
     required this.title,
     required this.body,
     this.baseColor = Colors.redAccent,
+    this.maxWidth = 900,
   });
 
   @override
@@ -37,7 +39,7 @@ class ActivityLayout extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
               child: Center(
                 child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 900),
+                  constraints: BoxConstraints(maxWidth: maxWidth),
                   child: Container(
                     width: double.infinity,
                     decoration: BoxDecoration(

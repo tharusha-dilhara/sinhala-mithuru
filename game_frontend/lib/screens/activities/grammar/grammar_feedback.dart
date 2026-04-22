@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 /// Feedback overlay shown after the student submits a grammar answer.
+/// Styled to match the purple grammar theme consistent with other activities.
+
+const Color _kGrammarColor = Color(0xFF7C3AED);
+
 class GrammarFeedbackLayout extends StatelessWidget {
   final bool isSuccess;
   final String sinhalaSentence;
@@ -26,27 +30,29 @@ class GrammarFeedbackLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color primaryColor = isSuccess
-        ? const Color(0xFF16A34A)
-        : Colors.redAccent;
-    final Color bgColor = isSuccess
-        ? const Color(0xFFDCFCE7)
-        : const Color(0xFFFFEBEE);
+    final Color primaryColor =
+        isSuccess ? const Color(0xFF16A34A) : Colors.redAccent;
+    final Color bgColor =
+        isSuccess ? const Color(0xFFDCFCE7) : const Color(0xFFFFEBEE);
 
     return Container(
-      color: Colors.black.withOpacity(0.55),
+      color: Colors.black.withOpacity(0.5),
       child: Center(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24),
           child: Container(
-            constraints: const BoxConstraints(maxWidth: 500),
-            padding: const EdgeInsets.all(32),
+            constraints: const BoxConstraints(maxWidth: 480),
+            padding: const EdgeInsets.all(28),
             decoration: BoxDecoration(
               color: bgColor,
-              borderRadius: BorderRadius.circular(32),
+              borderRadius: BorderRadius.circular(28),
+              border: Border.all(
+                color: primaryColor.withOpacity(0.3),
+                width: 2,
+              ),
               boxShadow: [
                 BoxShadow(
-                  color: primaryColor.withOpacity(0.3),
+                  color: primaryColor.withOpacity(0.25),
                   blurRadius: 40,
                   offset: const Offset(0, 12),
                 ),
@@ -55,13 +61,17 @@ class GrammarFeedbackLayout extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                // ── Icon ───────────────────────────────────────────────
+                // ── Icon ──────────────────────────────────────────────────
                 Container(
                   width: 80,
                   height: 80,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: primaryColor.withOpacity(0.15),
+                    border: Border.all(
+                      color: primaryColor.withOpacity(0.3),
+                      width: 2,
+                    ),
                   ),
                   child: Icon(
                     isSuccess
@@ -71,21 +81,21 @@ class GrammarFeedbackLayout extends StatelessWidget {
                     size: 52,
                   ),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 18),
 
-                // ── Title ──────────────────────────────────────────────
+                // ── Title ──────────────────────────────────────────────────
                 Text(
                   isSuccess ? 'විශිෂ්ටයි! 🎉' : 'නැවත උත්සාහ කරන්න 💪',
                   style: GoogleFonts.notoSansSinhala(
-                    fontSize: 26,
+                    fontSize: 24,
                     fontWeight: FontWeight.bold,
                     color: primaryColor,
                   ),
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: 10),
 
-                // ── Custom feedback message ────────────────────────────
+                // ── Custom feedback message ────────────────────────────────
                 if (feedbackMessage != null)
                   Container(
                     padding: const EdgeInsets.symmetric(
@@ -93,22 +103,22 @@ class GrammarFeedbackLayout extends StatelessWidget {
                       vertical: 10,
                     ),
                     decoration: BoxDecoration(
-                      color: primaryColor.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(12),
+                      color: primaryColor.withOpacity(0.08),
+                      borderRadius: BorderRadius.circular(14),
                     ),
                     child: Text(
                       feedbackMessage!,
                       style: GoogleFonts.notoSansSinhala(
-                        fontSize: 15,
+                        fontSize: 14,
                         color: primaryColor.withOpacity(0.85),
                         height: 1.5,
                       ),
                       textAlign: TextAlign.center,
                     ),
                   ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 18),
 
-                // ── Correct sentence section ───────────────────────────
+                // ── Correct sentence section ───────────────────────────────
                 _SentenceRow(
                   label: 'නිවැරදි වාක්‍ය:',
                   sentence: sinhalaSentence,
@@ -121,9 +131,9 @@ class GrammarFeedbackLayout extends StatelessWidget {
                     sentence: userAnswer,
                     color: Colors.redAccent,
                   ),
-                const SizedBox(height: 28),
+                const SizedBox(height: 24),
 
-                // ── Buttons ────────────────────────────────────────────
+                // ── Buttons ────────────────────────────────────────────────
                 Row(
                   children: [
                     if (!isSuccess && canRetry)
@@ -131,7 +141,7 @@ class GrammarFeedbackLayout extends StatelessWidget {
                         child: OutlinedButton(
                           onPressed: onTryAgain,
                           style: OutlinedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(vertical: 16),
+                            padding: const EdgeInsets.symmetric(vertical: 14),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(50),
                             ),
@@ -140,7 +150,7 @@ class GrammarFeedbackLayout extends StatelessWidget {
                           child: Text(
                             'නැවත',
                             style: GoogleFonts.notoSansSinhala(
-                              fontSize: 16,
+                              fontSize: 15,
                               fontWeight: FontWeight.bold,
                               color: primaryColor,
                             ),
@@ -153,16 +163,21 @@ class GrammarFeedbackLayout extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: onContinue,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: primaryColor,
-                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          backgroundColor: isSuccess
+                              ? _kGrammarColor
+                              : primaryColor,
+                          padding: const EdgeInsets.symmetric(vertical: 14),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50),
                           ),
+                          elevation: 3,
+                          shadowColor: (isSuccess ? _kGrammarColor : primaryColor)
+                              .withOpacity(0.35),
                         ),
                         child: Text(
                           isSuccess ? 'ඉදිරියට යමු! ➡️' : 'Skip',
                           style: GoogleFonts.notoSansSinhala(
-                            fontSize: 16,
+                            fontSize: 15,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                           ),
@@ -193,28 +208,35 @@ class _SentenceRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          '$label ',
-          style: GoogleFonts.notoSansSinhala(
-            fontSize: 14,
-            color: Colors.black54,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        Expanded(
-          child: Text(
-            sentence,
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      decoration: BoxDecoration(
+        color: color.withOpacity(0.06),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            '$label ',
             style: GoogleFonts.notoSansSinhala(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: color,
+              fontSize: 13,
+              color: Colors.black54,
+              fontWeight: FontWeight.w600,
             ),
           ),
-        ),
-      ],
+          Expanded(
+            child: Text(
+              sentence,
+              style: GoogleFonts.notoSansSinhala(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+                color: color,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

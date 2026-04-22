@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../models/grammar_task.dart';
 import '../../../services/game_service.dart';
+import '../activity_layout.dart';
 import 'grammar_feedback.dart';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -10,6 +11,8 @@ import 'grammar_feedback.dart';
 //   Drag-and-drop sentence building activity.
 //   Returns true to caller on success (so game_home_screen reloads data).
 // ─────────────────────────────────────────────────────────────────────────────
+
+const Color _kGrammarColor = Color(0xFF7C3AED); // Purple — grammar theme
 
 class GrammarGamePage extends StatefulWidget {
   final GrammarTask task;
@@ -163,56 +166,83 @@ class _GrammarGamePageState extends State<GrammarGamePage> {
   Widget build(BuildContext context) {
     final isComplete = _droppedWords.every((s) => s != null);
 
-    return Scaffold(
-      backgroundColor: const Color(0xFFE0F2FE),
+    return ActivityLayout(
+      headerText: 'සිංහල මිතුරු - ව්‍යාකරණ',
+      title: widget.task.taskName,
+      baseColor: _kGrammarColor,
+      maxWidth: 1200,
       body: Stack(
         children: [
-          // Background gradient
+          // Main scrollable content
           Positioned.fill(
-            child: Container(
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [Color(0xFFE0F2FE), Colors.white],
-                ),
-              ),
-            ),
-          ),
-
-          SafeArea(
-            child: Column(
-              children: [
-                _buildHeader(),
-                Expanded(
-                  child: SingleChildScrollView(
-                    padding: const EdgeInsets.all(24),
-                    child: Column(
-                      children: [
-                        _buildImageAndSlots(),
-                        const SizedBox(height: 40),
-                        _buildWordBank(),
-                        const SizedBox(height: 40),
-                        _buildCheckButton(isComplete),
-                      ],
+            child: SingleChildScrollView(
+              child: SizedBox(
+                width: double.infinity,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                // Retry count indicator
+                if (_retryCount > 0)
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 6,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.red.shade50,
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(color: Colors.red.shade200),
+                    ),
+                    child: Text(
+                      'නැවත: $_retryCount',
+                      style: GoogleFonts.notoSansSinhala(
+                        color: Colors.redAccent,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 13,
+                      ),
                     ),
                   ),
+                const SizedBox(height: 12),
+
+                _buildImageAndSlots(),
+                const SizedBox(height: 28),
+
+                // Word bank label
+                Text(
+                  'වචන බැංකුව',
+                  style: GoogleFonts.notoSansSinhala(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.brown.shade400,
+                    letterSpacing: 1,
+                  ),
                 ),
+                const SizedBox(height: 12),
+
+                _buildWordBank(),
+                const SizedBox(height: 28),
+
+                _buildCheckButton(isComplete),
+                const SizedBox(height: 8),
               ],
             ),
+          ),
+          ),
           ),
 
           // Feedback overlay
           if (_showFeedback)
-            GrammarFeedbackLayout(
-              isSuccess: _feedbackSuccess,
-              sinhalaSentence: _correctSentence.join(' '),
-              userAnswer: _droppedWords.whereType<String>().join(' '),
-              englishSentence: widget.task.taskName,
-              feedbackMessage: _feedbackMessage,
-              canRetry: true,
-              onTryAgain: _handleTryAgain,
-              onContinue: _handleContinue,
+            Positioned.fill(
+              child: GrammarFeedbackLayout(
+                isSuccess: _feedbackSuccess,
+                sinhalaSentence: _correctSentence.join(' '),
+                userAnswer: _droppedWords.whereType<String>().join(' '),
+                englishSentence: widget.task.taskName,
+                feedbackMessage: _feedbackMessage,
+                canRetry: true,
+                onTryAgain: _handleTryAgain,
+                onContinue: _handleContinue,
+              ),
             ),
 
           // Submitting overlay
@@ -220,44 +250,13 @@ class _GrammarGamePageState extends State<GrammarGamePage> {
             const Positioned.fill(
               child: ColoredBox(
                 color: Color(0x55000000),
-                child: Center(child: CircularProgressIndicator()),
+                child: Center(
+                  child: CircularProgressIndicator(
+                    color: _kGrammarColor,
+                  ),
+                ),
               ),
             ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildHeader() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      child: Row(
-        children: [
-          IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new_rounded),
-            onPressed: () => Navigator.pop(context, false),
-          ),
-          Expanded(
-            child: Text(
-              widget.task.taskName,
-              textAlign: TextAlign.center,
-              style: GoogleFonts.notoSansSinhala(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          if (_retryCount > 0)
-            Text(
-              'නැවත: $_retryCount',
-              style: GoogleFonts.notoSansSinhala(
-                color: Colors.redAccent,
-                fontWeight: FontWeight.bold,
-                fontSize: 13,
-              ),
-            )
-          else
-            const SizedBox(width: 48),
         ],
       ),
     );
@@ -269,50 +268,74 @@ class _GrammarGamePageState extends State<GrammarGamePage> {
         // Task image
         if (widget.task.imageUrl != null)
           Container(
-            width: 180,
-            height: 180,
+            width: 150,
+            height: 150,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(36),
-              border: Border.all(color: Colors.white, width: 4),
+              borderRadius: BorderRadius.circular(32),
+              border: Border.all(color: _kGrammarColor.withOpacity(0.3), width: 3),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.blueGrey.withOpacity(0.2),
-                  blurRadius: 30,
+                  color: _kGrammarColor.withOpacity(0.15),
+                  blurRadius: 24,
                   offset: const Offset(0, 8),
                 ),
               ],
-              image: DecorationImage(
-                image: NetworkImage(widget.task.imageUrl!),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(29),
+              child: Image.network(
+                widget.task.imageUrl!,
+                width: double.infinity,
+                height: double.infinity,
                 fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                  return Image.asset(
+                    widget.task.imageUrl!,
+                    width: double.infinity,
+                    height: double.infinity,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) =>
+                        Icon(
+                          Icons.image_not_supported,
+                          color: _kGrammarColor.withOpacity(0.6),
+                          size: 40,
+                        ),
+                  );
+                },
               ),
             ),
           )
         else
           Container(
-            width: 180,
-            height: 180,
+            width: 150,
+            height: 150,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(36),
-              color: Colors.blue.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(32),
+              color: _kGrammarColor.withOpacity(0.08),
+              border: Border.all(color: _kGrammarColor.withOpacity(0.2)),
             ),
-            child: const Icon(Icons.image, size: 64, color: Colors.blueGrey),
+            child: Icon(
+              Icons.image,
+              size: 56,
+              color: _kGrammarColor.withOpacity(0.4),
+            ),
           ),
-        const SizedBox(height: 28),
+        const SizedBox(height: 20),
 
         // Instruction
         Text(
           'වචන ඇදගෙන නිවැරදි ස්ථානයේ දමන්න',
           style: GoogleFonts.notoSansSinhala(
-            fontSize: 14,
-            color: Colors.blueGrey,
+            fontSize: 13,
+            color: Colors.brown.shade400,
           ),
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 16),
 
         // Drop slots
         Wrap(
-          spacing: 16,
-          runSpacing: 16,
+          spacing: 12,
+          runSpacing: 12,
           alignment: WrapAlignment.center,
           children: List.generate(
             _correctSentence.length,
@@ -333,25 +356,27 @@ class _GrammarGamePageState extends State<GrammarGamePage> {
           onTap: () => _handleRemove(index),
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 200),
-            width: 120,
-            height: 60,
+            width: 110,
+            height: 56,
             decoration: BoxDecoration(
               color: isCandidate
-                  ? Colors.blue.withOpacity(0.15)
+                  ? _kGrammarColor.withOpacity(0.12)
                   : isOccupied
                   ? Colors.white
-                  : Colors.white.withOpacity(0.5),
-              borderRadius: BorderRadius.circular(18),
+                  : _kGrammarColor.withOpacity(0.04),
+              borderRadius: BorderRadius.circular(16),
               border: Border.all(
                 color: isCandidate
-                    ? Colors.blue
-                    : Colors.blueGrey.withOpacity(0.25),
-                width: isCandidate ? 2 : 1,
+                    ? _kGrammarColor
+                    : isOccupied
+                    ? _kGrammarColor.withOpacity(0.4)
+                    : _kGrammarColor.withOpacity(0.2),
+                width: isCandidate ? 2 : 1.5,
               ),
               boxShadow: isOccupied
                   ? [
                       BoxShadow(
-                        color: Colors.blueGrey.withOpacity(0.15),
+                        color: _kGrammarColor.withOpacity(0.12),
                         blurRadius: 8,
                         offset: const Offset(0, 4),
                       ),
@@ -363,16 +388,16 @@ class _GrammarGamePageState extends State<GrammarGamePage> {
                 ? Text(
                     _droppedWords[index]!,
                     style: GoogleFonts.notoSansSinhala(
-                      fontSize: 18,
+                      fontSize: 17,
                       fontWeight: FontWeight.bold,
-                      color: const Color(0xFF0F172A),
+                      color: const Color(0xFF1E1B4B),
                     ),
                   )
                 : Text(
                     '${index + 1}',
                     style: TextStyle(
                       fontSize: 13,
-                      color: Colors.blueGrey.withOpacity(0.4),
+                      color: _kGrammarColor.withOpacity(0.35),
                     ),
                   ),
           ),
@@ -384,8 +409,8 @@ class _GrammarGamePageState extends State<GrammarGamePage> {
 
   Widget _buildWordBank() {
     return Wrap(
-      spacing: 12,
-      runSpacing: 12,
+      spacing: 10,
+      runSpacing: 10,
       alignment: WrapAlignment.center,
       children: _availableWords.map((word) {
         return Draggable<String>(
@@ -406,7 +431,7 @@ class _GrammarGamePageState extends State<GrammarGamePage> {
 
   Widget _buildCheckButton(bool isComplete) {
     return AnimatedOpacity(
-      opacity: isComplete ? 1.0 : 0.4,
+      opacity: isComplete ? 1.0 : 0.45,
       duration: const Duration(milliseconds: 300),
       child: ElevatedButton.icon(
         onPressed: isComplete ? _checkAnswer : null,
@@ -416,12 +441,14 @@ class _GrammarGamePageState extends State<GrammarGamePage> {
           style: GoogleFonts.notoSansSinhala(fontWeight: FontWeight.bold),
         ),
         style: ElevatedButton.styleFrom(
-          backgroundColor: const Color(0xFF0F172A),
+          backgroundColor: _kGrammarColor,
           foregroundColor: Colors.white,
-          padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 18),
+          padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 16),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(50),
           ),
+          elevation: 4,
+          shadowColor: _kGrammarColor.withOpacity(0.4),
           textStyle: const TextStyle(fontSize: 16),
         ),
       ),
@@ -433,33 +460,47 @@ class _GrammarGamePageState extends State<GrammarGamePage> {
 //  _WordChip
 // ─────────────────────────────────────────────────────────────────────────────
 
-class _WordChip extends StatelessWidget {
+class _WordChip extends StatefulWidget {
   final String text;
   final bool isDragging;
 
   const _WordChip({required this.text, this.isDragging = false});
 
   @override
+  State<_WordChip> createState() => _WordChipState();
+}
+
+class _WordChipState extends State<_WordChip> {
+  bool _hovered = false;
+
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-      decoration: BoxDecoration(
-        color: isDragging ? const Color(0xFF0EA5E9) : Colors.white,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.blueGrey.withOpacity(isDragging ? 0.35 : 0.15),
-            blurRadius: isDragging ? 20 : 10,
-            offset: const Offset(0, 4),
+    final active = widget.isDragging || _hovered;
+    return MouseRegion(
+      onEnter: (_) => setState(() => _hovered = true),
+      onExit: (_) => setState(() => _hovered = false),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 160),
+        transform: Matrix4.translationValues(0, active ? -3 : 0, 0),
+        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+        decoration: BoxDecoration(
+          color: active ? _kGrammarColor : Colors.white,
+          borderRadius: BorderRadius.circular(18),
+          boxShadow: [
+            BoxShadow(
+              color: _kGrammarColor.withOpacity(active ? 0.28 : 0.1),
+              blurRadius: active ? 18 : 8,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Text(
+          widget.text,
+          style: GoogleFonts.notoSansSinhala(
+            fontSize: 17,
+            fontWeight: FontWeight.bold,
+            color: active ? Colors.white : const Color(0xFF1E1B4B),
           ),
-        ],
-      ),
-      child: Text(
-        text,
-        style: GoogleFonts.notoSansSinhala(
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-          color: isDragging ? Colors.white : const Color(0xFF0F172A),
         ),
       ),
     );
