@@ -27,9 +27,9 @@ class PdfService {
             pw.SizedBox(height: 10),
             _buildStudentDetails(profile),
             pw.SizedBox(height: 20),
-            _buildDailyStatsSection(dailyStats),
+            ..._buildDailyStatsSection(dailyStats),
             pw.SizedBox(height: 20),
-            _buildActivitiesSection(activities),
+            ..._buildActivitiesSection(activities),
           ];
         },
       ),
@@ -78,6 +78,8 @@ class PdfService {
 
     final name = profile['name'] ?? 'Not Provided';
     final grade = profile['class_name'] ?? 'Not Provided';
+    final schoolName = profile['school_name'] ?? 'Not Provided';
+    final teacherName = profile['teacher_name'] ?? 'Not Provided';
     final gameState = profile['game_state'] as Map<String, dynamic>? ?? {};
     final totalScore = gameState['total_score'] ?? 0;
 
@@ -106,6 +108,20 @@ class PdfService {
                 ),
               ),
               pw.SizedBox(height: 8),
+              pw.Text(
+                'School: $schoolName',
+                style: pw.TextStyle(color: PdfColors.grey800, fontSize: 12),
+              ),
+              pw.SizedBox(height: 4),
+              pw.Text(
+                'Class/Grade: $grade',
+                style: pw.TextStyle(color: PdfColors.grey800, fontSize: 12),
+              ),
+              pw.SizedBox(height: 4),
+              pw.Text(
+                'Teacher: $teacherName',
+                style: pw.TextStyle(color: PdfColors.grey800, fontSize: 12),
+              ),
             ],
           ),
           pw.Column(
@@ -130,19 +146,19 @@ class PdfService {
     );
   }
 
-  pw.Widget _buildDailyStatsSection(List<dynamic> dailyStats) {
+  List<pw.Widget> _buildDailyStatsSection(List<dynamic> dailyStats) {
     if (dailyStats.isEmpty) {
-      return pw.Text(
-        "No daily summary data available.",
-        style: const pw.TextStyle(color: PdfColors.grey700),
-      );
+      return [
+        pw.Text(
+          "No daily summary data available.",
+          style: const pw.TextStyle(color: PdfColors.grey700),
+        )
+      ];
     }
 
-    return pw.Column(
-      crossAxisAlignment: pw.CrossAxisAlignment.start,
-      children: [
-        pw.Text(
-          'Daily Progress Summary',
+    return [
+      pw.Text(
+        'Daily Progress Summary',
           style: pw.TextStyle(
             fontSize: 18,
             fontWeight: pw.FontWeight.bold,
@@ -176,23 +192,22 @@ class PdfService {
           ),
           cellAlignment: pw.Alignment.center,
         ),
-      ],
-    );
+      ];
   }
 
-  pw.Widget _buildActivitiesSection(List<dynamic> activities) {
+  List<pw.Widget> _buildActivitiesSection(List<dynamic> activities) {
     if (activities.isEmpty) {
-      return pw.Text(
-        "No recent activities.",
-        style: const pw.TextStyle(color: PdfColors.grey700),
-      );
+      return [
+        pw.Text(
+          "No recent activities.",
+          style: const pw.TextStyle(color: PdfColors.grey700),
+        )
+      ];
     }
 
-    return pw.Column(
-      crossAxisAlignment: pw.CrossAxisAlignment.start,
-      children: [
-        pw.Text(
-          'Recent Activities',
+    return [
+      pw.Text(
+        'Recent Activities',
           style: pw.TextStyle(
             fontSize: 18,
             fontWeight: pw.FontWeight.bold,
@@ -242,7 +257,6 @@ class PdfService {
           ),
           cellAlignment: pw.Alignment.center,
         ),
-      ],
-    );
+      ];
   }
 }

@@ -451,8 +451,15 @@ class GameService:
                 return {"is_correct": False, "score": 0.0, "verdict": "INCORRECT"}
 
         elif comp_type == "gram":
+            if 'is_correct' in data and data['is_correct'] is not None:
+                is_correct = bool(data['is_correct'])
+                score = 1.0 if is_correct else 0.0
+                verdict = "EXCELLENT" if is_correct else "INCORRECT"
+                print(f"Grammar local evaluation received: {is_correct}")
+                return {"is_correct": is_correct, "score": score, "verdict": verdict}
+
             # App එකෙන් එවන වාක්‍යය සහ ශ්‍රේණිය
-            sentence = data.get('sentence', '')
+            sentence = data.get('user_sentence', data.get('sentence', ''))
             grade = data.get('grade', 1)
 
             print(f"Calling Grammar model for grade {grade}, sentence: {sentence!r}")

@@ -6,17 +6,17 @@ class AppBackgrounds {
     {
       'key': 'bg1',
       'path': 'assets/images/background1.png',
-      'label': 'නිල් අහස', // Blue sky (original)
+      'label': 'Image 1', 
     },
     {
       'key': 'bg2',
       'path': 'assets/images/background2.png',
-      'label': 'කෙසෙල් වතු', // Meadow
+      'label': 'Image 2', 
     },
     {
       'key': 'bg3',
       'path': 'assets/images/background3.png',
-      'label': 'රාත්‍රී හිසිළ', // Twilight
+      'label': 'Image 3', 
     },
   ];
 

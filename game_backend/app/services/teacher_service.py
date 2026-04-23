@@ -199,7 +199,7 @@ class TeacherService:
         # Get student basic info
         student_info_res = await asyncio.to_thread(
             lambda: supabase.table("students") \
-                .select("id, name, class_id, parent_phone, created_at") \
+                .select("id, name, class_id, parent_phone, created_at, classes(class_name, schools(name), teachers(full_name))") \
                 .eq("id", student_id).single().execute()
         )
         
@@ -319,8 +319,31 @@ class TeacherService:
                 "percentage": pct
             })
 
+        student_data = student_info_res.data if student_info_res.data else {}
+        classes_data = student_data.get('classes') or {}
+        if isinstance(classes_data, list) and len(classes_data) > 0:
+            classes_data = classes_data[0]
+        schools_data = classes_data.get('schools') or {}
+        if isinstance(schools_data, list) and len(schools_data) > 0:
+            schools_data = schools_data[0]
+        teachers_data = classes_data.get('teachers') or {}
+        if isinstance(teachers_data, list) and len(teachers_data) > 0:
+            teachers_data = teachers_data[0]
+        game_state_data = game_state_res.data or {}
+
+        profile = {
+            "name": student_data.get('name', 'Unknown'),
+            "class_name": classes_data.get('class_name', 'Unknown'),
+            "school_name": schools_data.get('name', 'Unknown'),
+            "teacher_name": teachers_data.get('full_name', 'Unknown'),
+            "game_state": {
+                "total_score": game_state_data.get('total_score', 0)
+            }
+        }
+
         return {
             "student_name": student_info_res.data.get('name', 'Unknown') if student_info_res.data else 'Unknown',
+            "profile": profile,
             "learning_curve": learning_curve,
             "error_summary": error_summary_list,
             "attempt_efficiency": attempt_efficiency,
