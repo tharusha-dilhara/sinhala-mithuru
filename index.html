@@ -4,13 +4,16 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Sinhala Mithuru research project website for an AI-supported primary Sinhala learning ecosystem." />
+    <meta name="description"
+        content="Sinhala Mithuru research project website for an AI-supported primary Sinhala learning ecosystem." />
     <title>Sinhala Mithuru | Research Project</title>
 
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
 
     <script>
@@ -401,6 +404,18 @@
             line-height: 1.65;
         }
 
+        .objective-board li>div {
+            min-width: 0;
+        }
+
+        .objective-board li strong {
+            display: block;
+            color: var(--ink);
+            font-size: 16px;
+            line-height: 1.35;
+            margin-bottom: 6px;
+        }
+
         .objective-board li::before {
             content: "0" counter(objectives);
             color: var(--accent);
@@ -437,7 +452,7 @@
             margin-top: 42px;
         }
 
-        .testimonial-grid + .testimonial-archive {
+        .testimonial-grid+.testimonial-archive {
             margin-top: 26px;
         }
 
@@ -698,7 +713,7 @@
             border-radius: 8px;
             border: 1px solid var(--line);
             background: var(--surface-2);
-            cursor: pointer;
+            margin: 0;
         }
 
         .image-tile.small {
@@ -1157,90 +1172,6 @@
             color: white;
         }
 
-        .modal {
-            position: fixed;
-            inset: 0;
-            z-index: 80;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            background: rgba(17, 24, 39, 0.76);
-            backdrop-filter: blur(8px);
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-panel {
-            width: min(760px, 100%);
-            max-height: min(86vh, 760px);
-            overflow: auto;
-            background: var(--surface);
-            border-radius: 8px;
-            border: 1px solid var(--line);
-            box-shadow: 0 30px 70px -40px rgba(0, 0, 0, 0.8);
-        }
-
-        .modal-media {
-            height: 260px;
-            position: relative;
-            overflow: hidden;
-            background: var(--surface-2);
-        }
-
-        .modal-media img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(0.62) saturate(0.58) brightness(0.88);
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 14px;
-            right: 14px;
-            width: 42px;
-            height: 42px;
-            display: grid;
-            place-items: center;
-            color: white;
-            background: rgba(17, 24, 39, 0.76);
-            border-radius: 6px;
-        }
-
-        .modal-body {
-            padding: 30px;
-        }
-
-        .modal-stats {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 1px;
-            background: var(--line);
-            border: 1px solid var(--line);
-            margin: 24px 0;
-        }
-
-        .modal-stats div {
-            background: var(--paper);
-            padding: 16px;
-            text-align: center;
-        }
-
-        .modal-stats strong {
-            display: block;
-            color: var(--accent);
-            font-size: 24px;
-            font-weight: 800;
-        }
-
-        .modal-stats span {
-            color: var(--muted);
-            font-size: 12px;
-        }
-
         .mobile-panel {
             display: none;
             border-top: 1px solid rgba(255, 255, 255, 0.16);
@@ -1261,6 +1192,7 @@
         }
 
         @media (max-width: 1024px) {
+
             .hero-grid,
             .split,
             .architecture,
@@ -1302,6 +1234,7 @@
         }
 
         @media (max-width: 768px) {
+
             .section,
             .section-compact,
             .testimonial-section {
@@ -1333,8 +1266,7 @@
             .image-grid,
             .modules-grid,
             .documents-grid,
-            .team-grid,
-            .modal-stats {
+            .team-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -1396,9 +1328,10 @@
                     <a class="nav-link" href="#testimonials">Testimonials</a>
                     <a class="nav-link" href="#fieldwork">Fieldwork</a>
                     <a class="nav-link" href="#student-evaluation">Evaluation</a>
-                    <a class="nav-link" href="#results">Results</a>
+                    <!-- <a class="nav-link" href="#results">Results</a> -->
                     <a class="nav-link" href="#downloads">Downloads</a>
                     <a class="nav-link" href="#team">Team</a>
+                    <a class="nav-link" href="#contact">Contact</a>
                 </nav>
 
                 <div class="hidden items-center gap-3 sm:flex">
@@ -1408,7 +1341,9 @@
                     </a>
                 </div>
 
-                <button id="menuToggle" class="menu-toggle grid h-10 w-10 place-items-center rounded-md border border-white/20 text-white lg:hidden" aria-label="Open menu" aria-expanded="false">
+                <button id="menuToggle"
+                    class="menu-toggle grid h-10 w-10 place-items-center rounded-md border border-white/20 text-white lg:hidden"
+                    aria-label="Open menu" aria-expanded="false">
                     <span class="material-icons-outlined">menu</span>
                 </button>
             </div>
@@ -1422,6 +1357,7 @@
                 <a class="nav-link" href="#results">Results</a>
                 <a class="nav-link" href="#downloads">Downloads</a>
                 <a class="nav-link" href="#team">Team</a>
+                <a class="nav-link" href="#contact">Contact</a>
             </nav>
         </div>
     </header>
@@ -1431,13 +1367,17 @@
             <div class="page-shell">
                 <div class="hero-grid">
                     <div>
-                        <span class="section-kicker text-white/80 before:bg-white/80">AI supported Sinhala literacy research</span>
+                        <span class="section-kicker text-white/80 before:bg-white/80">AI supported Sinhala literacy
+                            research</span>
                         <h1>Sinhala Mithuru</h1>
                         <p class="hero-copy">
-                            A research-driven adaptive learning ecosystem for primary Sinhala education, combining handwriting analysis, pronunciation feedback, reading comprehension, and grammar correction in one learning pathway.
+                            A research-driven adaptive learning ecosystem for primary Sinhala education, combining
+                            handwriting analysis, pronunciation feedback, reading comprehension, and grammar correction
+                            in one learning pathway.
                         </p>
                         <p class="hero-note">
-                            Built for Grades 1-5 with a focus on low-resource Sinhala language constraints, classroom data collection, and child-centered feedback loops.
+                            Built for Grades 1-5 with a focus on low-resource Sinhala language constraints, classroom
+                            data collection, and child-centered feedback loops.
                         </p>
                         <div class="hero-actions">
                             <a href="#domain" class="button button-primary">
@@ -1480,8 +1420,8 @@
                     <span>Primary students represented in pilot field data</span>
                 </div>
                 <div class="metric">
-                    <strong>92%</strong>
-                    <span>Preliminary handwriting model accuracy</span>
+                    <strong>Largest</strong>
+                    <span>Sinhala dataset</span>
                 </div>
                 <div class="metric">
                     <strong>2026</strong>
@@ -1497,7 +1437,9 @@
                         <span class="section-kicker">Research domain</span>
                         <h2 class="section-title">A focused response to fragmented Sinhala learning tools.</h2>
                         <p class="section-copy">
-                            Sinhala Mithuru addresses a gap in early Sinhala learning support: most tools solve one isolated task, while primary learners need connected feedback across writing, listening, speaking, reading, and grammar.
+                            Sinhala Mithuru responds to the limitations of existing Sinhala education tools, which
+                            often behave like electronic textbooks instead of adaptive systems that can assess
+                            comprehension, language mechanics, and learner progress in real time.
                         </p>
                     </div>
 
@@ -1505,22 +1447,41 @@
                         <article class="problem-item">
                             <span class="number">01</span>
                             <div>
-                                <h3>Fragmented learning support</h3>
-                                <p>Existing tools often focus on a single skill, leaving teachers and children without a unified progress model.</p>
+                                <h3>Current limitations</h3>
+                                <p>Most digital Sinhala learning tools are static repositories with limited
+                                    interactivity, personalization, or real-time assessment capability.</p>
                             </div>
                         </article>
                         <article class="problem-item">
                             <span class="number">02</span>
                             <div>
-                                <h3>Missing process feedback</h3>
-                                <p>Handwriting tools usually evaluate the final image, not stroke order, pen movement, and formation behavior.</p>
+                                <h3>The fragmentation gap</h3>
+                                <p>Available software usually targets one competency at a time, making it difficult for
+                                    students to synthesize reading, writing, speaking, and grammar skills.</p>
                             </div>
                         </article>
                         <article class="problem-item">
                             <span class="number">03</span>
                             <div>
-                                <h3>Low-resource language constraints</h3>
-                                <p>Sinhala-specific child language datasets are limited, especially for pronunciation and grammar correction.</p>
+                                <h3>Core innovation</h3>
+                                <p>The research introduces an AI-powered adaptive ecosystem that turns passive language
+                                    acquisition into an active, gamified learning experience.</p>
+                            </div>
+                        </article>
+                        <article class="problem-item">
+                            <span class="number">04</span>
+                            <div>
+                                <h3>Technical integration</h3>
+                                <p>A scalable serverless microservices architecture decouples heavy AI logic so each
+                                    model can run independently while the learner experience remains responsive.</p>
+                            </div>
+                        </article>
+                        <article class="problem-item">
+                            <span class="number">05</span>
+                            <div>
+                                <h3>Holistic solution</h3>
+                                <p>Integrated modules for reading, writing, speaking, and grammar provide a
+                                    personalized educational journey that evolves with every interaction.</p>
                             </div>
                         </article>
                     </div>
@@ -1528,11 +1489,39 @@
 
                 <div class="objective-board card mt-12">
                     <span class="section-kicker">Research objectives</span>
+                    <p class="mt-3 mb-6 max-w-3xl text-sm leading-7 text-muted">
+                        The primary aim is to design and evaluate an adaptive ecosystem that enhances core Sinhala
+                        language skills through personalized, real-time feedback.
+                    </p>
                     <ol>
-                        <li>Develop a Hybrid CNN and DTW model for real-time, process-oriented Sinhala handwriting analysis.</li>
-                        <li>Build an auditory-vocal training module using Wav2Vec2-XLS-R for pronunciation assessment.</li>
-                        <li>Implement SBERT-based semantic analysis for reading comprehension and interactive storytelling.</li>
-                        <li>Engineer a transformer-based grammar correction model with programmatic data augmentation.</li>
+                        <li>
+                            <div>
+                                <strong>Generative Storytelling</strong>
+                                To develop a fine-tuned Llama 3 engine capable of generating culturally accurate
+                                Sinhala stories on demand.
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <strong>Process-Oriented Writing</strong>
+                                To build a Hybrid CNN-LSTM model that evaluates both the final Sinhala letter shape and
+                                the learner's stroke order and directionality.
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <strong>Phonetic Assessment</strong>
+                                To implement a Wav2Vec 2.0 based system that measures acoustic distance and provides
+                                real-time pronunciation grading.
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <strong>Grammar Scaffolding</strong>
+                                To create an AI-driven module that supports real-time grammar correction and sentence
+                                construction through age-appropriate feedback.
+                            </div>
+                        </li>
                     </ol>
                 </div>
             </div>
@@ -1541,35 +1530,49 @@
         <section id="methodology" class="section bg-surface">
             <div class="page-shell">
                 <span class="section-kicker">Methodology</span>
-                <h2 class="section-title">Four AI pipelines, one learning experience.</h2>
+                <h2 class="section-title">Serverless microservices for adaptive Sinhala learning.</h2>
                 <p class="section-copy">
-                    The system is structured around specialized models that return lightweight feedback to the learner interface. Each component is designed to be measurable, teachable, and suitable for young Sinhala learners.
+                    The Sinhala Mithuru ecosystem is powered by a high-performance serverless microservices
+                    architecture. Heavy GPU-based AI tasks run independently while the Flutter frontend stays responsive
+                    for students.
                 </p>
 
                 <div class="modules-grid">
                     <article class="module card">
+                        <div class="icon-box"><span class="material-icons-outlined">menu_book</span></div>
+                        <h3>Narrative Engine</h3>
+                        <small>Reading and comprehension</small>
+                        <p><strong>Function:</strong> Uses a fine-tuned Llama 3 8B model to generate unique stories
+                            from image prompts.</p>
+                        <p><strong>Innovation:</strong> Adds a robust post-processing layer that repairs AI stuttering
+                            and malformed data for zero-crash reliability.</p>
+                    </article>
+                    <article class="module card">
                         <div class="icon-box"><span class="material-icons-outlined">edit</span></div>
                         <h3>Handwriting Analysis</h3>
-                        <small>Hybrid CNN and DTW</small>
-                        <p>Captures stroke trajectories and compares formation patterns to support early letter writing practice.</p>
+                        <small>Writing mastery</small>
+                        <p><strong>Function:</strong> Employs a Hybrid CNN-LSTM architecture to evaluate Sinhala letter
+                            writing.</p>
+                        <p><strong>Innovation:</strong> The CNN checks legibility while the LSTM tracks stroke order and
+                            direction to catch errors such as writing a letter backwards.</p>
                     </article>
                     <article class="module card">
                         <div class="icon-box"><span class="material-icons-outlined">mic</span></div>
-                        <h3>Audio-Vocal Training</h3>
-                        <small>Wav2Vec2 ASR and phoneme scoring</small>
-                        <p>Connects listening and speaking tasks so children receive pronunciation feedback with clear learning cues.</p>
-                    </article>
-                    <article class="module card">
-                        <div class="icon-box"><span class="material-icons-outlined">menu_book</span></div>
-                        <h3>Interactive Narratives</h3>
-                        <small>LLM and SBERT semantic analysis</small>
-                        <p>Supports reading comprehension and storytelling through grade-aware prompts and answer evaluation.</p>
+                        <h3>Pronunciation Service</h3>
+                        <small>Speaking skills</small>
+                        <p><strong>Function:</strong> Utilizes Wav2Vec 2.0 and Metric Learning to evaluate student
+                            speech against teacher reference audio.</p>
+                        <p><strong>Innovation:</strong> Measures acoustic distance and uses Agentic AI to plan remedial
+                            exercises around recurring mistakes.</p>
                     </article>
                     <article class="module card">
                         <div class="icon-box"><span class="material-icons-outlined">spellcheck</span></div>
-                        <h3>Contextual Grammar</h3>
-                        <small>Transformers and data augmentation</small>
-                        <p>Targets common child-specific Sinhala writing errors with context-aware correction suggestions.</p>
+                        <h3>Grammar & Sentence Module</h3>
+                        <small>Linguistic logic</small>
+                        <p><strong>Function:</strong> Combines LLM-based correction with Semantic Similarity scoring
+                            for grammar and sentence construction.</p>
+                        <p><strong>Innovation:</strong> Moves beyond keyword matching to understand sentence meaning
+                            and adapt word-bank activities as the student improves.</p>
                     </article>
                 </div>
             </div>
@@ -1579,9 +1582,11 @@
             <div class="page-shell">
                 <div class="testimonial-header">
                     <span class="section-kicker">Teacher testimonials</span>
-                    <h2 id="testimonialsTitle" class="section-title">Educator feedback on the core learning modules.</h2>
+                    <h2 id="testimonialsTitle" class="section-title">Educator feedback on the core learning modules.
+                    </h2>
                     <p class="section-copy">
-                        These short video testimonials capture teacher perspectives on each Sinhala Mithuru component, connecting the research prototype to classroom expectations and learner needs.
+                        These short video testimonials capture teacher perspectives on each Sinhala Mithuru component,
+                        connecting the research prototype to classroom expectations and learner needs.
                     </p>
                 </div>
 
@@ -1589,16 +1594,14 @@
                     <div class="testimonial-card">
                         <h3>Grammar Correction Module</h3>
                         <div class="testimonial-video">
-                            <iframe
-                                src="https://www.youtube-nocookie.com/embed/ohIbKdV7Vyw?rel=0&playsinline=1"
-                                title="Teacher testimonial on Sinhala Mithuru grammar correction module"
-                                loading="lazy"
+                            <iframe src="https://www.youtube-nocookie.com/embed/ohIbKdV7Vyw?rel=0&playsinline=1"
+                                title="Teacher testimonial on Sinhala Mithuru grammar correction module" loading="lazy"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin"
-                                allowfullscreen></iframe>
+                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <p>
-                            Teacher feedback on how grammar correction can support primary learners with context-aware Sinhala writing guidance.
+                            Teacher feedback on how grammar correction can support primary learners with context-aware
+                            Sinhala writing guidance.
                         </p>
                         <span class="testimonial-meta">Grammar</span>
                     </div>
@@ -1606,16 +1609,15 @@
                     <div class="testimonial-card">
                         <h3>Interactive Narratives Module</h3>
                         <div class="testimonial-video">
-                            <iframe
-                                src="https://www.youtube-nocookie.com/embed/P4kH5PmCpRg?rel=0&playsinline=1"
+                            <iframe src="https://www.youtube-nocookie.com/embed/P4kH5PmCpRg?rel=0&playsinline=1"
                                 title="Teacher testimonial on Sinhala Mithuru interactive narratives module"
                                 loading="lazy"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin"
-                                allowfullscreen></iframe>
+                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <p>
-                            Teacher perspective on narrative-based learning, reading comprehension, and story-driven engagement for Sinhala literacy.
+                            Teacher perspective on narrative-based learning, reading comprehension, and story-driven
+                            engagement for Sinhala literacy.
                         </p>
                         <span class="testimonial-meta">Narratives</span>
                     </div>
@@ -1623,16 +1625,15 @@
                     <div class="testimonial-card">
                         <h3>Pronunciation Assessment Module</h3>
                         <div class="testimonial-video">
-                            <iframe
-                                src="https://www.youtube-nocookie.com/embed/Hrjum2p3hTw?rel=0&playsinline=1"
+                            <iframe src="https://www.youtube-nocookie.com/embed/Hrjum2p3hTw?rel=0&playsinline=1"
                                 title="Teacher testimonial on Sinhala Mithuru pronunciation assessment module"
                                 loading="lazy"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin"
-                                allowfullscreen></iframe>
+                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <p>
-                            Teacher feedback on the value of pronunciation support for listening, speaking, and confidence-building activities.
+                            Teacher feedback on the value of pronunciation support for listening, speaking, and
+                            confidence-building activities.
                         </p>
                         <span class="testimonial-meta">Pronunciation</span>
                     </div>
@@ -1640,16 +1641,15 @@
                     <div class="testimonial-card">
                         <h3>Handwriting Analysis Module</h3>
                         <div class="testimonial-video">
-                            <iframe
-                                src="https://www.youtube-nocookie.com/embed/KvhJFxWUXgg?rel=0&playsinline=1"
+                            <iframe src="https://www.youtube-nocookie.com/embed/KvhJFxWUXgg?rel=0&playsinline=1"
                                 title="Teacher testimonial on Sinhala Mithuru handwriting analysis module"
                                 loading="lazy"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin"
-                                allowfullscreen></iframe>
+                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <p>
-                            Teacher perspective on process-oriented handwriting feedback for early Sinhala letter formation and practice.
+                            Teacher perspective on process-oriented handwriting feedback for early Sinhala letter
+                            formation and practice.
                         </p>
                         <span class="testimonial-meta">Handwriting</span>
                     </div>
@@ -1662,15 +1662,12 @@
                     <div>
                         <h3>More teacher feedback videos</h3>
                         <p>
-                            Additional classroom feedback clips can be maintained in the project Google Drive archive and linked here as the research evidence collection grows.
+                            Additional classroom feedback clips can be maintained in the project Google Drive archive
+                            and linked here as the research evidence collection grows.
                         </p>
                     </div>
-                    <a
-                        class="archive-button"
-                        href="https://drive.google.com/drive/folders/REPLACE_WITH_FOLDER_ID"
-                        target="_blank"
-                        rel="noopener"
-                        data-video-archive-link>
+                    <a class="archive-button" href="https://drive.google.com/drive/folders/1pk-0UbAXTOEqsXWgKnJi8mUtqEwx6G1f?usp=sharing"
+                        target="_blank" rel="noopener" data-video-archive-link>
                         <span class="material-icons-outlined">folder_open</span>
                         More Videos
                     </a>
@@ -1683,18 +1680,20 @@
                 <div class="architecture">
                     <div>
                         <span class="section-kicker">Architecture</span>
-                        <h2 class="section-title">A decoupled research prototype built for iteration.</h2>
+                        <h2 class="section-title">Independent AI services behind one responsive learner experience.</h2>
                         <p class="section-copy">
-                            The learner client captures handwriting, audio, and reading interactions. FastAPI routes inputs to specialized Python inference services, then returns structured feedback for the learning interface.
+                            The Flutter client captures handwriting, audio, image prompts, sentence construction, and
+                            reading interactions. Serverless FastAPI microservices route each task to the appropriate
+                            GPU-backed AI service and return structured feedback to the learner interface.
                         </p>
                         <div class="tech-tags">
-                            <span>Godot Engine</span>
-                            <span>Next.js</span>
+                            <span>Flutter</span>
                             <span>FastAPI</span>
-                            <span>Docker</span>
+                            <span>Serverless</span>
                             <span>TensorFlow</span>
                             <span>PyTorch</span>
-                            <span>SBERT</span>
+                            <span>Llama 3</span>
+                            <span>Wav2Vec 2.0</span>
                         </div>
                     </div>
 
@@ -1709,22 +1708,23 @@
                         <article class="flow-step">
                             <span class="material-icons-outlined">hub</span>
                             <div>
-                                <h3 class="font-extrabold">API Orchestration</h3>
-                                <small>FastAPI services normalize payloads and dispatch model tasks</small>
+                                <h3 class="font-extrabold">Serverless API Orchestration</h3>
+                                <small>FastAPI microservices normalize payloads and dispatch independent AI tasks</small>
                             </div>
                         </article>
                         <article class="flow-step">
                             <span class="material-icons-outlined">psychology</span>
                             <div>
                                 <h3 class="font-extrabold">AI Inference Engines</h3>
-                                <small>CNN, DTW, Wav2Vec2, SBERT, transformer correction models</small>
+                                <small>Llama 3, CNN-LSTM, Wav2Vec 2.0, Metric Learning, and LLM correction models</small>
                             </div>
                         </article>
                         <article class="flow-step">
                             <span class="material-icons-outlined">insights</span>
                             <div>
                                 <h3 class="font-extrabold">Feedback and Progress</h3>
-                                <small>Structured JSON feedback, learner state, and teacher-readable progress signals</small>
+                                <small>Structured JSON feedback, learner state, and teacher-readable progress
+                                    signals</small>
                             </div>
                         </article>
                     </div>
@@ -1734,13 +1734,17 @@
                     <span class="section-kicker">Core technical architecture</span>
                     <h3>Detailed System Integration</h3>
                     <p>
-                        This diagram expands the prototype overview into the complete integration path, showing how the learner-facing interface, backend services, AI inference components, and data layers connect inside the research system.
+                        This diagram expands the prototype overview into the complete integration path, showing how the
+                        learner-facing interface, backend services, AI inference components, and data layers connect
+                        inside the research system.
                     </p>
                     <div class="diagram-frame" aria-label="Scrollable technical architecture diagram">
-                        <img src="web/Core Technical Architecture.png" alt="Core Technical Architecture diagram for Sinhala Mithuru system integration" />
+                        <img src="web/Core Technical Architecture.png"
+                            alt="Core Technical Architecture diagram for Sinhala Mithuru system integration" />
                     </div>
                     <figcaption class="diagram-caption">
-                        Technical readers can use this diagram to inspect the detailed service boundaries after reviewing the simplified architecture summary above.
+                        Technical readers can use this diagram to inspect the detailed service boundaries after
+                        reviewing the simplified architecture summary above.
                     </figcaption>
                 </figure>
             </div>
@@ -1751,33 +1755,34 @@
                 <span class="section-kicker">Field research</span>
                 <h2 class="section-title">Classroom data collection across partner schools.</h2>
                 <p class="section-copy">
-                    Field visits grounded the system in real learner behavior. The project collected handwriting, speech, and reading interaction data from primary school settings.
+                    Field visits grounded the system in real learner behavior. The project collected handwriting,
+                    speech, and reading interaction data from primary school settings.
                 </p>
 
                 <div class="image-grid">
-                    <button class="image-tile text-left" type="button" data-school="school1">
-                        <img src="web/img1.jpg" alt="Field visit at Maliyadeva Balika Vidyalaya" />
-                        <span class="tile-caption">
-                            <h3>Maliyadeva Balika Vidyalaya</h3>
-                            <p>Kurunegala District - handwriting and classroom observations</p>
-                        </span>
-                    </button>
+                    <figure class="image-tile text-left">
+                        <img src="web/img1.jpg" alt="Field visit at Gandara Maha Vidyalaya" />
+                        <figcaption class="tile-caption">
+                            <h3>Gandara Maha Vidyalaya</h3>
+                            <p>Matara District</p>
+                        </figcaption>
+                    </figure>
 
                     <div class="grid gap-[18px]">
-                        <button class="image-tile small text-left" type="button" data-school="school2">
+                        <figure class="image-tile small text-left">
                             <img src="web/img3.jpg" alt="Field visit at Royal Primary School" />
-                            <span class="tile-caption">
-                                <h3>Royal Primary School</h3>
-                                <p>Colombo District - speech data collection</p>
-                            </span>
-                        </button>
-                        <button class="image-tile small text-left" type="button" data-school="school3">
-                            <img src="web/img4.jpg" alt="Field visit at Visakha Vidyalaya" />
-                            <span class="tile-caption">
-                                <h3>Visakha Vidyalaya</h3>
-                                <p>Colombo District - reading and grammar observations</p>
-                            </span>
-                        </button>
+                            <figcaption class="tile-caption">
+                                <h3>Muruthgaspitiya Maha Vidyalaya</h3>
+                                <p>Matara District</p>
+                            </figcaption>
+                        </figure>
+                        <figure class="image-tile small text-left">
+                            <img src="web/Dandeniya Kanishta Vidyalaya.png" alt="Field visit at Visakha Vidyalaya" />
+                            <figcaption class="tile-caption">
+                                <h3>Dandeniya Kanishta Vidyalaya</h3>
+                                <p>Matara District</p>
+                            </figcaption>
+                        </figure>
                     </div>
                 </div>
 
@@ -1788,15 +1793,13 @@
                     <div>
                         <h3>More fieldwork evidence</h3>
                         <p>
-                            Additional photos, school visit records, consent-cleared media, and collection notes can be maintained in the project Drive archive.
+                            Additional photos, school visit records, consent-cleared media, and collection notes can be
+                            maintained in the project Drive archive.
                         </p>
                     </div>
-                    <a
-                        class="fieldwork-archive-link"
-                        href="https://drive.google.com/drive/folders/REPLACE_WITH_FIELDWORK_ARCHIVE_FOLDER_ID"
-                        target="_blank"
-                        rel="noopener"
-                        data-fieldwork-archive-link>
+                    <a class="fieldwork-archive-link"
+                        href="https://drive.google.com/drive/folders/1UC-QJha8Xy96th1idyW_7sdMN61r1--V?usp=sharing"
+                        target="_blank" rel="noopener" data-fieldwork-archive-link>
                         <span class="material-icons-outlined">folder_open</span>
                         More
                     </a>
@@ -1808,9 +1811,12 @@
             <div class="page-shell evaluation-layout">
                 <div>
                     <span class="section-kicker">Pilot usability evaluation</span>
-                    <h2 id="studentEvaluationTitle" class="section-title">Application testing with primary learners.</h2>
+                    <h2 id="studentEvaluationTitle" class="section-title">Application testing with primary learners.
+                    </h2>
                     <p class="section-copy">
-                        The Sinhala Mithuru prototype was tested with children under supervised classroom conditions. This section connects the student testing evidence, observation sheet, and video archive without publicly exposing sensitive media.
+                        The Sinhala Mithuru prototype was tested with children under supervised classroom conditions.
+                        This section connects the student testing evidence, observation sheet, and video archive without
+                        publicly exposing sensitive media.
                     </p>
                 </div>
 
@@ -1840,14 +1846,12 @@
                             </div>
                             <div>
                                 <h3>Student Testing Video</h3>
-                                <p>Open the controlled Google Drive video record of learners using the Sinhala Mithuru application.</p>
+                                <p>Open the controlled Google Drive video record of learners using the Sinhala Mithuru
+                                    application.</p>
                             </div>
-                            <a
-                                class="evidence-link"
-                                href="https://drive.google.com/file/d/REPLACE_WITH_STUDENT_TESTING_VIDEO_ID/view?usp=sharing"
-                                target="_blank"
-                                rel="noopener"
-                                data-student-testing-video-link>
+                            <a class="evidence-link"
+                                href="https://drive.google.com/drive/folders/1M3d3alOAUXpnKg3eKlbIvfjZCt_ZPTZq?usp=sharing"
+                                target="_blank" rel="noopener" data-student-testing-video-link>
                                 <span class="material-icons-outlined">play_circle</span>
                                 View Video
                             </a>
@@ -1859,14 +1863,12 @@
                             </div>
                             <div>
                                 <h3>Testing Document Sheet</h3>
-                                <p>Open the student testing sheet used to record task observations and evaluation notes.</p>
+                                <p>Open the student testing sheet used to record task observations and evaluation notes.
+                                </p>
                             </div>
-                            <a
-                                class="evidence-link secondary"
-                                href="https://drive.google.com/file/d/REPLACE_WITH_TESTING_DOCUMENT_SHEET_ID/view?usp=sharing"
-                                target="_blank"
-                                rel="noopener"
-                                data-student-testing-sheet-link>
+                            <a class="evidence-link secondary"
+                                href="https://drive.google.com/drive/folders/1kMHb5E-KnU__-TbxqMlPD0_rab4MAhjg?usp=sharing"
+                                target="_blank" rel="noopener" data-student-testing-sheet-link>
                                 <span class="material-icons-outlined">open_in_new</span>
                                 View Sheet
                             </a>
@@ -1878,14 +1880,12 @@
                             </div>
                             <div>
                                 <h3>Evaluation Evidence Archive</h3>
-                                <p>Use a Drive folder for additional testing clips, consent-cleared media, photos, and related evidence files.</p>
+                                <p>Use a Drive folder for additional testing clips, consent-cleared media, photos, and
+                                    related evidence files.</p>
                             </div>
-                            <a
-                                class="evidence-link secondary"
-                                href="https://drive.google.com/drive/folders/REPLACE_WITH_STUDENT_EVALUATION_FOLDER_ID"
-                                target="_blank"
-                                rel="noopener"
-                                data-student-evaluation-folder-link>
+                            <a class="evidence-link secondary"
+                                href="https://drive.google.com/drive/folders/1gkHacg_scHViNYk16PHqYguCfXX2-jte?usp=sharing"
+                                target="_blank" rel="noopener" data-student-evaluation-folder-link>
                                 <span class="material-icons-outlined">folder</span>
                                 More Evidence
                             </a>
@@ -1893,18 +1893,22 @@
                     </div>
 
                     <p class="evidence-note">
-                        Student testing evidence should be shared only with the required consent and privacy controls. If identifiable learner footage is included, keep the Drive permissions restricted to the research evaluation audience.
+                        Student testing evidence should be shared only with the required consent and privacy controls.
+                        If identifiable learner footage is included, keep the Drive permissions restricted to the
+                        research evaluation audience.
                     </p>
                 </div>
             </div>
         </section>
 
-        <section id="results" class="section dark-band">
+        <!-- <section id="results" class="section dark-band">
             <div class="page-shell">
                 <span class="section-kicker">Pilot study outcomes</span>
-                <h2 class="section-title">Preliminary results indicate strong technical and learner engagement potential.</h2>
+                <h2 class="section-title">Preliminary results indicate strong technical and learner engagement
+                    potential.</h2>
                 <p class="section-copy">
-                    These values summarize early evaluation signals from the research prototype. Full analysis is intended for the final report and publication pipeline.
+                    These values summarize early evaluation signals from the research prototype. Full analysis is
+                    intended for the final report and publication pipeline.
                 </p>
 
                 <div class="result-grid">
@@ -1926,7 +1930,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
 
         <section id="publication" class="section bg-paper">
             <div class="page-shell">
@@ -1935,7 +1939,8 @@
                     <div>
                         <h2 class="section-title text-[34px]">Accepted research paper</h2>
                         <p class="section-copy">
-                            The project includes a publication pathway through the International Conference on Information and Communication Technology for Intelligent Systems.
+                            The project includes a publication pathway through the International Conference on
+                            Information and Communication Technology for Intelligent Systems.
                         </p>
                         <dl>
                             <div>
@@ -1960,10 +1965,14 @@
                     <figure class="paper-preview">
                         <h3>An Adaptive Diglossia-Aware Framework for Controlled Sinhala Story and Quiz Generation</h3>
                         <p>
-                            Abstract. The integration of large language models into primary education remains limited for low-resource, diglossic languages such as Sinhala. This work introduces a grade-adaptive framework for story and quiz generation that applies linguistic constraints and task-specific fine-tuning for young learners.
+                            Abstract. The integration of large language models into primary education remains limited
+                            for low-resource, diglossic languages such as Sinhala. This work introduces a grade-adaptive
+                            framework for story and quiz generation that applies linguistic constraints and
+                            task-specific fine-tuning for young learners.
                         </p>
                         <p>
-                            Authors. Warnasooriya W.M.I.T., Jayadeera T.D., Adhikari A.M.G.S., Zumra M.A.F., Vidanaralage A.J., Samaraweera M.
+                            Authors. Warnasooriya W.M.I.T., Jayadeera T.D., Adhikari A.M.G.S., Zumra M.A.F.,
+                            Vidanaralage A.J., Samaraweera M.
                         </p>
                     </figure>
                 </div>
@@ -1975,7 +1984,8 @@
                 <span class="section-kicker">Applications</span>
                 <h2 class="section-title">Prototype access and research materials.</h2>
                 <p class="section-copy">
-                    Application links are prepared for the research prototype and can be connected to final release packages as they become available.
+                    Application links are prepared for the research prototype and can be connected to final release
+                    packages as they become available.
                 </p>
 
                 <div class="downloads-grid">
@@ -1983,7 +1993,8 @@
                         <div class="icon-box"><span class="material-icons-outlined">desktop_windows</span></div>
                         <h3>Windows Prototype</h3>
                         <p>Desktop build for demonstrations, model testing, and controlled usability sessions.</p>
-                        <a href="https://github.com/tharusha-dilhara/sinhala-mithuru/releases/download/v1.0.0-stable/windoes.zip" class="button button-primary">
+                        <a href="https://github.com/tharusha-dilhara/sinhala-mithuru/releases/download/v1.0.0-stable/windoes.zip"
+                            class="button button-primary">
                             <span class="material-icons-outlined text-[18px]">download</span>
                             Download
                         </a>
@@ -1992,7 +2003,8 @@
                         <div class="icon-box"><span class="material-icons-outlined">android</span></div>
                         <h3>Android Prototype</h3>
                         <p>Mobile build for touch-based handwriting practice and classroom field evaluations.</p>
-                        <a href="https://github.com/tharusha-dilhara/sinhala-mithuru/releases/download/v1.0.0-stable/app-release.apk" class="button button-primary">
+                        <a href="https://github.com/tharusha-dilhara/sinhala-mithuru/releases/download/v1.0.0-stable/app-release.apk"
+                            class="button button-primary">
                             <span class="material-icons-outlined text-[18px]">download</span>
                             Download APK
                         </a>
@@ -2014,7 +2026,8 @@
             <div class="page-shell">
                 <span class="section-kicker">Documents</span>
                 <h2 class="section-title">Research deliverables.</h2>
-                <p class="section-copy">Core documents and presentation files are organized below for review and assessment.</p>
+                <p class="section-copy">Core documents and presentation files are organized below for review and
+                    assessment.</p>
 
                 <div class="documents-grid">
                     <article class="doc-card card">
@@ -2022,56 +2035,56 @@
                         <h3>Topic Assessment</h3>
                         <p>Initial project topic evaluation and approval material.</p>
                         <small>Group</small>
-                        <div class="doc-footer"><a href="#" class="button button-ghost">Download</a></div>
+                        <div class="doc-footer"><a href="https://drive.google.com/drive/folders/1Ky0UIPcIl6DUD7-FQ1ipx9TvrqtrJ8sD?usp=sharing" class="button button-ghost">Download</a></div>
                     </article>
                     <article class="doc-card card">
                         <span class="material-icons-outlined text-accent">assignment</span>
                         <h3>Project Charter</h3>
                         <p>Scope, responsibilities, milestones, and project governance.</p>
                         <small>Group</small>
-                        <div class="doc-footer"><a href="#" class="button button-ghost">Download</a></div>
+                        <div class="doc-footer"><a href="https://drive.google.com/drive/folders/1Ky0UIPcIl6DUD7-FQ1ipx9TvrqtrJ8sD?usp=sharing" class="button button-ghost">Download</a></div>
                     </article>
                     <article class="doc-card card">
                         <span class="material-icons-outlined text-accent">science</span>
                         <h3>Project Proposal</h3>
                         <p>Research problem, objectives, methodology, and expected contribution.</p>
                         <small>Individual</small>
-                        <div class="doc-footer"><a href="#" class="button button-ghost">Download</a></div>
+                        <div class="doc-footer"><a href="https://drive.google.com/drive/folders/1Ky0UIPcIl6DUD7-FQ1ipx9TvrqtrJ8sD?usp=sharing" class="button button-ghost">Download</a></div>
                     </article>
                     <article class="doc-card card">
                         <span class="material-icons-outlined text-accent">fact_check</span>
                         <h3>Status Documents I</h3>
                         <p>Progress evidence for the first evaluation checkpoint.</p>
                         <small>Individual</small>
-                        <div class="doc-footer"><a href="#" class="button button-ghost">Download</a></div>
+                        <div class="doc-footer"><a href="https://drive.google.com/drive/folders/1Ky0UIPcIl6DUD7-FQ1ipx9TvrqtrJ8sD?usp=sharing" class="button button-ghost">Download</a></div>
                     </article>
                     <article class="doc-card card">
                         <span class="material-icons-outlined text-accent">fact_check</span>
                         <h3>Status Documents II</h3>
                         <p>Progress evidence for the second evaluation checkpoint.</p>
                         <small>Individual</small>
-                        <div class="doc-footer"><a href="#" class="button button-ghost">Download</a></div>
+                        <div class="doc-footer"><a href="https://drive.google.com/drive/folders/1Ky0UIPcIl6DUD7-FQ1ipx9TvrqtrJ8sD?usp=sharing" class="button button-ghost">Download</a></div>
                     </article>
                     <article class="doc-card card">
                         <span class="material-icons-outlined text-accent">article</span>
                         <h3>Research Paper</h3>
                         <p>Conference paper and publication material.</p>
                         <small>Group</small>
-                        <div class="doc-footer"><a href="#" class="button button-ghost">Download</a></div>
+                        <div class="doc-footer"><a href="https://drive.google.com/drive/folders/1Ky0UIPcIl6DUD7-FQ1ipx9TvrqtrJ8sD?usp=sharing" class="button button-ghost">Download</a></div>
                     </article>
                     <article class="doc-card card">
                         <span class="material-icons-outlined text-accent">summarize</span>
                         <h3>Final Report</h3>
                         <p>Final thesis report with component-level evaluation.</p>
                         <small>Group and individual</small>
-                        <div class="doc-footer"><a href="#" class="button button-ghost">Download</a></div>
+                        <div class="doc-footer"><a href="https://drive.google.com/drive/folders/1Ky0UIPcIl6DUD7-FQ1ipx9TvrqtrJ8sD?usp=sharing" class="button button-ghost">Download</a></div>
                     </article>
                     <article class="doc-card card">
                         <span class="material-icons-outlined text-accent">image</span>
                         <h3>Poster</h3>
                         <p>Research poster for final presentation and exhibition.</p>
                         <small>Group</small>
-                        <div class="doc-footer"><a href="#" class="button button-ghost">Download</a></div>
+                        <div class="doc-footer"><a href="https://drive.google.com/drive/folders/1Ky0UIPcIl6DUD7-FQ1ipx9TvrqtrJ8sD?usp=sharing" class="button button-ghost">Download</a></div>
                     </article>
                 </div>
 
@@ -2084,28 +2097,28 @@
                             <h3>Project Proposal</h3>
                             <p>Proposal presentation for the initial research evaluation.</p>
                             <small>Group</small>
-                            <div class="doc-footer"><a href="#" class="button button-ghost">Download</a></div>
+                            <div class="doc-footer"><a href="https://drive.google.com/drive/folders/1bCp3GfPkShehjbj1crKrUplFONDnz6BP?usp=sharing" class="button button-ghost">Download</a></div>
                         </article>
                         <article class="doc-card card">
                             <span class="material-icons-outlined text-accent">slideshow</span>
                             <h3>Progress Presentation I</h3>
                             <p>First progress review covering prototypes, baseline models, and dataset planning.</p>
                             <small>Group</small>
-                            <div class="doc-footer"><a href="#" class="button button-ghost">Download</a></div>
+                            <div class="doc-footer"><a href="https://drive.google.com/drive/folders/1bCp3GfPkShehjbj1crKrUplFONDnz6BP?usp=sharing" class="button button-ghost">Download</a></div>
                         </article>
                         <article class="doc-card card">
                             <span class="material-icons-outlined text-accent">slideshow</span>
                             <h3>Progress Presentation II</h3>
                             <p>Second progress review covering integrated components and evaluation readiness.</p>
                             <small>Group</small>
-                            <div class="doc-footer"><a href="#" class="button button-ghost">Download</a></div>
+                            <div class="doc-footer"><a href="https://drive.google.com/drive/folders/1bCp3GfPkShehjbj1crKrUplFONDnz6BP?usp=sharing" class="button button-ghost">Download</a></div>
                         </article>
                         <article class="doc-card card">
                             <span class="material-icons-outlined text-accent">slideshow</span>
                             <h3>Final Presentation</h3>
                             <p>Final viva and prototype demonstration deck.</p>
                             <small>Group</small>
-                            <div class="doc-footer"><a href="#" class="button button-ghost">Download</a></div>
+                            <div class="doc-footer"><a href="https://drive.google.com/drive/folders/1bCp3GfPkShehjbj1crKrUplFONDnz6BP?usp=sharing" class="button button-ghost">Download</a></div>
                         </article>
                     </div>
                 </div>
@@ -2122,7 +2135,8 @@
                         <time>February 2025</time>
                         <div>
                             <h3>Project Proposal</h3>
-                            <p>Research problem, literature gap, methodology, and prototype architecture presented to the panel.</p>
+                            <p>Research problem, literature gap, methodology, and prototype architecture presented to
+                                the panel.</p>
                         </div>
                         <span class="status-pill">Completed</span>
                     </article>
@@ -2130,7 +2144,8 @@
                         <time>May 2025</time>
                         <div>
                             <h3>Progress Presentation I</h3>
-                            <p>Baseline prototypes, fieldwork plan, early model training, and dataset collection strategy reviewed.</p>
+                            <p>Baseline prototypes, fieldwork plan, early model training, and dataset collection
+                                strategy reviewed.</p>
                         </div>
                         <span class="status-pill">Completed</span>
                     </article>
@@ -2138,9 +2153,10 @@
                         <time>August 2025</time>
                         <div>
                             <h3>Progress Presentation II</h3>
-                            <p>Integrated backend services, AI component progress, and pilot evaluation pathway demonstrated.</p>
+                            <p>Integrated backend services, AI component progress, and pilot evaluation pathway
+                                demonstrated.</p>
                         </div>
-                        <span class="status-pill">In progress</span>
+                        <span class="status-pill">In progressy</span>
                     </article>
                     <article>
                         <time>October 2025</time>
@@ -2158,72 +2174,128 @@
             <div class="page-shell">
                 <span class="section-kicker">Research team</span>
                 <h2 class="section-title">Supervisors and group members.</h2>
-                <p class="section-copy">Faculty of Computing, SLIIT.</p>
+
 
                 <div class="team-grid">
                     <article class="person role-supervisor card">
                         <div class="avatar">JA</div>
                         <h3>Dr. Junius Anjana</h3>
                         <p>Supervisor<br />Research guidance</p>
-                        <div class="contact-row">
+                        <!-- <div class="contact-row">
                             <a class="icon-link" href="#" aria-label="Email"><span class="material-icons-outlined text-[18px]">email</span></a>
                             <a class="icon-link" href="#" aria-label="LinkedIn"><span class="material-icons-outlined text-[18px]">link</span></a>
-                        </div>
+                        </div> -->
                     </article>
                     <article class="person role-supervisor card">
                         <div class="avatar">MS</div>
                         <h3>Ms. Mihiri Samaraweera</h3>
                         <p>Co-Supervisor<br />Technical oversight</p>
-                        <div class="contact-row">
+                        <!-- <div class="contact-row">
                             <a class="icon-link" href="#" aria-label="Email"><span class="material-icons-outlined text-[18px]">email</span></a>
                             <a class="icon-link" href="#" aria-label="LinkedIn"><span class="material-icons-outlined text-[18px]">link</span></a>
-                        </div>
+                        </div> -->
                     </article>
                     <article class="person role-supervisor card">
                         <div class="avatar">NH</div>
                         <h3>Mrs. Nethra Heshani</h3>
                         <p>External Supervisor<br />Domain expertise</p>
-                        <div class="contact-row">
+                        <!-- <div class="contact-row">
                             <a class="icon-link" href="#" aria-label="Email"><span class="material-icons-outlined text-[18px]">email</span></a>
                             <a class="icon-link" href="#" aria-label="LinkedIn"><span class="material-icons-outlined text-[18px]">link</span></a>
-                        </div>
+                        </div> -->
                     </article>
                     <article class="person card">
                         <div class="avatar">AA</div>
                         <h3>A.M.G.S. Adhikari</h3>
                         <p>IT22576316<br />Handwriting Analysis</p>
-                        <div class="contact-row">
+                        <!-- <div class="contact-row">
                             <a class="icon-link" href="#" aria-label="GitHub"><span class="material-icons-outlined text-[18px]">code</span></a>
                             <a class="icon-link" href="#" aria-label="Email"><span class="material-icons-outlined text-[18px]">email</span></a>
-                        </div>
+                        </div> -->
                     </article>
                     <article class="person card">
                         <div class="avatar">WW</div>
                         <h3>W.M.I.T. Warnasooriya</h3>
-                        <p>IT22276100<br />NLP and Semantics</p>
-                        <div class="contact-row">
+                        <p>IT22276100<br />Narratives</p>
+                        <!-- <div class="contact-row">
                             <a class="icon-link" href="#" aria-label="GitHub"><span class="material-icons-outlined text-[18px]">code</span></a>
                             <a class="icon-link" href="#" aria-label="Email"><span class="material-icons-outlined text-[18px]">email</span></a>
-                        </div>
+                        </div> -->
                     </article>
                     <article class="person card">
                         <div class="avatar">TJ</div>
                         <h3>T.D. Jayadeera</h3>
                         <p>IT22606006<br />Speech Processing</p>
-                        <div class="contact-row">
+                        <!-- <div class="contact-row">
                             <a class="icon-link" href="#" aria-label="GitHub"><span class="material-icons-outlined text-[18px]">code</span></a>
                             <a class="icon-link" href="#" aria-label="Email"><span class="material-icons-outlined text-[18px]">email</span></a>
-                        </div>
+                        </div> -->
                     </article>
                     <article class="person card">
                         <div class="avatar">MZ</div>
                         <h3>M.A.F. Zumra</h3>
                         <p>IT22255310<br />Grammar Correction</p>
-                        <div class="contact-row">
+                        <!-- <div class="contact-row">
                             <a class="icon-link" href="#" aria-label="GitHub"><span class="material-icons-outlined text-[18px]">code</span></a>
                             <a class="icon-link" href="#" aria-label="Email"><span class="material-icons-outlined text-[18px]">email</span></a>
-                        </div>
+                        </div> -->
                     </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section bg-surface">
+            <div class="page-shell">
+                <div class="split">
+                    <div>
+                        <span class="section-kicker">Contact Us</span>
+                        <h2 class="section-title">Get in Touch.</h2>
+                        <p class="section-copy">
+                            Have questions about the research project, need access to datasets, or want to discuss the
+                            findings? Reach out to our team.
+                        </p>
+
+                        <div class="mt-10 grid gap-6">
+                            <div class="flex items-start gap-4">
+                                <div class="icon-box !mb-0 shrink-0"><span class="material-icons-outlined">email</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-[17px] font-extrabold text-ink">Email</h3>
+                                    <p class="mt-1 text-sm text-muted"><a href="mailto:sinhalamithuru@gmail.com"
+                                            class="hover:text-accent transition-colors">sinhalamithuru@gmail.com</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card p-6 sm:p-8">
+                        <form class="grid gap-5"
+                            onsubmit="event.preventDefault(); alert('Thank you for getting in touch! We will get back to you shortly.'); this.reset();">
+                            <div>
+                                <label for="contact-name" class="block text-sm font-bold text-ink">Name</label>
+                                <input type="text" id="contact-name" required
+                                    class="mt-2 block w-full rounded-md border border-line bg-paper px-4 py-3 text-sm text-ink placeholder-muted focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-colors"
+                                    placeholder="Your name" />
+                            </div>
+                            <div>
+                                <label for="contact-email" class="block text-sm font-bold text-ink">Email
+                                    Address</label>
+                                <input type="email" id="contact-email" required
+                                    class="mt-2 block w-full rounded-md border border-line bg-paper px-4 py-3 text-sm text-ink placeholder-muted focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-colors"
+                                    placeholder="you@example.com" />
+                            </div>
+                            <div>
+                                <label for="contact-message" class="block text-sm font-bold text-ink">Message</label>
+                                <textarea id="contact-message" rows="4" required
+                                    class="mt-2 block w-full resize-none rounded-md border border-line bg-paper px-4 py-3 text-sm text-ink placeholder-muted focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-colors"
+                                    placeholder="How can we help you?"></textarea>
+                            </div>
+                            <button type="submit" class="button button-primary w-full mt-2">
+                                <span class="material-icons-outlined text-[18px]">send</span>
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </section>
@@ -2237,11 +2309,13 @@
                         <img src="web/logo.png" alt="Sinhala Mithuru logo" class="h-10 w-auto" />
                         <div>
                             <strong class="block text-white">Sinhala Mithuru</strong>
-                            <span class="font-mono text-[11px] text-white/45">AI-supported primary Sinhala education</span>
+                            <span class="font-mono text-[11px] text-white/45">AI-supported primary Sinhala
+                                education</span>
                         </div>
                     </div>
                     <p class="mt-5 max-w-xl text-sm leading-7">
-                        An adaptive learning research project designed to support Sinhala literacy through handwriting, speech, reading, and grammar intelligence.
+                        An adaptive learning research project designed to support Sinhala literacy through handwriting,
+                        speech, reading, and grammar intelligence.
                     </p>
                 </div>
                 <div>
@@ -2253,101 +2327,26 @@
                         <li><a href="#student-evaluation">Evaluation</a></li>
                         <li><a href="#results">Results</a></li>
                         <li><a href="#documents">Documents</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
                     </ul>
                 </div>
                 <div>
                     <h3 class="mb-4 text-sm font-extrabold text-white">Contact</h3>
                     <ul class="grid gap-2 text-sm">
-                        <li>Faculty of Computing, SLIIT</li>
-                        <li>New Kandy Road, Malabe</li>
-                        <li><a href="mailto:research@sliit.lk">research@sliit.lk</a></li>
+                        <li><a href="mailto:sinhalamithuru@gmail.com">sinhalamithuru@gmail.com</a></li>
                     </ul>
                 </div>
             </div>
             <div class="mt-10 border-t border-white/10 pt-6 text-xs text-white/45">
-                &copy; 2025 SLIIT Research Project. All rights reserved.
+                &copy; 2025 sinhala mithuru. All rights reserved.
             </div>
         </div>
     </footer>
-
-    <div id="school1" class="modal" role="dialog" aria-modal="true" aria-labelledby="school1Title">
-        <div class="modal-panel">
-            <div class="modal-media">
-                <img src="web/img1.jpg" alt="Maliyadeva Balika Vidyalaya field visit" />
-                <button class="modal-close" type="button" data-close="school1" aria-label="Close modal">
-                    <span class="material-icons-outlined">close</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <h2 id="school1Title" class="text-2xl font-extrabold">Maliyadeva Balika Vidyalaya</h2>
-                <p class="mt-2 text-sm text-muted">Kurunegala District - November 2024</p>
-                <div class="modal-stats">
-                    <div><strong>45</strong><span>Students</span></div>
-                    <div><strong>3</strong><span>School days</span></div>
-                    <div><strong>180+</strong><span>Samples</span></div>
-                </div>
-                <h3 class="font-extrabold">What we did</h3>
-                <p class="mt-2 text-sm leading-7 text-muted">
-                    The team collected handwriting samples, recorded pronunciation tasks, and observed classroom reading behavior. These data points supported the handwriting recognition and feedback workflow.
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <div id="school2" class="modal" role="dialog" aria-modal="true" aria-labelledby="school2Title">
-        <div class="modal-panel">
-            <div class="modal-media">
-                <img src="web/img3.jpg" alt="Royal Primary School field visit" />
-                <button class="modal-close" type="button" data-close="school2" aria-label="Close modal">
-                    <span class="material-icons-outlined">close</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <h2 id="school2Title" class="text-2xl font-extrabold">Royal Primary School</h2>
-                <p class="mt-2 text-sm text-muted">Colombo District - October 2024</p>
-                <div class="modal-stats">
-                    <div><strong>52</strong><span>Students</span></div>
-                    <div><strong>4</strong><span>School days</span></div>
-                    <div><strong>210+</strong><span>Samples</span></div>
-                </div>
-                <h3 class="font-extrabold">What we did</h3>
-                <p class="mt-2 text-sm leading-7 text-muted">
-                    This visit focused on speech data collection. Students read selected words and passages aloud to support ASR and pronunciation assessment experiments.
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <div id="school3" class="modal" role="dialog" aria-modal="true" aria-labelledby="school3Title">
-        <div class="modal-panel">
-            <div class="modal-media">
-                <img src="web/img4.jpg" alt="Visakha Vidyalaya field visit" />
-                <button class="modal-close" type="button" data-close="school3" aria-label="Close modal">
-                    <span class="material-icons-outlined">close</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <h2 id="school3Title" class="text-2xl font-extrabold">Visakha Vidyalaya</h2>
-                <p class="mt-2 text-sm text-muted">Colombo District - September 2024</p>
-                <div class="modal-stats">
-                    <div><strong>53</strong><span>Students</span></div>
-                    <div><strong>3</strong><span>School days</span></div>
-                    <div><strong>200+</strong><span>Samples</span></div>
-                </div>
-                <h3 class="font-extrabold">What we did</h3>
-                <p class="mt-2 text-sm leading-7 text-muted">
-                    The team gathered reading and grammar behavior observations, helping refine the narrative comprehension and grammar correction components.
-                </p>
-            </div>
-        </div>
-    </div>
 
     <script>
         const header = document.getElementById("siteHeader");
         const menuToggle = document.getElementById("menuToggle");
         const mobilePanel = document.getElementById("mobilePanel");
-        const modalTriggers = document.querySelectorAll("[data-school]");
-        const closeButtons = document.querySelectorAll("[data-close]");
 
         function syncHeader() {
             header.classList.toggle("header-scrolled", window.scrollY > 28);
@@ -2357,20 +2356,6 @@
             mobilePanel.classList.remove("active");
             menuToggle.setAttribute("aria-expanded", "false");
             menuToggle.querySelector(".material-icons-outlined").textContent = "menu";
-        }
-
-        function openModal(id) {
-            const modal = document.getElementById(id);
-            if (!modal) return;
-            modal.classList.add("active");
-            document.body.style.overflow = "hidden";
-        }
-
-        function closeModal(id) {
-            const modal = document.getElementById(id);
-            if (!modal) return;
-            modal.classList.remove("active");
-            document.body.style.overflow = "";
         }
 
         window.addEventListener("scroll", syncHeader);
@@ -2386,25 +2371,8 @@
             link.addEventListener("click", closeMobileMenu);
         });
 
-        modalTriggers.forEach((trigger) => {
-            trigger.addEventListener("click", () => openModal(trigger.dataset.school));
-        });
-
-        closeButtons.forEach((button) => {
-            button.addEventListener("click", () => closeModal(button.dataset.close));
-        });
-
-        document.querySelectorAll(".modal").forEach((modal) => {
-            modal.addEventListener("click", (event) => {
-                if (event.target === modal) {
-                    closeModal(modal.id);
-                }
-            });
-        });
-
         document.addEventListener("keydown", (event) => {
             if (event.key === "Escape") {
-                document.querySelectorAll(".modal.active").forEach((modal) => closeModal(modal.id));
                 closeMobileMenu();
             }
         });
