@@ -80,6 +80,11 @@ build/
 *.jpg
 *.jpeg
 
+# Allow website images to be tracked by git
+!web/*.png
+!web/*.jpg
+!web/*.jpeg
+
 # Large Model Files (Use Hugging Face instead)
 *.joblib
 *.h5
