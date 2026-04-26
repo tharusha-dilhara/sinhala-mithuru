@@ -216,7 +216,7 @@
             position: absolute;
             inset: 0;
             z-index: -2;
-            background-image: url("web/img2.jpg");
+            background-image: url("img2.jpg");
             background-size: cover;
             background-position: center;
             filter: grayscale(0.78) saturate(0.44) contrast(1.04) brightness(0.72);
@@ -420,6 +420,148 @@
             min-height: 260px;
         }
 
+        .testimonial-section {
+            padding: 88px 0;
+            background: var(--paper);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .testimonial-header {
+            max-width: 780px;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 22px;
+            margin-top: 42px;
+        }
+
+        .testimonial-grid + .testimonial-archive {
+            margin-top: 26px;
+        }
+
+        .testimonial-card {
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+            padding: 22px;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .testimonial-card h3 {
+            color: var(--ink);
+            font-size: 18px;
+            line-height: 1.35;
+            font-weight: 800;
+        }
+
+        .testimonial-video {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            margin-top: 18px;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: var(--ink);
+        }
+
+        .testimonial-video iframe {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .testimonial-card p {
+            margin-top: 16px;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .testimonial-meta {
+            display: inline-flex;
+            align-items: center;
+            width: fit-content;
+            min-height: 28px;
+            margin-top: 18px;
+            padding: 0 10px;
+            color: var(--accent);
+            background: var(--accent-soft);
+            border: 1px solid rgba(44, 88, 116, 0.18);
+            border-radius: 6px;
+            font-family: "JetBrains Mono", Consolas, monospace;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .testimonial-archive {
+            display: grid;
+            grid-template-columns: 56px 1fr auto;
+            gap: 18px;
+            align-items: center;
+            padding: 24px;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .testimonial-archive-icon {
+            width: 56px;
+            height: 56px;
+            display: grid;
+            place-items: center;
+            color: white;
+            background: var(--accent);
+            border-radius: 8px;
+        }
+
+        .testimonial-archive h3 {
+            color: var(--ink);
+            font-size: 18px;
+            line-height: 1.35;
+            font-weight: 800;
+        }
+
+        .testimonial-archive p {
+            margin-top: 6px;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .archive-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 44px;
+            white-space: nowrap;
+            padding: 0 16px;
+            color: white;
+            background: var(--accent);
+            border: 1px solid var(--accent);
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 800;
+            transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .archive-button:hover {
+            background: var(--accent-strong);
+            border-color: var(--accent-strong);
+            transform: translateY(-1px);
+        }
+
+        .archive-button .material-icons-outlined {
+            font-size: 18px;
+        }
+
         .icon-box {
             width: 46px;
             height: 46px;
@@ -603,6 +745,214 @@
             margin-top: 6px;
             color: rgba(255, 255, 255, 0.76);
             font-size: 13px;
+        }
+
+        .fieldwork-archive {
+            display: grid;
+            grid-template-columns: 56px 1fr auto;
+            gap: 18px;
+            align-items: center;
+            margin-top: 24px;
+            padding: 24px;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .fieldwork-archive-icon {
+            width: 56px;
+            height: 56px;
+            display: grid;
+            place-items: center;
+            color: white;
+            background: var(--accent);
+            border-radius: 8px;
+        }
+
+        .fieldwork-archive h3 {
+            color: var(--ink);
+            font-size: 18px;
+            line-height: 1.35;
+            font-weight: 800;
+        }
+
+        .fieldwork-archive p {
+            margin-top: 6px;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .fieldwork-archive-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 44px;
+            white-space: nowrap;
+            padding: 0 16px;
+            color: white;
+            background: var(--accent);
+            border: 1px solid var(--accent);
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 800;
+            transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .fieldwork-archive-link:hover {
+            background: var(--accent-strong);
+            border-color: var(--accent-strong);
+            transform: translateY(-1px);
+        }
+
+        .fieldwork-archive-link .material-icons-outlined {
+            font-size: 18px;
+        }
+
+        .evaluation-section {
+            padding: 88px 0;
+            background: var(--paper);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .evaluation-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+            gap: 42px;
+            align-items: start;
+        }
+
+        .evaluation-summary {
+            padding: 28px;
+        }
+
+        .evaluation-summary h3 {
+            color: var(--ink);
+            font-size: 20px;
+            line-height: 1.35;
+            font-weight: 800;
+        }
+
+        .evaluation-summary dl {
+            display: grid;
+            gap: 1px;
+            margin-top: 26px;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: var(--line);
+        }
+
+        .evaluation-summary div {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 16px;
+            padding: 16px;
+            background: var(--surface);
+        }
+
+        .evaluation-summary dt {
+            color: var(--muted);
+            font-family: "JetBrains Mono", Consolas, monospace;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        .evaluation-summary dd {
+            color: var(--ink);
+            font-size: 14px;
+            font-weight: 800;
+            line-height: 1.5;
+        }
+
+        .evidence-grid {
+            display: grid;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .evidence-card {
+            display: grid;
+            grid-template-columns: 54px 1fr auto;
+            gap: 16px;
+            align-items: center;
+            padding: 20px;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .evidence-icon {
+            width: 54px;
+            height: 54px;
+            display: grid;
+            place-items: center;
+            color: var(--accent);
+            background: var(--accent-soft);
+            border: 1px solid rgba(44, 88, 116, 0.18);
+            border-radius: 8px;
+        }
+
+        .evidence-card h3 {
+            color: var(--ink);
+            font-size: 17px;
+            line-height: 1.35;
+            font-weight: 800;
+        }
+
+        .evidence-card p {
+            margin-top: 6px;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.65;
+        }
+
+        .evidence-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 42px;
+            white-space: nowrap;
+            padding: 0 14px;
+            color: white;
+            background: var(--accent);
+            border: 1px solid var(--accent);
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 800;
+            transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .evidence-link:hover {
+            background: var(--accent-strong);
+            border-color: var(--accent-strong);
+            transform: translateY(-1px);
+        }
+
+        .evidence-link .material-icons-outlined {
+            font-size: 18px;
+        }
+
+        .evidence-link.secondary {
+            color: var(--accent);
+            background: var(--accent-soft);
+            border-color: rgba(44, 88, 116, 0.22);
+        }
+
+        .evidence-note {
+            margin-top: 18px;
+            padding: 16px 18px;
+            color: var(--muted);
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-left: 3px solid var(--accent);
+            border-radius: 8px;
+            font-size: 13px;
+            line-height: 1.7;
         }
 
         .dark-band {
@@ -914,6 +1264,7 @@
             .hero-grid,
             .split,
             .architecture,
+            .evaluation-layout,
             .publication {
                 grid-template-columns: 1fr;
             }
@@ -944,9 +1295,16 @@
             }
         }
 
+        @media (min-width: 760px) {
+            .testimonial-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
         @media (max-width: 768px) {
             .section,
-            .section-compact {
+            .section-compact,
+            .testimonial-section {
                 padding: 64px 0;
             }
 
@@ -989,6 +1347,33 @@
                 grid-template-columns: 1fr;
                 gap: 10px;
             }
+
+            .testimonial-archive {
+                grid-template-columns: 1fr;
+                align-items: start;
+            }
+
+            .fieldwork-archive {
+                grid-template-columns: 1fr;
+                align-items: start;
+            }
+
+            .fieldwork-archive-link {
+                width: 100%;
+            }
+
+            .evaluation-summary div,
+            .evidence-card {
+                grid-template-columns: 1fr;
+            }
+
+            .evidence-link {
+                width: 100%;
+            }
+
+            .archive-button {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -998,7 +1383,7 @@
         <div class="page-shell">
             <div class="flex h-20 items-center justify-between gap-5">
                 <a href="#overview" class="flex items-center gap-3">
-                    <img src="web/logo.png" alt="Sinhala Mithuru logo" class="h-10 w-auto" />
+                    <img src="logo.png" alt="Sinhala Mithuru logo" class="h-10 w-auto" />
                     <div>
                         <span class="brand-title block text-sm font-extrabold text-white">Sinhala Mithuru</span>
                         <span class="project-code block font-mono text-[10px] text-white/55">IT4010-25-26J-176</span>
@@ -1008,7 +1393,9 @@
                 <nav class="hidden items-center gap-5 lg:flex">
                     <a class="nav-link" href="#domain">Domain</a>
                     <a class="nav-link" href="#methodology">Methodology</a>
+                    <a class="nav-link" href="#testimonials">Testimonials</a>
                     <a class="nav-link" href="#fieldwork">Fieldwork</a>
+                    <a class="nav-link" href="#student-evaluation">Evaluation</a>
                     <a class="nav-link" href="#results">Results</a>
                     <a class="nav-link" href="#downloads">Downloads</a>
                     <a class="nav-link" href="#team">Team</a>
@@ -1029,7 +1416,9 @@
             <nav id="mobilePanel" class="mobile-panel lg:hidden">
                 <a class="nav-link" href="#domain">Domain</a>
                 <a class="nav-link" href="#methodology">Methodology</a>
+                <a class="nav-link" href="#testimonials">Testimonials</a>
                 <a class="nav-link" href="#fieldwork">Fieldwork</a>
+                <a class="nav-link" href="#student-evaluation">Evaluation</a>
                 <a class="nav-link" href="#results">Results</a>
                 <a class="nav-link" href="#downloads">Downloads</a>
                 <a class="nav-link" href="#team">Team</a>
@@ -1186,6 +1575,109 @@
             </div>
         </section>
 
+        <section id="testimonials" class="testimonial-section" aria-labelledby="testimonialsTitle">
+            <div class="page-shell">
+                <div class="testimonial-header">
+                    <span class="section-kicker">Teacher testimonials</span>
+                    <h2 id="testimonialsTitle" class="section-title">Educator feedback on the core learning modules.</h2>
+                    <p class="section-copy">
+                        These short video testimonials capture teacher perspectives on each Sinhala Mithuru component, connecting the research prototype to classroom expectations and learner needs.
+                    </p>
+                </div>
+
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <h3>Grammar Correction Module</h3>
+                        <div class="testimonial-video">
+                            <iframe
+                                src="https://www.youtube-nocookie.com/embed/ohIbKdV7Vyw?rel=0&playsinline=1"
+                                title="Teacher testimonial on Sinhala Mithuru grammar correction module"
+                                loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen></iframe>
+                        </div>
+                        <p>
+                            Teacher feedback on how grammar correction can support primary learners with context-aware Sinhala writing guidance.
+                        </p>
+                        <span class="testimonial-meta">Grammar</span>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <h3>Interactive Narratives Module</h3>
+                        <div class="testimonial-video">
+                            <iframe
+                                src="https://www.youtube-nocookie.com/embed/P4kH5PmCpRg?rel=0&playsinline=1"
+                                title="Teacher testimonial on Sinhala Mithuru interactive narratives module"
+                                loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen></iframe>
+                        </div>
+                        <p>
+                            Teacher perspective on narrative-based learning, reading comprehension, and story-driven engagement for Sinhala literacy.
+                        </p>
+                        <span class="testimonial-meta">Narratives</span>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <h3>Pronunciation Assessment Module</h3>
+                        <div class="testimonial-video">
+                            <iframe
+                                src="https://www.youtube-nocookie.com/embed/Hrjum2p3hTw?rel=0&playsinline=1"
+                                title="Teacher testimonial on Sinhala Mithuru pronunciation assessment module"
+                                loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen></iframe>
+                        </div>
+                        <p>
+                            Teacher feedback on the value of pronunciation support for listening, speaking, and confidence-building activities.
+                        </p>
+                        <span class="testimonial-meta">Pronunciation</span>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <h3>Handwriting Analysis Module</h3>
+                        <div class="testimonial-video">
+                            <iframe
+                                src="https://www.youtube-nocookie.com/embed/KvhJFxWUXgg?rel=0&playsinline=1"
+                                title="Teacher testimonial on Sinhala Mithuru handwriting analysis module"
+                                loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen></iframe>
+                        </div>
+                        <p>
+                            Teacher perspective on process-oriented handwriting feedback for early Sinhala letter formation and practice.
+                        </p>
+                        <span class="testimonial-meta">Handwriting</span>
+                    </div>
+                </div>
+
+                <div class="testimonial-archive" aria-label="More teacher feedback videos">
+                    <div class="testimonial-archive-icon" aria-hidden="true">
+                        <span class="material-icons-outlined">video_library</span>
+                    </div>
+                    <div>
+                        <h3>More teacher feedback videos</h3>
+                        <p>
+                            Additional classroom feedback clips can be maintained in the project Google Drive archive and linked here as the research evidence collection grows.
+                        </p>
+                    </div>
+                    <a
+                        class="archive-button"
+                        href="https://drive.google.com/drive/folders/REPLACE_WITH_FOLDER_ID"
+                        target="_blank"
+                        rel="noopener"
+                        data-video-archive-link>
+                        <span class="material-icons-outlined">folder_open</span>
+                        More Videos
+                    </a>
+                </div>
+            </div>
+        </section>
+
         <section id="architecture" class="section bg-paper">
             <div class="page-shell">
                 <div class="architecture">
@@ -1245,7 +1737,7 @@
                         This diagram expands the prototype overview into the complete integration path, showing how the learner-facing interface, backend services, AI inference components, and data layers connect inside the research system.
                     </p>
                     <div class="diagram-frame" aria-label="Scrollable technical architecture diagram">
-                        <img src="web/Core Technical Architecture.png" alt="Core Technical Architecture diagram for Sinhala Mithuru system integration" />
+                        <img src="Core Technical Architecture.png" alt="Core Technical Architecture diagram for Sinhala Mithuru system integration" />
                     </div>
                     <figcaption class="diagram-caption">
                         Technical readers can use this diagram to inspect the detailed service boundaries after reviewing the simplified architecture summary above.
@@ -1264,7 +1756,7 @@
 
                 <div class="image-grid">
                     <button class="image-tile text-left" type="button" data-school="school1">
-                        <img src="web/img1.jpg" alt="Field visit at Maliyadeva Balika Vidyalaya" />
+                        <img src="img1.jpg" alt="Field visit at Maliyadeva Balika Vidyalaya" />
                         <span class="tile-caption">
                             <h3>Maliyadeva Balika Vidyalaya</h3>
                             <p>Kurunegala District - handwriting and classroom observations</p>
@@ -1273,20 +1765,136 @@
 
                     <div class="grid gap-[18px]">
                         <button class="image-tile small text-left" type="button" data-school="school2">
-                            <img src="web/img3.jpg" alt="Field visit at Royal Primary School" />
+                            <img src="img3.jpg" alt="Field visit at Royal Primary School" />
                             <span class="tile-caption">
                                 <h3>Royal Primary School</h3>
                                 <p>Colombo District - speech data collection</p>
                             </span>
                         </button>
                         <button class="image-tile small text-left" type="button" data-school="school3">
-                            <img src="web/img4.jpg" alt="Field visit at Visakha Vidyalaya" />
+                            <img src="img4.jpg" alt="Field visit at Visakha Vidyalaya" />
                             <span class="tile-caption">
                                 <h3>Visakha Vidyalaya</h3>
                                 <p>Colombo District - reading and grammar observations</p>
                             </span>
                         </button>
                     </div>
+                </div>
+
+                <div class="fieldwork-archive" aria-label="More fieldwork data collection evidence">
+                    <div class="fieldwork-archive-icon" aria-hidden="true">
+                        <span class="material-icons-outlined">photo_library</span>
+                    </div>
+                    <div>
+                        <h3>More fieldwork evidence</h3>
+                        <p>
+                            Additional photos, school visit records, consent-cleared media, and collection notes can be maintained in the project Drive archive.
+                        </p>
+                    </div>
+                    <a
+                        class="fieldwork-archive-link"
+                        href="https://drive.google.com/drive/folders/REPLACE_WITH_FIELDWORK_ARCHIVE_FOLDER_ID"
+                        target="_blank"
+                        rel="noopener"
+                        data-fieldwork-archive-link>
+                        <span class="material-icons-outlined">folder_open</span>
+                        More
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="student-evaluation" class="evaluation-section" aria-labelledby="studentEvaluationTitle">
+            <div class="page-shell evaluation-layout">
+                <div>
+                    <span class="section-kicker">Pilot usability evaluation</span>
+                    <h2 id="studentEvaluationTitle" class="section-title">Application testing with primary learners.</h2>
+                    <p class="section-copy">
+                        The Sinhala Mithuru prototype was tested with children under supervised classroom conditions. This section connects the student testing evidence, observation sheet, and video archive without publicly exposing sensitive media.
+                    </p>
+                </div>
+
+                <div>
+                    <article class="evaluation-summary card">
+                        <h3>Evaluation Evidence Summary</h3>
+                        <dl>
+                            <div>
+                                <dt>Testing context</dt>
+                                <dd>Supervised classroom prototype testing</dd>
+                            </div>
+                            <div>
+                                <dt>Tested modules</dt>
+                                <dd>Handwriting, pronunciation, narratives, grammar</dd>
+                            </div>
+                            <div>
+                                <dt>Evidence type</dt>
+                                <dd>Observation sheet, testing video, Drive archive</dd>
+                            </div>
+                        </dl>
+                    </article>
+
+                    <div class="evidence-grid">
+                        <article class="evidence-card">
+                            <div class="evidence-icon" aria-hidden="true">
+                                <span class="material-icons-outlined">videocam</span>
+                            </div>
+                            <div>
+                                <h3>Student Testing Video</h3>
+                                <p>Open the controlled Google Drive video record of learners using the Sinhala Mithuru application.</p>
+                            </div>
+                            <a
+                                class="evidence-link"
+                                href="https://drive.google.com/file/d/REPLACE_WITH_STUDENT_TESTING_VIDEO_ID/view?usp=sharing"
+                                target="_blank"
+                                rel="noopener"
+                                data-student-testing-video-link>
+                                <span class="material-icons-outlined">play_circle</span>
+                                View Video
+                            </a>
+                        </article>
+
+                        <article class="evidence-card">
+                            <div class="evidence-icon" aria-hidden="true">
+                                <span class="material-icons-outlined">table_chart</span>
+                            </div>
+                            <div>
+                                <h3>Testing Document Sheet</h3>
+                                <p>Open the student testing sheet used to record task observations and evaluation notes.</p>
+                            </div>
+                            <a
+                                class="evidence-link secondary"
+                                href="https://drive.google.com/file/d/REPLACE_WITH_TESTING_DOCUMENT_SHEET_ID/view?usp=sharing"
+                                target="_blank"
+                                rel="noopener"
+                                data-student-testing-sheet-link>
+                                <span class="material-icons-outlined">open_in_new</span>
+                                View Sheet
+                            </a>
+                        </article>
+
+                        <article class="evidence-card">
+                            <div class="evidence-icon" aria-hidden="true">
+                                <span class="material-icons-outlined">folder_open</span>
+                            </div>
+                            <div>
+                                <h3>Evaluation Evidence Archive</h3>
+                                <p>Use a Drive folder for additional testing clips, consent-cleared media, photos, and related evidence files.</p>
+                            </div>
+                            <a
+                                class="evidence-link secondary"
+                                href="https://drive.google.com/drive/folders/REPLACE_WITH_STUDENT_EVALUATION_FOLDER_ID"
+                                target="_blank"
+                                rel="noopener"
+                                data-student-evaluation-folder-link>
+                                <span class="material-icons-outlined">folder</span>
+                                More Evidence
+                            </a>
+                        </article>
+                    </div>
+
+                    <p class="evidence-note">
+                        Student testing evidence should be shared only with the required consent and privacy controls. If identifiable learner footage is included, keep the Drive permissions restricted to the research evaluation audience.
+                    </p>
                 </div>
             </div>
         </section>
@@ -1375,7 +1983,7 @@
                         <div class="icon-box"><span class="material-icons-outlined">desktop_windows</span></div>
                         <h3>Windows Prototype</h3>
                         <p>Desktop build for demonstrations, model testing, and controlled usability sessions.</p>
-                        <a href="#" class="button button-primary">
+                        <a href="https://github.com/tharusha-dilhara/sinhala-mithuru/releases/download/v1.0.0-stable/windoes.zip" class="button button-primary">
                             <span class="material-icons-outlined text-[18px]">download</span>
                             Download
                         </a>
@@ -1384,7 +1992,7 @@
                         <div class="icon-box"><span class="material-icons-outlined">android</span></div>
                         <h3>Android Prototype</h3>
                         <p>Mobile build for touch-based handwriting practice and classroom field evaluations.</p>
-                        <a href="#" class="button button-primary">
+                        <a href="https://github.com/tharusha-dilhara/sinhala-mithuru/releases/download/v1.0.0-stable/app-release.apk" class="button button-primary">
                             <span class="material-icons-outlined text-[18px]">download</span>
                             Download APK
                         </a>
@@ -1393,7 +2001,7 @@
                         <div class="icon-box"><span class="material-icons-outlined">language</span></div>
                         <h3>Web Application</h3>
                         <p>Browser interface for project demonstrations and lightweight stakeholder access.</p>
-                        <a href="#" class="button button-primary">
+                        <a href="https://sinhala-mithuru-web.vercel.app/" class="button button-primary">
                             <span class="material-icons-outlined text-[18px]">open_in_new</span>
                             Launch
                         </a>
@@ -1626,7 +2234,7 @@
             <div class="grid gap-10 md:grid-cols-[1.4fr_0.8fr_0.8fr]">
                 <div>
                     <div class="flex items-center gap-3">
-                        <img src="web/logo.png" alt="Sinhala Mithuru logo" class="h-10 w-auto" />
+                        <img src="logo.png" alt="Sinhala Mithuru logo" class="h-10 w-auto" />
                         <div>
                             <strong class="block text-white">Sinhala Mithuru</strong>
                             <span class="font-mono text-[11px] text-white/45">AI-supported primary Sinhala education</span>
@@ -1641,6 +2249,8 @@
                     <ul class="grid gap-2 text-sm">
                         <li><a href="#domain">Domain</a></li>
                         <li><a href="#methodology">Methodology</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#student-evaluation">Evaluation</a></li>
                         <li><a href="#results">Results</a></li>
                         <li><a href="#documents">Documents</a></li>
                     </ul>
@@ -1663,7 +2273,7 @@
     <div id="school1" class="modal" role="dialog" aria-modal="true" aria-labelledby="school1Title">
         <div class="modal-panel">
             <div class="modal-media">
-                <img src="web/img1.jpg" alt="Maliyadeva Balika Vidyalaya field visit" />
+                <img src="img1.jpg" alt="Maliyadeva Balika Vidyalaya field visit" />
                 <button class="modal-close" type="button" data-close="school1" aria-label="Close modal">
                     <span class="material-icons-outlined">close</span>
                 </button>
@@ -1687,7 +2297,7 @@
     <div id="school2" class="modal" role="dialog" aria-modal="true" aria-labelledby="school2Title">
         <div class="modal-panel">
             <div class="modal-media">
-                <img src="web/img3.jpg" alt="Royal Primary School field visit" />
+                <img src="img3.jpg" alt="Royal Primary School field visit" />
                 <button class="modal-close" type="button" data-close="school2" aria-label="Close modal">
                     <span class="material-icons-outlined">close</span>
                 </button>
@@ -1711,7 +2321,7 @@
     <div id="school3" class="modal" role="dialog" aria-modal="true" aria-labelledby="school3Title">
         <div class="modal-panel">
             <div class="modal-media">
-                <img src="web/img4.jpg" alt="Visakha Vidyalaya field visit" />
+                <img src="img4.jpg" alt="Visakha Vidyalaya field visit" />
                 <button class="modal-close" type="button" data-close="school3" aria-label="Close modal">
                     <span class="material-icons-outlined">close</span>
                 </button>
