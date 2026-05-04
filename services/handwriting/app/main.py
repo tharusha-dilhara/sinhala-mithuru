@@ -15,18 +15,24 @@ app = FastAPI(title="Sinhala Mithuru AI Engine")
 # =============================================================================
 
 BASE_PATH = "/app"
-CHAR_MODEL_PATH = os.path.join(BASE_PATH, "models/sinhala_mithuru_char_recognizer_v1.keras")
-QUAL_MODEL_PATH = os.path.join(BASE_PATH, "models/quality_model_v1.keras")
-CHAR_SCALER_PATH = os.path.join(BASE_PATH, "models/char_scaler_v1.pkl")
-QUAL_SCALER_PATH = os.path.join(BASE_PATH, "models/scaler_v1.pkl")
+CHAR_MODEL_PATH = os.path.join(BASE_PATH, "models/sinhala_mithuru_char_recognizer_v2.keras")
+QUAL_MODEL_PATH = os.path.join(BASE_PATH, "models/quality_model_v2.keras")
+CHAR_SCALER_PATH = os.path.join(BASE_PATH, "models/char_scaler_v2.pkl")
+QUAL_SCALER_PATH = os.path.join(BASE_PATH, "models/scaler_v2.pkl")
 CONFIG_PATH = os.path.join(BASE_PATH, "app/config.json")
 
 # මොඩලය පුහුණු කළ අවස්ථාවේ තිබූ නිවැරදි අනුපිළිවෙල
 DYNAMIC_CLASSES = [
-    'A', 'AEe', 'Aa', 'Ae', 'E', 'Ee', 'G', 'Gi', 'Gii', 'Gu', 'Guu', 
-    'H', 'I', 'Ii', 'K', 'Ka', 'Ke', 'Kee', 'Ki', 'Kii', 'Kii ', 'Ku', 
-    'N', 'O', 'Oo', 'Ou', 'P', 'Pu', 'Puu', 'R', 'S', 'T', 'Th', 'U', 
-    'Uu', 'Y', 'g', 'k'
+    'A', 'AEe', 'Aa', 'Ae', 'Ala', 'Atha', 'Ba', 'Bna', 'Bu', 'Buu', 
+    'Ch', 'Cha', 'D', 'Da', 'Dee', 'Dna', 'E', 'Ee', 'G', 'Gi', 
+    'Gii', 'Gna', 'Gu', 'Guu', 'H', 'I', 'Ii', 'Ira', 'Ja', 'K', 
+    'Ka', 'Ke', 'Kee', 'Ki', 'Kii', 'Ko', 'Koo', 'Ku', 'La', 'Laa', 
+    'Lae', 'Laee', 'Le', 'Lee', 'Li', 'Lii', 'Lna', 'Lo', 'Loo', 'Lu', 
+    'Luu', 'M', 'Ma', 'Mee', 'Mu', 'Muu', 'N', 'O', 'Oo', 'Ou', 
+    'P', 'Pu', 'Puu', 'R', 'Rata', 'Ree', 'Ru', 'Ruu', 'S', 'T', 
+    'Th', 'Thu', 'Thuu', 'U', 'Uu', 'V', 'Va', 'Vaa', 'Vae', 'Vaee', 
+    'Ve', 'Vee', 'Vi', 'Vii', 'Vo', 'Voo', 'Y', 'da', 'dara', 'dna', 
+    'g', 'h', 'k'
 ]
 
 # Assets පූරණය කිරීම
@@ -45,6 +51,12 @@ except Exception as e:
 # =============================================================================
 # 🟢 SECTION 2: API ENDPOINTS
 # =============================================================================
+@app.get("/")
+async def test():
+    return {
+         "status": "success",
+    }
+
 
 class LevelSubmission(BaseModel):
     expected_char: str

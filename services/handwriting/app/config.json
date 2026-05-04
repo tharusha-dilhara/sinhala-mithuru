@@ -1,146 +1,366 @@
 {
     "A": {
-        "symbol": "අ",
+        "strokes": 1,
+        "symbol": "අ"
+    },
+    "AA": {
+        "strokes": 2,
+        "symbol": "ආ"
+    },
+    "AE": {
+        "strokes": 2,
+        "symbol": "ඇ"
+    },
+    "Gna": {
+        "symbol": "ඟ",
         "strokes": 1
     },
-    "Aa": {
-        "symbol": "ආ",
-        "strokes": 2
-    },
-    "Ae": {
-        "symbol": "ඇ",
-        "strokes": 2
-    },
-    "AEe": {
-        "symbol": "ඈ",
-        "strokes": 2
-    },
-    "E": {
-        "symbol": "එ",
+    "Va": {
+        "symbol": "ව",
         "strokes": 1
     },
-    "Ee": {
-        "symbol": "ඒ",
-        "strokes": 2
-    },
-    "g": {
-        "symbol": "ග්",
-        "strokes": 2
-    },
-    "Gi": {
-        "symbol": "ගි",
-        "strokes": 2
-    },
-    "Gii": {
-        "symbol": "ගී",
-        "strokes": 2
-    },
-    "Guu": {
-        "symbol": "ගූ",
-        "strokes": 2
-    },
-    "H": {
-        "symbol": "හ",
+    "Cha": {
+        "symbol": "ච",
         "strokes": 1
     },
-    "I": {
-        "symbol": "ඉ",
+    "Da": {
+        "symbol": "ඩ",
         "strokes": 1
     },
-    "Ii": {
-        "symbol": "ඊ",
-        "strokes": 3
-    },
-    "K": {
-        "symbol": "ක",
+    "Ma": {
+        "symbol": "ම",
         "strokes": 1
     },
-    "k": {
-        "symbol": "ක්",
-        "strokes": 2
-    },
-    "Ka": {
-        "symbol": "කා",
-        "strokes": 2
-    },
-    "Ke": {
-        "symbol": "කැ",
-        "strokes": 2
-    },
-    "Kee": {
-        "symbol": "කෑ",
-        "strokes": 2
-    },
-    "Ki": {
-        "symbol": "කි",
-        "strokes": 2
-    },
-    "Kii": {
-        "symbol": "කී",
-        "strokes": 2
-    },
-    "Ku": {
-        "symbol": "කු",
-        "strokes": 2
-    },
-    "O": {
-        "symbol": "ඔ",
+    "Ba": {
+        "symbol": "බ",
         "strokes": 1
     },
-    "Oo": {
-        "symbol": "ඕ",
-        "strokes": 2
+    "Bna": {
+        "symbol": "ඹ",
+        "strokes": 1
     },
-    "Ou": {
-        "symbol": "ඖ",
-        "strokes": 2
+    "Ja": {
+        "symbol": "ජ",
+        "strokes": 1
     },
-    "Pu": {
-        "symbol": "පු",
-        "strokes": 2
+    "Dna": {
+        "symbol": "ඬ",
+        "strokes": 1
     },
-    "Puu": {
-        "symbol": "පූ",
+    "La": {
+        "symbol": "ල",
+        "strokes": 1
+    },
+    "da": {
+        "symbol": "ද",
+        "strokes": 1
+    },
+    "dna": {
+        "symbol": "ඳ",
+        "strokes": 1
+    },
+    "M": {
+        "symbol": "ම්",
+        "strokes": 1
+    },
+    "V": {
+        "symbol": "ව්",
+        "strokes": 1
+    },
+    "Ch": {
+        "symbol": "ච්",
+        "strokes": 1
+    },
+    "D": {
+        "symbol": "ඩ්",
+        "strokes": 1
+    },
+    "h": {
+        "symbol": "හ්",
         "strokes": 2
     },
     "R": {
         "symbol": "ර",
         "strokes": 1
     },
-    "S": {
-        "symbol": "ස",
+    "Vaa": {
+        "symbol": "වා",
+        "strokes": 2
+    },
+    "Laa": {
+        "symbol": "ලා",
+        "strokes": 2
+    },
+    "Vae": {
+        "symbol": "වැ",
+        "strokes": 2
+    },
+    "Lae": {
+        "symbol": "ලැ",
+        "strokes": 2
+    },
+    "Vaee": {
+        "symbol": "වෑ",
+        "strokes": 2
+    },
+    "Laee": {
+        "symbol": "ලෑ",
+        "strokes": 2
+    },
+    "Vi": {
+        "symbol": "වි",
         "strokes": 1
     },
-    "Th": {
-        "symbol": "ත",
+    "Li": {
+        "symbol": "ලි",
+        "strokes": 2
+    },
+    "Vii": {
+        "symbol": "වී",
         "strokes": 1
     },
-    "U": {
-        "symbol": "උ",
+    "Lii": {
+        "symbol": "ලී",
+        "strokes": 2
+    },
+    "Bu": {
+        "symbol": "බු",
+        "strokes": 2
+    },
+    "Buu": {
+        "symbol": "බූ",
+        "strokes": 2
+    },
+    "Mu": {
+        "symbol": "මු",
+        "strokes": 2
+    },
+    "Muu": {
+        "symbol": "මූ",
+        "strokes": 2
+    },
+    "Lu": {
+        "symbol": "ලු",
         "strokes": 1
     },
-    "Uu": {
-        "symbol": "ඌ",
+    "Luu": {
+        "symbol": "ලූ",
+        "strokes": 1
+    },
+    "Thu": {
+        "symbol": "තු",
+        "strokes": 2
+    },
+    "Thuu": {
+        "symbol": "තූ",
+        "strokes": 2
+    },
+    "Ru": {
+        "symbol": "රු",
+        "strokes": 2
+    },
+    "Ruu": {
+        "symbol": "රූ",
+        "strokes": 2
+    },
+    "Ve": {
+        "symbol": "වෙ",
+        "strokes": 2
+    },
+    "Le": {
+        "symbol": "ලෙ",
+        "strokes": 2
+    },
+    "Mee": {
+        "symbol": "මේ",
+        "strokes": 2
+    },
+    "Vee": {
+        "symbol": "වේ",
+        "strokes": 2
+    },
+    "Lee": {
+        "symbol": "ලේ",
+        "strokes": 3
+    },
+    "Ree": {
+        "symbol": "රේ",
+        "strokes": 3
+    },
+    "Ko": {
+        "symbol": "කො",
+        "strokes": 3
+    },
+    "Voo": {
+        "symbol": "වෝ",
+        "strokes": 3
+    },
+    "Vo": {
+        "symbol": "වො",
+        "strokes": 3
+    },
+    "Lo": {
+        "symbol": "ලො",
+        "strokes": 3
+    },
+    "Koo": {
+        "symbol": "කෝ",
+        "strokes": 3
+    },
+    "Loo": {
+        "symbol": "ලෝ",
+        "strokes": 3
+    },
+    "Ira": {
+        "symbol": "ඉර",
+        "strokes": 2
+    },
+    "Atha": {
+        "symbol": "අත",
+        "strokes": 2
+    },
+    "Rata": {
+        "symbol": "රට",
+        "strokes": 2
+    },
+    "Dara": {
+        "symbol": "දර",
+        "strokes": 2
+    },
+    "Ala": {
+        "symbol": "අල",
+        "strokes": 2
+    },
+    "AEe": {
+        "symbol": "ඈ",
         "strokes": 2
     },
     "N": {
         "symbol": "න",
         "strokes": 1
     },
-    "P": {
-        "symbol": "ප",
+    "Th": {
+        "symbol": "ත",
         "strokes": 1
     },
-    "G": {
-        "symbol": "ග",
+    "K": {
+        "symbol": "ක",
         "strokes": 1
     },
     "T": {
         "symbol": "ට",
         "strokes": 1
     },
+    "H": {
+        "symbol": "හ",
+        "strokes": 1
+    },
+    "P": {
+        "symbol": "ප",
+        "strokes": 1
+    },
     "Y": {
         "symbol": "ය",
         "strokes": 1
+    },
+    "I": {
+        "symbol": "ඉ",
+        "strokes": 1
+    },
+    "S": {
+        "symbol": "ස",
+        "strokes": 1
+    },
+    "Oo": {
+        "symbol": "ඕ",
+        "strokes": 1
+    },
+    "Uu": {
+        "symbol": "ඌ",
+        "strokes": 1
+    },
+    "Kii": {
+        "symbol": "කී",
+        "strokes": 2
+    },
+    "Gu": {
+        "symbol": "ගු",
+        "strokes": 2
+    },
+    "Ke": {
+        "symbol": "කැ",
+        "strokes": 2
+    },
+    "Ki": {
+        "symbol": "කි",
+        "strokes": 2
+    },
+    "k": {
+        "symbol": "ක්",
+        "strokes": 2
+    },
+    "Puu": {
+        "symbol": "පූ",
+        "strokes": 2
+    },
+    "Pu": {
+        "symbol": "පු",
+        "strokes": 2
+    },
+    "Ee": {
+        "symbol": "ඒ",
+        "strokes": 2
+    },
+    "U": {
+        "symbol": "උ",
+        "strokes": 1
+    },
+    "O": {
+        "symbol": "ඔ",
+        "strokes": 1
+    },
+    "E": {
+        "symbol": "එ",
+        "strokes": 1
+    },
+    "G": {
+        "symbol": "ග",
+        "strokes": 1
+    },
+    "Ii": {
+        "symbol": "ඊ",
+        "strokes": 3
+    },
+    "g": {
+        "symbol": "ග්",
+        "strokes": 2
+    },
+    "Gii": {
+        "symbol": "ගී",
+        "strokes": 2
+    },
+    "Gi": {
+        "symbol": "ගි",
+        "strokes": 2
+    },
+    "Ku": {
+        "symbol": "කු",
+        "strokes": 2
+    },
+    "Kee": {
+        "symbol": "කෑ",
+        "strokes": 2
+    },
+    "Ka": {
+        "symbol": "කා",
+        "strokes": 2
+    },
+    "Ou": {
+        "symbol": "ඖ",
+        "strokes": 2
+    },
+    "Guu": {
+        "symbol": "ගූ",
+        "strokes": 2
     }
 }
