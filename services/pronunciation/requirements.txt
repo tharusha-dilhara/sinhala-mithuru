@@ -1,7 +1,9 @@
+fastapi
+uvicorn
+python-multipart
 torch
 transformers
 librosa
-numpy
 soundfile
-gradio
-huggingface_hub
+numpy
+huggingface-hub
