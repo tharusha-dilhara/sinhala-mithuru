@@ -32,6 +32,9 @@ class _StoryScreenState extends State<StoryScreen>
   late List<String> _correctShuffledOrder;
 
   bool _isSolved = false;
+  String? _feedbackMessage;
+  Color? _feedbackColor;
+  IconData? _feedbackIcon;
 
   late AnimationController _shakeController;
   late Animation<double> _shakeAnimation;
@@ -136,10 +139,13 @@ class _StoryScreenState extends State<StoryScreen>
   }
 
   void _onReorder(int oldIndex, int newIndex) {
+    if (_isSolved) return;
+
     setState(() {
       if (newIndex > oldIndex) newIndex -= 1;
       final String item = _shuffledSentences.removeAt(oldIndex);
       _shuffledSentences.insert(newIndex, item);
+      _feedbackMessage = null;
     });
   }
 
@@ -151,16 +157,17 @@ class _StoryScreenState extends State<StoryScreen>
         _shuffledSentences.shuffle();
       }
       _isSolved = false;
+      _feedbackMessage = null;
     });
   }
 
   void _checkOrder() {
     if (listEquals(_shuffledSentences, _correctShuffledOrder)) {
-      setState(() => _isSolved = true);
       _showFeedback(
         "නියමයි! පිළිවෙල හරි! ✨",
         Colors.green,
         Icons.check_circle_rounded,
+        isSolved: true,
       );
     } else {
       _shakeController.forward();
@@ -240,28 +247,194 @@ class _StoryScreenState extends State<StoryScreen>
     }
   }
 
-  void _showFeedback(String msg, Color color, IconData icon) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Row(
+  void _showFeedback(
+    String msg,
+    Color color,
+    IconData icon, {
+    bool isSolved = false,
+  }) {
+    setState(() {
+      _isSolved = isSolved;
+      _feedbackMessage = msg;
+      _feedbackColor = color;
+      _feedbackIcon = icon;
+    });
+  }
+
+  Widget _buildFeedbackBanner() {
+    final color = _feedbackColor ?? Colors.orange;
+    final icon = _feedbackIcon ?? Icons.info_rounded;
+
+    return AnimatedSize(
+      duration: const Duration(milliseconds: 240),
+      curve: Curves.easeOutCubic,
+      alignment: Alignment.topCenter,
+      child: _feedbackMessage == null
+          ? const SizedBox.shrink()
+          : Container(
+              width: double.infinity,
+              margin: const EdgeInsets.only(top: 4, bottom: 12),
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+              decoration: BoxDecoration(
+                color: color.withValues(alpha: 0.12),
+                borderRadius: BorderRadius.circular(14),
+                border: Border.all(color: color.withValues(alpha: 0.32)),
+                boxShadow: [
+                  BoxShadow(
+                    color: color.withValues(alpha: 0.12),
+                    blurRadius: 10,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
+              ),
+              child: Row(
+                children: [
+                  Container(
+                    width: 34,
+                    height: 34,
+                    decoration: BoxDecoration(
+                      color: color,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(icon, color: Colors.white, size: 21),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Text(
+                      _feedbackMessage!,
+                      style: GoogleFonts.notoSansSinhala(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w800,
+                        color: color.withValues(alpha: 0.95),
+                        height: 1.35,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+    );
+  }
+
+  Widget _buildBottomButtons() {
+    return Row(
+      children: [
+        Expanded(
+          child: OutlinedButton.icon(
+            onPressed: _isSolved ? null : _resetPuzzle,
+            icon: const Icon(Icons.refresh_rounded),
+            label: Text(
+              'නැවත හදමු',
+              style: GoogleFonts.notoSansSinhala(fontSize: 13),
+            ),
+            style: OutlinedButton.styleFrom(
+              foregroundColor: Colors.grey.shade700,
+              side: BorderSide(color: Colors.grey.shade300),
+              padding: const EdgeInsets.symmetric(vertical: 14),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(14),
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(width: 12),
+        Expanded(
+          flex: 2,
+          child: AnimatedBuilder(
+            animation: _shakeAnimation,
+            builder: (context, child) {
+              return Transform.translate(
+                offset: Offset(
+                  _shakeAnimation.value *
+                      (1 - (_shakeController.value * 2)).sign *
+                      5,
+                  0,
+                ),
+                child: child,
+              );
+            },
+            child: ElevatedButton.icon(
+              onPressed: _isSolved ? _navigateToQuiz : _checkOrder,
+              icon: Icon(
+                _isSolved
+                    ? Icons.arrow_forward_rounded
+                    : Icons.check_circle_outline_rounded,
+              ),
+              label: Text(
+                _isSolved ? 'ප්‍රශ්න වලට යමු' : 'හරිද බලමු',
+                style: GoogleFonts.notoSansSinhala(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: _isSolved ? Colors.green : Colors.orange,
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(vertical: 14),
+                elevation: 4,
+                shadowColor: (_isSolved ? Colors.green : Colors.orange)
+                    .withValues(alpha: 0.4),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(14),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildPuzzleBlock(int index, String text) {
+    final bgColor = _blockColors[index % _blockColors.length];
+    final borderColor = _blockBorders[index % _blockBorders.length];
+
+    return ReorderableDragStartListener(
+      key: ValueKey(text),
+      index: index,
+      enabled: !_isSolved,
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+        decoration: BoxDecoration(
+          color: bgColor,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: borderColor, width: 1.5),
+          boxShadow: [
+            BoxShadow(
+              color: borderColor.withValues(alpha: 0.3),
+              blurRadius: 8,
+              offset: const Offset(0, 3),
+            ),
+          ],
+        ),
+        child: Row(
           children: [
-            Icon(icon, color: Colors.white, size: 24),
-            const SizedBox(width: 10),
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.white.withValues(alpha: 0.7),
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(
+                Icons.drag_indicator_rounded,
+                color: Colors.black38,
+                size: 22,
+              ),
+            ),
+            const SizedBox(width: 12),
             Expanded(
               child: Text(
-                msg,
+                text,
                 style: GoogleFonts.notoSansSinhala(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.black87,
                 ),
               ),
             ),
           ],
         ),
-        backgroundColor: color,
-        behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        margin: const EdgeInsets.all(16),
       ),
     );
   }
@@ -323,128 +496,11 @@ class _StoryScreenState extends State<StoryScreen>
           ),
 
           const SizedBox(height: 12),
+          _buildFeedbackBanner(),
 
           // ── Bottom buttons ──
-          Row(
-            children: [
-              Expanded(
-                child: OutlinedButton.icon(
-                  onPressed: _isSolved ? null : _resetPuzzle,
-                  icon: const Icon(Icons.refresh_rounded),
-                  label: Text(
-                    'නැවත හදමු',
-                    style: GoogleFonts.notoSansSinhala(fontSize: 13),
-                  ),
-                  style: OutlinedButton.styleFrom(
-                    foregroundColor: Colors.grey.shade700,
-                    side: BorderSide(color: Colors.grey.shade300),
-                    padding: const EdgeInsets.symmetric(vertical: 14),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                flex: 2,
-                child: AnimatedBuilder(
-                  animation: _shakeAnimation,
-                  builder: (context, child) {
-                    return Transform.translate(
-                      offset: Offset(
-                        _shakeAnimation.value *
-                            (1 - (_shakeController.value * 2)).sign *
-                            5,
-                        0,
-                      ),
-                      child: child,
-                    );
-                  },
-                  child: ElevatedButton.icon(
-                    onPressed: _isSolved ? _navigateToQuiz : _checkOrder,
-                    icon: Icon(
-                      _isSolved
-                          ? Icons.arrow_forward_rounded
-                          : Icons.check_circle_outline_rounded,
-                    ),
-                    label: Text(
-                      _isSolved ? 'ප්‍රශ්න වලට යමු' : 'හරිද බලමු',
-                      style: GoogleFonts.notoSansSinhala(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: _isSolved ? Colors.green : Colors.orange,
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(vertical: 14),
-                      elevation: 4,
-                      shadowColor: (_isSolved ? Colors.green : Colors.orange)
-                          .withValues(alpha: 0.4),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(14),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
+          _buildBottomButtons(),
         ],
-      ),
-    );
-  }
-
-  Widget _buildPuzzleBlock(int index, String text) {
-    final bgColor = _blockColors[index % _blockColors.length];
-    final borderColor = _blockBorders[index % _blockBorders.length];
-
-    return ReorderableDragStartListener(
-      key: ValueKey(text),
-      index: index,
-      child: Container(
-        margin: const EdgeInsets.only(bottom: 10),
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
-        decoration: BoxDecoration(
-          color: bgColor,
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: borderColor, width: 1.5),
-          boxShadow: [
-            BoxShadow(
-              color: borderColor.withValues(alpha: 0.3),
-              blurRadius: 8,
-              offset: const Offset(0, 3),
-            ),
-          ],
-        ),
-        child: Row(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: Colors.white.withValues(alpha: 0.7),
-                shape: BoxShape.circle,
-              ),
-              child: const Icon(
-                Icons.drag_indicator_rounded,
-                color: Colors.black38,
-                size: 22,
-              ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Text(
-                text,
-                style: GoogleFonts.notoSansSinhala(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700,
-                  color: Colors.black87,
-                ),
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }
