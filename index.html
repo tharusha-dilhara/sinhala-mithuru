@@ -2472,30 +2472,40 @@
                     </div>
 
                     <div class="card p-6 sm:p-8">
-                        <form class="grid gap-5"
-                            onsubmit="event.preventDefault(); alert('Thank you for getting in touch! We will get back to you shortly.'); this.reset();">
+                        <form id="contactForm" class="grid gap-5" action="https://api.web3forms.com/submit"
+                            method="POST" data-endpoint="https://api.web3forms.com/submit">
+                            <input type="hidden" name="access_key" value="1040fb93-f03e-4767-80eb-436161fd9fb2" />
+                            <input type="hidden" name="subject" value="New Sinhala Mithuru Contact Message" />
+                            <input type="hidden" name="from_name" value="Sinhala Mithuru Website" />
                             <div>
                                 <label for="contact-name" class="block text-sm font-bold text-ink">Name</label>
-                                <input type="text" id="contact-name" required
+                                <input type="text" id="contact-name" name="name" autocomplete="name" required
                                     class="mt-2 block w-full rounded-md border border-line bg-paper px-4 py-3 text-sm text-ink placeholder-muted focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-colors"
                                     placeholder="Your name" />
                             </div>
                             <div>
                                 <label for="contact-email" class="block text-sm font-bold text-ink">Email
                                     Address</label>
-                                <input type="email" id="contact-email" required
+                                <input type="email" id="contact-email" name="email" autocomplete="email" required
                                     class="mt-2 block w-full rounded-md border border-line bg-paper px-4 py-3 text-sm text-ink placeholder-muted focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-colors"
                                     placeholder="you@example.com" />
                             </div>
                             <div>
                                 <label for="contact-message" class="block text-sm font-bold text-ink">Message</label>
-                                <textarea id="contact-message" rows="4" required
+                                <textarea id="contact-message" name="message" rows="4" required
                                     class="mt-2 block w-full resize-none rounded-md border border-line bg-paper px-4 py-3 text-sm text-ink placeholder-muted focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-colors"
                                     placeholder="How can we help you?"></textarea>
                             </div>
+                            <div class="hidden" aria-hidden="true">
+                                <label for="contact-botcheck">Botcheck</label>
+                                <input type="checkbox" id="contact-botcheck" name="botcheck" tabindex="-1"
+                                    autocomplete="off" />
+                            </div>
+                            <p id="contactFormStatus" class="hidden rounded-md border px-4 py-3 text-sm font-semibold"
+                                role="status" aria-live="polite"></p>
                             <button type="submit" class="button button-primary w-full mt-2">
                                 <span class="material-icons-outlined text-[18px]">send</span>
-                                Send Message
+                                <span data-contact-submit-text>Send Message</span>
                             </button>
                         </form>
                     </div>
@@ -2556,6 +2566,10 @@
         const searchResultCount = document.getElementById("searchResultCount");
         const searchResults = document.getElementById("searchResults");
         const searchEmpty = document.getElementById("searchEmpty");
+        const contactForm = document.getElementById("contactForm");
+        const contactFormStatus = document.getElementById("contactFormStatus");
+        const contactSubmitButton = contactForm?.querySelector('button[type="submit"]');
+        const contactSubmitText = contactForm?.querySelector("[data-contact-submit-text]");
         const documentSearchItems = Array.from(document.querySelectorAll("#documents .doc-card")).map((card, index) => {
             const title = card.querySelector("h3")?.textContent.trim() || `Document ${index + 1}`;
             const description = card.querySelector("p")?.textContent.trim() || "";
@@ -2681,8 +2695,103 @@
             }, 2200);
         }
 
+        function setContactFormStatus(message, tone = "info") {
+            if (!contactFormStatus) {
+                return;
+            }
+
+            const toneClasses = {
+                error: "border-red-200 bg-red-50 text-red-700",
+                success: "border-green-200 bg-green-50 text-green-700",
+                info: "border-line bg-paper text-muted"
+            };
+
+            contactFormStatus.className = `rounded-md border px-4 py-3 text-sm font-semibold ${toneClasses[tone] || toneClasses.info}`;
+            contactFormStatus.textContent = message;
+        }
+
+        function setContactFormBusy(isBusy) {
+            if (contactSubmitButton) {
+                contactSubmitButton.disabled = isBusy;
+                contactSubmitButton.classList.toggle("opacity-70", isBusy);
+                contactSubmitButton.classList.toggle("cursor-not-allowed", isBusy);
+            }
+
+            if (contactSubmitText) {
+                contactSubmitText.textContent = isBusy ? "Sending..." : "Send Message";
+            }
+        }
+
+        function getContactFormPayload(form) {
+            const formData = new FormData(form);
+            const accessKey = String(formData.get("access_key") || "").trim();
+
+            if (!accessKey || accessKey === "YOUR_WEB3FORMS_ACCESS_KEY") {
+                throw new Error("Please add your Web3Forms access key before sending.");
+            }
+
+            return {
+                access_key: accessKey,
+                subject: String(formData.get("subject") || "").trim(),
+                from_name: String(formData.get("from_name") || "").trim(),
+                name: String(formData.get("name") || "").trim(),
+                email: String(formData.get("email") || "").trim(),
+                message: String(formData.get("message") || "").trim(),
+                botcheck: String(formData.get("botcheck") || "").trim()
+            };
+        }
+
+        async function submitContactForm(form) {
+            const endpoint = form.dataset.endpoint || form.action || "https://api.web3forms.com/submit";
+            const response = await fetch(endpoint, {
+                method: "POST",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(getContactFormPayload(form))
+            });
+
+            let result = {};
+
+            try {
+                result = await response.json();
+            } catch (error) {
+                result = {};
+            }
+
+            if (!response.ok) {
+                throw new Error(result.message || result.detail || "Message could not be sent right now.");
+            }
+
+            return result;
+        }
+
         window.addEventListener("scroll", syncHeader);
         syncHeader();
+
+        contactForm?.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            if (!contactForm.checkValidity()) {
+                contactForm.reportValidity();
+                setContactFormStatus("Please complete all required fields with a valid email address.", "error");
+                return;
+            }
+
+            setContactFormBusy(true);
+            setContactFormStatus("Sending your message...", "info");
+
+            try {
+                await submitContactForm(contactForm);
+                contactForm.reset();
+                setContactFormStatus("Thank you. Your message has been sent successfully.", "success");
+            } catch (error) {
+                setContactFormStatus(error.message || "Message could not be sent right now. Please try again later.", "error");
+            } finally {
+                setContactFormBusy(false);
+            }
+        });
 
         searchToggle.addEventListener("click", () => {
             if (searchPanel.hidden) {
